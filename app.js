@@ -30,6 +30,12 @@ app.use('/users', users);
 app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');
 })
+app.get('/login', function (req, res, next) {
+    res.sendFile(__dirname + '/login.html');
+});
+app.get('/register', function (req, res, next) {
+    res.sendFile(__dirname + '/register.html');
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

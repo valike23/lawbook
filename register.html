@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Lawbook website user registration page">
+    <meta name="author" content="valentine Emmanuel">
+    <meta name="keywords" content="registration, register, lawbook,account">
+
+    <!-- Title Page-->
+    <title>Lawbook Registration page</title>
+
+    <!-- Icons font CSS-->
+    <link href="css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="css/select2.min.css" rel="stylesheet" media="all">
+    <link href="css/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/register.css" rel="stylesheet" media="all">
+</head>
+
+<body ng-app="app">
+    <div ng-controller="registerCtrl" class="page-wrapper bg-brown p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Lawbook register</h2>
+                    <form ng-submit="submit()">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="firstname" ng-model="user.firstname" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="lastname" ng-model="user.lastname" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="middlename" ng-model="user.middlename">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="username" ng-model="user.username" required ng-keyup="checkUser">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="email" placeholder="email" ng-model="user.email" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="BIRTHDATE" required ng-model="user.birthday">
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select ng-model="user.sex">
+                                            <option disabled="disabled" selected="selected" >GENDER</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Other</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <label>country</label>
+                                <select  ng-model="user.country">
+
+                                    <option ng-repeat="country in countries" value="{{country.name}}">{{country.name}}</option>
+
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="ADDRESS" ng-model="user.address" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="tel" placeholder="PHONE" ng-model="user.phone" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="password" placeholder="PASSWORD" ng-model="user.password" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="password" placeholder="CONFIRM PASSWORD" ng-model="user.confirm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-t-20">
+                            <input class="btn btn--radius btn--green" type="submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery JS-->
+    <script src="js/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="js/select2.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/daterangepicker.js"></script>
+    <!-- Main JS-->
+    <script src="js/angular.js"></script>
+    <script src="javascripts/register.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
