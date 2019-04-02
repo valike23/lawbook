@@ -10,7 +10,7 @@ var mysql = require('mysql');
 //    database: 'lawbook'
 
 // });
-var connection = mysql.create.connection({
+var connection = mysql.createConnection({
     host: 'db4free.net',
     user: 'law_book',
     password: 'law_book',
