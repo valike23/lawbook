@@ -3,21 +3,21 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'lawbook',
-
- });
 //var connection = mysql.createConnection({
-//    host: 'db4free.net',
-//    user: 'valey_bank',
-//    password: 'valey_bank',
-//    database: 'valey_bank',
-//    port: "3306"
+//    host: '127.0.0.1',
+//    user: 'root',
+//    password: '',
+//    database: 'lawbook'
 
-//});
+// });
+var connection = mysql.createconnection({
+    host: 'db4free.net',
+    user: 'law_book',
+    password: 'law_book',
+    database: 'law_book'
+   
+
+});
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -26,8 +26,21 @@ router.get('/', function (req, res) {
 router.post('/login', function (req, res) {
     var form = req.body;
     console.log(form);
-    res.json("hitted");
-    res.end();
+    var query = "SELECT * FROM user WHERE email = " + mysql.escape(form.email) + " AND password = " + mysql.escape(form.pass);
+    console.log(query);
+    connection.query(query, function (err, results) {
+        if (err) {
+            console.log(err);
+            res.status(500);
+            res.json("something went wrong!!!");
+            res.end();
+            
+        }
+        console.log(results)
+        res.json(results);
+        res.end();
+    })
+   
 })
 router.get("/checkUser/:username", function (req, res) {
     var user = req.param.username;
