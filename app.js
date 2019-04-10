@@ -35,6 +35,9 @@ app.get('/login', function (req, res, next) {
 });
 app.get('/register', function (req, res, next) {
     res.sendFile(__dirname + '/register.html');
+});
+app.get('/blog', function (req, res, next) {
+    res.sendFile(__dirname + '/blog.html');
 })
 
 // catch 404 and forward to error handler
