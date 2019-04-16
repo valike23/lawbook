@@ -71,19 +71,61 @@
 })(jQuery);
 
 (function () {
+   
     var app = angular.module("app", []);
     app.run(function ($rootScope) {
         $rootScope.countries = countries;
     });
-    app.controller("registerCtrl", function ($scope, $http) {
+    app.controller("registerCtrl", ["$scope", "$http", function ($scope, $http) {
+        var test = false;
+        var test2 = false;
+        var username = document.getElementById("username");
+        var confirm = document.getElementById("confirm");
+        var password = document.getElementById("password");
+
         $scope.submit = function () {
-            alert($scope.user.selectedCountry);
+        
             console.log($scope.user);
+            if (test && test2) {
+                $http.post("/api/register", $scope.user).then(function (res) {
+                    console.log(res)
+                })
+            }
         }
         $scope.checkUser = function () {
-            http.get()
+            console.log($scope.user.username)
+            $http.get("/api/checkUser/" + $scope.user.username).then(function (res) {
+                console.log(res.data);
+                if (res.data.length > 0) {
+                    test = false;
+                    console.log(res.data);
+                    username.className += " error";
+                }
+                else {
+                    test = true;
+                    username.classList.remove("error");
+                }
+            }, function (err) {
+                console.log(err);
+        
+                })
         }
-    })
+        $scope.confirmPassword = function () {
+            if ($scope.user.password != $scope.confirm) {
+                test2 = false;
+                confirm.className += " error";
+                password.className += " error";
+
+            }
+            else {
+                test2 = true;
+               confirm.classList.remove("error");
+                password.classList.remove("error");
+
+            }
+        }
+    }]);
+
 })()
 
 

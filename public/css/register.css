@@ -461,3 +461,9 @@ input {
     padding-bottom: 40px;
   }
 }
+
+.error{
+    border-color:red;
+    border-style:dashed;
+    color: red
+}
