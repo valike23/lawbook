@@ -65,7 +65,7 @@ router.post('/register', function (req, res) {
     connection.query(query, user, function (err, resu) {
         if (err) {
             console.log(err);
-            res.end();
+           
             return;
         }
         res.json({

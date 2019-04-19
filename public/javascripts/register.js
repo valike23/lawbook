@@ -79,16 +79,37 @@
     app.controller("registerCtrl", ["$scope", "$http", function ($scope, $http) {
         var test = false;
         var test2 = false;
+        $scope.success = true;
+        var loaded = document.getElementById("loadingBlock");
+        var main = document.getElementById("mainBlock");
         var username = document.getElementById("username");
         var confirm = document.getElementById("confirm");
         var password = document.getElementById("password");
+        main.style.display = "block";
+        loaded.style.display = "none";
+
 
         $scope.submit = function () {
-        
-            console.log($scope.user);
+            main.style.display = "none";
+            loaded.style.display = "block";
             if (test && test2) {
                 $http.post("/api/register", $scope.user).then(function (res) {
-                    console.log(res)
+                    main.style.display = "block";
+                    loaded.style.display = "none";
+                    if (res.data.message == "user created successfully") {
+                        alert("user created successfully!!!,   click ok to login");
+                        location.href = "/login";
+                    }
+                    else {
+                        alert("there must have been an error in the form you filled please change the username and try again...")
+                        main.style.display = "block";
+                        loaded.style.display = "none";
+
+                    }
+                }, function (err) {
+                    main.style.display = "block";
+                    loaded.style.display = "none";
+                    alert("oops!!!, something went wrong please try again... or you can contact admin.");
                 })
             }
         }

@@ -467,3 +467,7 @@ input {
     border-style:dashed;
     color: red
 }
+
+.hide{
+    display:none;
+}
