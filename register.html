@@ -27,7 +27,7 @@
 
 <body ng-app="app">
     <div style="text-align:center; width:100vw;height:100vh" id="loadingBlock" >
-        <div class="ld ld-hourglass ld-spin-fast" style="font-size:64px;color:#8da;margin-top: calc(100vh/2.5); margin-left:calc(100vw/2.6) " ></div>
+        <div class="ld ld-hourglass ld-spin-fast" style="font-size:64px;color:#8da;margin-top: calc(100vh/2.5); margin-left:calc(100vw/10) " ></div>
 
     </div>
    
@@ -70,7 +70,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-1 js-datepicker" type="text" placeholder="BIRTHDATE" required ng-model="user.birthday">
+                                    <input class="input--style-1 js-datepicker"  id="birth" type="text" placeholder="BIRTHDATE" required >
                                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                 </div>
                             </div>

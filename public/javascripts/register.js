@@ -77,6 +77,7 @@
         $rootScope.countries = countries;
     });
     app.controller("registerCtrl", ["$scope", "$http", function ($scope, $http) {
+    
         var test = false;
         var test2 = false;
         $scope.success = true;
@@ -90,6 +91,9 @@
 
 
         $scope.submit = function () {
+            $scope.user.birthday = document.getElementById("birth").value;
+            console.log($scope.user);
+         
             main.style.display = "none";
             loaded.style.display = "block";
             if (test && test2) {
