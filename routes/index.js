@@ -2,22 +2,22 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-//var connection = mysql.createConnection({
-//    host: '127.0.0.1',
-//    user: 'root',
-//    password: '',
-//    database: 'lawbook'
-
-// });
 var connection = mysql.createConnection({
-    host: 'db4free.net',
-    user: 'law_book',
-    password: 'law_book',
-    database: 'law_book'
-   
+    host: '127.0.0.1',
+    user: 'root',
+    password: '',
+    database: 'lawbook'
 
-});
+ });
+//var connection = mysql.createConnection({
+//    host: 'db4free.net',
+//    user: 'law_book',
+//    password: 'law_book',
+//    database: 'law_book'
+//});
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
 router.post('/login', function (req, res) {
     var form = req.body;
     console.log(form);
-    var query = "SELECT * FROM user WHERE email = " + mysql.escape(form.email) + " AND password = " + mysql.escape(form.pass);
+    var query = "SELECT * FROM user WHERE email = " + mysql.escape(form.email);
     console.log(query);
     connection.query(query, function (err, results) {
         if (err) {
@@ -36,9 +36,26 @@ router.post('/login', function (req, res) {
             res.end();
 
         }
-        console.log(results)
-        res.json(results);
-        res.end();
+        bcrypt.compare(form.password,results[0].password, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.json("Error Occured while authenticating, please try again later.");
+                res.end();
+                return;
+            }
+            if (res == true) {
+                console.log(results)
+                res.json(results);
+                res.end();
+            }
+            else {
+                
+                res.json("sorry, password incorrect!!!");
+                res.end();
+            }
+        });
+        
     })
 
 })
@@ -60,22 +77,36 @@ router.get("/checkUser/:username", function (req, res) {
 })
 router.post('/register', function (req, res) {
     var user = req.body;
-    console.log(user);
     var query = "INSERT INTO user SET ?";
-    connection.query(query, user, function (err, resu) {
+    console.log(user);
+    bcrypt.hash(user.password, saltRounds, function (err, hash) {
         if (err) {
             console.log(err);
-           
+            res.status(500);
+            res.json("something went wrong when making your account secure");
+            res.end();
             return;
         }
-        res.json({
-            message: "user created successfully",
-            info: resu
-        });
-        console.log(resu);
-        res.end();
-       
-    })
+        user.password = hash;
+        connection.query(query, user, function (err, resu) {
+            if (err) {
+                console.log(err);
+                res.status(503);
+                res.json("Something went wrong! dont worry its from us and we are currently working on it. Try again later.");
+                res.end();
+                return;
+            }
+            res.json({
+                message: "user created successfully",
+                info: resu
+            });
+            console.log(resu);
+            res.end();
+
+        })
+    });
+   
+   
    
 
 })

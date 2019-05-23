@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', routes);
-app.use('/users', users);
+app.use('/secure', users);
 
 app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');

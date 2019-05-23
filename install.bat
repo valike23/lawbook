@@ -1,1 +1,1 @@
-npm install mysql -save
+npm i bcrypt --save
