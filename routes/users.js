@@ -2,6 +2,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 var connection = mysql.createConnection({
     host: '127.0.0.1',
@@ -20,5 +22,10 @@ var connection = mysql.createConnection({
 router.get('/', function (req, res) {
     res.send('respond with a resource');
 });
+
+
+function authenticate(req) {
+
+};
 
 module.exports = router;

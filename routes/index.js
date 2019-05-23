@@ -36,26 +36,33 @@ router.post('/login', function (req, res) {
             res.end();
 
         }
-        bcrypt.compare(form.password,results[0].password, function (err, result) {
-            if (err) {
-                console.log(err);
-                res.status(500);
-                res.json("Error Occured while authenticating, please try again later.");
-                res.end();
-                return;
-            }
-            if (res == true) {
-                console.log(results)
-                res.json(results);
-                res.end();
-            }
-            else {
-                
-                res.json("sorry, password incorrect!!!");
-                res.end();
-            }
-        });
-        
+        if (results.length > 0) {
+            bcrypt.compare(form.password, results[0].password, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.status(500);
+                    res.json("Error Occured while authenticating, please try again later.");
+                    res.end();
+                    return;
+                }
+                if (res == true) {
+                    console.log(results)
+                    res.json(results);
+                    res.end();
+                }
+                else {
+
+                    res.json("sorry, password incorrect!!!");
+                    res.end();
+                }
+            });
+
+        }
+        else {
+            res.json("sorry, username does not exist!!!");
+            res.end(); 
+        }
+    
     })
 
 })
@@ -98,7 +105,8 @@ router.post('/register', function (req, res) {
             }
             res.json({
                 message: "user created successfully",
-                info: resu
+                info: resu,
+                pass: hash
             });
             console.log(resu);
             res.end();
