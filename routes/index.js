@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 const bcrypt = require('bcrypt');
+const cryptoRandomString = require('crypto-random-string');
 const saltRounds = 10;
 
 var connection = mysql.createConnection({
@@ -37,6 +38,7 @@ router.post('/login', function (req, res) {
 
         }
         if (results.length > 0) {
+            console.log(results[0].password, form.password);
             bcrypt.compare(form.password, results[0].password, function (err, result) {
                 if (err) {
                     console.log(err);
@@ -45,10 +47,27 @@ router.post('/login', function (req, res) {
                     res.end();
                     return;
                 }
-                if (res == true) {
-                    console.log(results)
-                    res.json(results);
-                    res.end();
+                if (result == true) {
+                   
+                    var session = {
+                        userId: results[0].id,
+                        session: cryptoRandomString({ length: 20 }),
+                        duration: parseInt(Date.now()) + 900000
+                    }
+                    var query = "INSERT INTO user SET ?";
+                    connection.query(query, session, function (err, myResult) {
+                        if (err) {
+                            console.log(err);
+                            res.status(500);
+                            res.json("Error Occured while creating a session for you, please try again later.");
+                            res.end();
+                            return;
+                        }
+                        console.log(results)
+                        res.json(session.session);
+                        res.end();
+                    })
+                   
                 }
                 else {
 

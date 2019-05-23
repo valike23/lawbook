@@ -1,1 +1,1 @@
-npm i bcrypt --save
+npm i crypto-random-string --save
