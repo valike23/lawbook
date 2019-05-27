@@ -13,6 +13,7 @@
         }
         else {
             $rootScope.isLogged = true;
+            console.log(user);
             $rootScope.user = JSON.parse(user);
         }
     });

@@ -38,8 +38,8 @@ router.post('/login', function (req, res) {
 
         }
         if (results.length > 0) {
-            console.log(results[0].password, form.password);
-            bcrypt.compare(form.password, results[0].password, function (err, result) {
+            console.log(results[0].password, form.pass);
+            bcrypt.compare(form.pass, results[0].password, function (err, result) {
                 if (err) {
                     console.log(err);
                     res.status(500);
@@ -54,7 +54,7 @@ router.post('/login', function (req, res) {
                         session: cryptoRandomString({ length: 20 }),
                         duration: parseInt(Date.now()) + 900000
                     }
-                    var query = "INSERT INTO user SET ?";
+                    var query = "INSERT INTO sessions SET ?";
                     connection.query(query, session, function (err, myResult) {
                         if (err) {
                             console.log(err);
@@ -63,15 +63,24 @@ router.post('/login', function (req, res) {
                             res.end();
                             return;
                         }
-                        console.log(results)
-                        res.json(session.session);
+                        var data = {
+                            seesion: session.session,
+                            user: results[0],
+                            response: "successful"
+                        }
+                        console.log(data)
+                        res.json(data);
                         res.end();
                     })
                    
                 }
                 else {
-
-                    res.json("sorry, password incorrect!!!");
+                    var data = {
+                        
+                        user: null,
+                        response: "password is incorrect!!!!"
+                    }
+                    res.json(data);
                     res.end();
                 }
             });

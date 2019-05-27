@@ -16,13 +16,14 @@
             }
             $http.post('/api/login', data).then(function (res) {
              
-                if (res.data[0] == undefined) {
+                if (res.data.user == null) {
                     $scope.error = false;
                     $scope.loading = false;
                     $scope.access = true;
                 }
-                else {
-                    sessionStorage.setItem("user", JSON.stringify(res.data[0]));
+                if (res.data.user != null) {
+                   
+                    sessionStorage.setItem("user", JSON.stringify(res.data.user));
                     location.href = "/";
                 }
               
