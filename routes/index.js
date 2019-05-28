@@ -6,19 +6,19 @@ const bcrypt = require('bcrypt');
 const cryptoRandomString = require('crypto-random-string');
 const saltRounds = 10;
 
-var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'lawbook'
-
- });
 //var connection = mysql.createConnection({
-//    host: 'db4free.net',
-//    user: 'law_book',
-//    password: 'law_book',
-//    database: 'law_book'
-//});
+//    host: '127.0.0.1',
+//    user: 'root',
+//    password: '',
+//    database: 'lawbook'
+
+// });
+var connection = mysql.createConnection({
+    host: 'db4free.net',
+    user: 'law_book',
+    password: 'law_book',
+    database: 'law_book'
+});
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -35,8 +35,10 @@ router.post('/login', function (req, res) {
             res.status(500);
             res.json("something went wrong!!!");
             res.end();
+            return;
 
         }
+        
         if (results.length > 0) {
             console.log(results[0].password, form.pass);
             bcrypt.compare(form.pass, results[0].password, function (err, result) {

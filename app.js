@@ -38,7 +38,10 @@ app.get('/register', function (req, res, next) {
 });
 app.get('/blog', function (req, res, next) {
     res.sendFile(__dirname + '/blog.html');
-})
+});
+app.get('/profile', function (req, res, next) {
+    res.sendFile(__dirname + '/profile.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -71,7 +74,7 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 300);
 
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);

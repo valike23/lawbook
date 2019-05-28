@@ -30,5 +30,11 @@
     app.controller("homeCtrl", ["$scope", function ($scope) {
         //write home controller code
     }])
+    app.controller("profileCtrl", ["$scope", "$rootScope", function ($scope, $rootScope) {
+        if ($rootScope.isLogged == false) {
+            console.log(location);
+            location.href = '/';
+        }
+    }])
 
 })();
