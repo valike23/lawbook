@@ -2,8 +2,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const bcrypt = require('bcryptjs');
+const saltRounds = bcrypt.genSaltSync(10);
 
 //var connection = mysql.createConnection({
 //    host: '127.0.0.1',

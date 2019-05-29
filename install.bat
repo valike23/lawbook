@@ -1,1 +1,2 @@
-npm i crypto-random-string --save
+npm i bcryptjs --save
+pause

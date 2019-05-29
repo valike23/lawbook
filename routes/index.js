@@ -2,9 +2,10 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+const saltRounds = bcrypt.genSaltSync(10);
 const cryptoRandomString = require('crypto-random-string');
-const saltRounds = 10;
+
 
 //var connection = mysql.createConnection({
 //    host: '127.0.0.1',
@@ -36,64 +37,55 @@ router.post('/login', function (req, res) {
             res.json("something went wrong!!!");
             res.end();
             return;
-
         }
-        
         if (results.length > 0) {
-            console.log(results[0].password, form.pass);
-            bcrypt.compare(form.pass, results[0].password, function (err, result) {
-                if (err) {
-                    console.log(err);
-                    res.status(500);
-                    res.json("Error Occured while authenticating, please try again later.");
-                    res.end();
-                    return;
+            var test = bcrypt.compare(form.pass, results[0].password);
+            if (test) {
+                console.log(test);
+                var session = {
+                    userId: results[0].id,
+                    session: cryptoRandomString({ length: 20 }),
+                    duration: parseInt(Date.now()) + 900000
                 }
-                if (result == true) {
-                   
-                    var session = {
-                        userId: results[0].id,
-                        session: cryptoRandomString({ length: 20 }),
-                        duration: parseInt(Date.now()) + 900000
-                    }
-                    var query = "INSERT INTO sessions SET ?";
-                    connection.query(query, session, function (err, myResult) {
-                        if (err) {
-                            console.log(err);
-                            res.status(500);
-                            res.json("Error Occured while creating a session for you, please try again later.");
-                            res.end();
-                            return;
-                        }
-                        var data = {
-                            seesion: session.session,
-                            user: results[0],
-                            response: "successful"
-                        }
-                        console.log(data)
-                        res.json(data);
+                var query = "INSERT INTO sessions SET ?";
+                connection.query(query, session, function (err, myResult) {
+                    if (err) {
+                        console.log(err);
+                        res.status(500);
+                        res.json("Error Occured while creating a session for you, please try again later.");
                         res.end();
-                    })
-                   
-                }
-                else {
-                    var data = {
-                        
-                        user: null,
-                        response: "password is incorrect!!!!"
+                        return;
                     }
+                    var data = {
+                        seesion: session.session,
+                        user: results[0],
+                        response: "successful"
+                    }
+                    console.log(data)
                     res.json(data);
                     res.end();
-                }
-            });
+                })
 
+            }
+            else if (!test) {
+                var data = {
+                    user: null,
+                    response: "password is incorrect!!!!"
+                }
+                res.json(data);
+                res.end();
+            }
         }
         else {
-            res.json("sorry, username does not exist!!!");
-            res.end(); 
+            var data = {
+                user: null,
+                response: "email is incorrect!!!!"
+            }
+            res.json(data);
+            res.end();
         }
-    
     })
+ 
 
 })
 router.get("/checkUser/:username", function (req, res) {
@@ -116,14 +108,8 @@ router.post('/register', function (req, res) {
     var user = req.body;
     var query = "INSERT INTO user SET ?";
     console.log(user);
-    bcrypt.hash(user.password, saltRounds, function (err, hash) {
-        if (err) {
-            console.log(err);
-            res.status(500);
-            res.json("something went wrong when making your account secure");
-            res.end();
-            return;
-        }
+  var hash =  bcrypt.hashSync(user.password, saltRounds) 
+    console.log(hash);
         user.password = hash;
         connection.query(query, user, function (err, resu) {
             if (err) {
@@ -142,7 +128,7 @@ router.post('/register', function (req, res) {
             res.end();
 
         })
-    });
+   
    
    
    
