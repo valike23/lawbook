@@ -37,4 +37,23 @@
         }
     }])
 
+    app.controller("bookCtrl", ["$scope", "$http", function ($scope, $http) {
+        console.log("we are ok");
+        $http.get("/api/books").then(function (res) {
+
+            if (res.data.length > 0) {
+
+                $scope.books = res.data;
+            }
+            else {
+                console.log("no available book in store");
+            }
+
+        }, function (err) {
+            console.log("failed to load books");
+            console.log(err);
+            });
+
+    }])
+
 })();

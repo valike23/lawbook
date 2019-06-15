@@ -4,7 +4,7 @@
     <title>lawbook - For all things LAW</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link href="css/css/chamber.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body ng-app="app" ng-controller="profileCtrl">
 
@@ -42,7 +43,7 @@
                     <li class="nav-item "><a ui-sref="home" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
                     <li class="nav-item"><a href="practice-areas.html" class="nav-link">Practice Areas</a></li>
-                    <li class="nav-item"><a href="attorneys.html" class="nav-link">Book store</a></li>
+                    <li class="nav-item"><a href="/book_store" class="nav-link">Book store</a></li>
                     <li class="nav-item active"><a href="/blog" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="/register" class="nav-link" ng-hide="isLogged">Register</a></li>
                     <li class="nav-item"><a href="/login" class="btn btn-sm btn-link py-3 px-4" style="color:sandybrown" ng-hide="isLogged">Login</a></li>
@@ -54,7 +55,7 @@
 
                         <ul class="w3-dropdown-content w3-bar-block w3-border">
                             <li class="w3-bar-item w3-button"> <a href="/profile"><span class="fa fa-user-circle"></span> Your Profile</a></li>
-                            <li class="w3-bar-item w3-button"><a href="#"><span class="fa fa-user-plus"></span>  Edit Profile</a></li>
+                           <li class="w3-bar-item w3-button"><a href="#"><span class="fa fa-pagelines"></span>  My Page</a></li>
 
                             <li class="w3-bar-item w3-button" ng-click="logout()"><a href="#"><span class="fa fa-sign-out"></span>  Logout</a></li>
                         </ul>
@@ -132,7 +133,9 @@
                                             <label>Username</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>{{user.username}}</p>
+                                            <p>
+                                                {{user.username}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -140,7 +143,9 @@
                                             <label>First Name</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>{{user.firstname}}</p>
+                                            <p>
+                                                {{user.firstname}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -148,7 +153,19 @@
                                             <label>last Name</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>{{user.lastname}}</p>
+                                            <p>
+                                                {{user.lastname}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>middle Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                {{user.middle}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -156,7 +173,9 @@
                                             <label>Email</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>kshitighelani@gmail.com</p>
+                                            <p>
+                                                {{user.email}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -164,15 +183,50 @@
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>123 456 7890</p>
+                                            <p>
+                                                {{user.phone}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Profession</label>
+                                            <label>country</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>Web Developer and Designer</p>
+                                            <p>
+                                                {{user.country}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>sex</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p ng-show="user.sex == 1">
+                                                male <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
+                                            <p ng-show="user.sex == 0">
+                                                female <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>address</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                {{user.address}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>password</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span>****************</span><span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
                                         </div>
                                     </div>
                                 </div>

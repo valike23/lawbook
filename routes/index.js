@@ -5,21 +5,12 @@ var mysql = require('mysql');
 const bcrypt = require('bcryptjs');
 const saltRounds = bcrypt.genSaltSync(10);
 const cryptoRandomString = require('crypto-random-string');
+const FileReader = require('filereader');
+var fileReader = new FileReader();
+const config = require("./config");
 
+var connection = mysql.createConnection(config.db4free);
 
-//var connection = mysql.createConnection({
-//    host: '127.0.0.1',
-//    user: 'root',
-//    password: '',
-//    database: 'lawbook'
-
-// });
-var connection = mysql.createConnection({
-    host: 'db4free.net',
-    user: 'law_book',
-    password: 'law_book',
-    database: 'law_book'
-});
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -45,7 +36,7 @@ router.post('/login', function (req, res) {
                 var session = {
                     userId: results[0].id,
                     session: cryptoRandomString({ length: 20 }),
-                    duration: parseInt(Date.now()) + 900000
+                    duration: parseInt(Date.now())
                 }
                 var query = "INSERT INTO sessions SET ?";
                 connection.query(query, session, function (err, myResult) {
@@ -108,31 +99,47 @@ router.post('/register', function (req, res) {
     var user = req.body;
     var query = "INSERT INTO user SET ?";
     console.log(user);
-  var hash =  bcrypt.hashSync(user.password, saltRounds) 
+    var hash = bcrypt.hashSync(user.password, saltRounds)
     console.log(hash);
-        user.password = hash;
-        connection.query(query, user, function (err, resu) {
-            if (err) {
-                console.log(err);
-                res.status(503);
-                res.json("Something went wrong! dont worry its from us and we are currently working on it. Try again later.");
-                res.end();
-                return;
-            }
-            res.json({
-                message: "user created successfully",
-                info: resu,
-                pass: hash
-            });
-            console.log(resu);
+    user.password = hash;
+    connection.query(query, user, function (err, resu) {
+        if (err) {
+            console.log(err);
+            res.status(503);
+            res.json("Something went wrong! dont worry its from us and we are currently working on it. Try again later.");
             res.end();
+            return;
+        }
+        res.json({
+            message: "user created successfully",
+            info: resu,
+            pass: hash
+        });
+        console.log(resu);
+        res.end();
 
-        })
-   
-   
-   
-   
+    })
 
+
+
+
+
+});
+router.get("/books", function (req, res) {
+    var query = "SELECT * FROM book WHERE available = 1";
+    connection.query(query, function (err, result) {
+        if (err) {
+            res.statusCode(503);
+            res.json("error occured we are aware and are resolving it...");
+            return;
+
+        }
+        console.log(result);
+       
+        res.json(result);
+        res.end();
+
+    })
 })
 
 module.exports = router;

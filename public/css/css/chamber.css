@@ -164,7 +164,6 @@ input {
 }
 
 button {
-    background-color: #0cc39f;
     border: 0;
     color: #ffffff;
     cursor: pointer;
@@ -176,3 +175,10 @@ button {
     button:hover {
         opacity: 0.8;
     }
+.edit {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    color: sandybrown
+}
