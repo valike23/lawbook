@@ -24,6 +24,7 @@
                 if (res.data.user != null) {
                    
                     sessionStorage.setItem("user", JSON.stringify(res.data.user));
+                    sessionStorage.setItem("session", JSON.stringify(res.data.session));
                     location.href = "/";
                 }
               

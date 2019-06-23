@@ -2,43 +2,134 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-const bcrypt = require('bcryptjs');
-const saltRounds = bcrypt.genSaltSync(10);
+var auth = require('./auth');
+const config = require("./config");
+var multer = require('multer');
+var fs = require('fs');
+var filename;
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/images/profile');
+    },
+    filename: function (req, file, cb) {
+        filename = "profile" + "-" + Date.now();
+        cb(null, filename);
+    }
+})
+router.use(function (req, res, next) {
 
-var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'lawbook'
-
-});
-
-router.use(aunthenticate)
-//var connection = mysql.createConnection({
-//    host: 'db4free.net',
-//    user: 'law_book',
-//    password: 'law_book',
-//    database: 'law_book'
-//});
-/* GET users listing. */
-router.get('/', function (req, res) {
-    var comment;
-    if (req.body.isAuth) {
-        comment = "authentication is successful!!!"
+    let authen = auth.isAuth(req.headers.token);
+    if (authen) {
+        req.authen = authen;
+        next();
     }
     else {
-        comment = "authentication failed"
+        res.status(402);
+        res.json("you are not logged in");
+        res.end();
+        return;
     }
-    res.send(comment);
+})
+
+
+
+var connection = mysql.createConnection(config.db4free);
+
+
+/* GET users listing. */
+router.get('/', function (req, res) {
+    res.json(auth.sessions);
+    res.end();
 });
 
-function aunthenticate(req, res, next) {
-    var time = date.now();
-    var query = "";
-    console.log("authentication started");
-    req.body.isAuth = true;
-    next();
-}
+router.post("/uploadpics", function (req, res) {
+
+    var authen = req.authen;
+    console.log('auten',authen);
+    var base = 'images/profile/profile.png';
+   
+  
+        if (!(authen.user.dp == base)) {
+            console.log("lmk");
+            let mybase = './public/' + authen.user.dp;
+            try {
+                if (fs.existsSync(mybase)) {
+                    try {
+                        fs.unlinkSync(mybase)
+                        //file removed
+                    } catch (err) {
+                        console.error(err);
+                        res.status(502);
+                        res.json("delete failed, try again later");
+                        res.end();
+                    }
+                }
+            } catch (err) {
+                console.error(err)
+            }
+           
+        }
+        var upload = multer({ storage: storage }).single('file');
+        upload(req, res, function (err) {
+            if (err) {
+                console.log(err)
+                return res.end("Error uploading file.");
+            }
+
+            let address = 'images/profile/' + filename;
+            authen.user.dp = address;
+            let query = "update user set dp = '" + address + "' where id = " + authen.user.id;
+            connection.query(query, function (err, results) {
+                if (err) {
+                    console.log(err);
+                    res.end();
+                }
+                let test = auth.update(authen);
+                if (test) {
+                    res.json(authen);
+                    res.end();
+                }
+                else {
+                    res.status(401);
+                    res.end();
+                }
+
+            });
+
+        });
+    
+  
+   
+})
+router.put("/update", function (req, res) {
+    var edit = req.body;
+    var authen = req.authen;
+    console.log(edit);
+   
+    let query = "update user set `" + edit.holder + "`= '" + edit.value + "' where id =" + authen.user.id;
+    connection.query(query, function (err, results) {
+        if (err) {
+            res.status(501);
+            res.json("error updating try again later");
+            res.end();
+        }
+        for (var key in authen.user) {
+            if (key == edit.holder) {
+                authen[key]= edit.value;
+                console.log(authen);
+           console.log(auth.update(authen));
+                break;
+            }
+        }
+        res.json("update successful");
+        res.end();
+    })
+})
+
+
+
+
+
 
 
 

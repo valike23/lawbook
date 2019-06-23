@@ -48,7 +48,7 @@
                     <li class="nav-item"><a href="/login" class="btn btn-sm btn-link py-3 px-4" style="color:sandybrown" ng-hide="isLogged">Login</a></li>
                     <li class="nav-item w3-dropdown-hover" ng-show="isLogged">
                         <a id="butn" aria-haspopup="true" data-toggle="dropdown" class=" btn  btn-primary dropdown-toggle" aria-expanded="false">
-                            <img src="images/user.jpg" style="border-radius:50%; width:40px;" /><span style="margin-bottom:-19px"> {{user.firstname + " " + user.lastname}}</span> <span class="caret"></span>
+                            <img src={{user.dp}} style="border-radius:50%; height: 40px; width:40px;" /><span style="margin-bottom:-19px"> {{user.firstname + " " + user.lastname}}</span> <span class="caret"></span>
                             <b class="caret"></b>
                         </a>
 

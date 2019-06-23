@@ -12,7 +12,9 @@ let config = {
       user: 'law_book',
       password: 'law_book',
       database: 'law_book'
-  }
+    },
+    duration: 1
+
 }
 
 module.exports = config;

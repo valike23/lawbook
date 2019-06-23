@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>lawbook - For all things LAW</title>
+    <title>lawbook - User Profile</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="css/css/chamber.css" rel="stylesheet" />
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
@@ -49,7 +49,7 @@
                     <li class="nav-item"><a href="/login" class="btn btn-sm btn-link py-3 px-4" style="color:sandybrown" ng-hide="isLogged">Login</a></li>
                     <li class="nav-item w3-dropdown-hover" ng-show="isLogged">
                         <a id="butn" aria-haspopup="true" data-toggle="dropdown" class=" btn  btn-primary dropdown-toggle" aria-expanded="false">
-                            <img src="images/user.jpg" style="border-radius:50%; width:40px;" /><span style="margin-bottom:-19px"> {{user.firstname + " " + user.lastname}}</span> <span class="caret"></span>
+                            <img src={{user.dp}} style="border-radius:50%; height: 40px; width:40px;" /><span style="margin-bottom:-19px"> {{user.firstname + " " + user.lastname}}</span> <span class="caret"></span>
                             <b class="caret"></b>
                         </a>
 
@@ -87,14 +87,14 @@
                 </div>
             </div>
             <div class="row emp-profile">
-                <form method="post">
+                <div >
                     <div class="row">
                         <div class="col-md-4">
                             <div class="profile-img">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+                                <img src={{user.dp}} style="height: calc(100vh/3)" alt="" />
                                 <div class="file btn btn-lg btn-primary">
                                     Change Photo
-                                    <input type="file" name="file" />
+                                    <input type="file" file-input="file"  name="file" accept=".jpg,.png" onchange="angular.element(this).scope().fileChanged(this)" />
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.username}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.username}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('username', user.username)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.firstname}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.firstname}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('firstname', user.firstname)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.lastname}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.lastname}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('lastname', user.lastname)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.middle}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.middlename}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('middlename', user.middlename)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.email}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.email}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('email', user.email)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.phone}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.phone}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('phone', user.phone)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -194,7 +194,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.country}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.country}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('country', user.country)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -204,10 +204,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p ng-show="user.sex == 1">
-                                                male <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                male <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('sex', 1)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                             <p ng-show="user.sex == 0">
-                                                female <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                female <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('sex', 0)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>
-                                                {{user.address}} <span class="pull-right"><button class="edit btn-sm"><i class="fa fa-edit"></i></button></span>
+                                                {{user.address}} <span class="pull-right"><button class="edit btn-sm" ng-click="popupEdit('address', user.address)"><i class="fa fa-edit"></i></button></span>
                                             </p>
                                         </div>
                                     </div>
@@ -281,7 +281,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
@@ -366,7 +366,24 @@
 
     <!-- loader -->
     <div id="ftco-loader" ng-show="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal-label">
+        <div class="modal-dialog modal-df" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="editModal-label">{{'EDIT ' + edit.holder | uppercase}} </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
+                </div>
+                <div class="modal-body">
+                   <input type="text" ng-model="edit.value" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveEdit()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>

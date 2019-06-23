@@ -8,6 +8,7 @@ const cryptoRandomString = require('crypto-random-string');
 const FileReader = require('filereader');
 var fileReader = new FileReader();
 const config = require("./config");
+var auth = require("./auth");
 
 var connection = mysql.createConnection(config.db4free);
 
@@ -20,7 +21,6 @@ router.post('/login', function (req, res) {
     var form = req.body;
     console.log(form);
     var query = "SELECT * FROM user WHERE email = " + mysql.escape(form.email);
-    console.log(query);
     connection.query(query, function (err, results) {
         if (err) {
             console.log(err);
@@ -33,30 +33,31 @@ router.post('/login', function (req, res) {
             var test = bcrypt.compare(form.pass, results[0].password);
             if (test) {
                 console.log(test);
-                var session = {
-                    userId: results[0].id,
-                    session: cryptoRandomString({ length: 20 }),
-                    duration: parseInt(Date.now())
+                function createUserSession() {
+                    let random = cryptoRandomString({ length: 20 });
+                    if (auth.isUnique(random)) {
+                        return {
+                            user: results[0],
+                            session: random,
+                            duration: parseInt(Date.now()) + config.duration * 60000
+                        }
+                    }
+                    else {
+                        createUserSession();
+                    }
+                
                 }
-                var query = "INSERT INTO sessions SET ?";
-                connection.query(query, session, function (err, myResult) {
-                    if (err) {
-                        console.log(err);
-                        res.status(500);
-                        res.json("Error Occured while creating a session for you, please try again later.");
-                        res.end();
-                        return;
-                    }
-                    var data = {
-                        seesion: session.session,
-                        user: results[0],
-                        response: "successful"
-                    }
-                    console.log(data)
-                    res.json(data);
-                    res.end();
-                })
-
+                let session = createUserSession();
+                auth.sessions.push(session);
+                console.log(session);
+                results[0].password = null;
+                var data = {
+                    session: session.session,
+                    user: results[0],
+                    response: "successful"
+                }   
+                res.json(data);
+                res.end();
             }
             else if (!test) {
                 var data = {
