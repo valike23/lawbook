@@ -42,6 +42,13 @@
         //write home controller code
     }])
     app.controller("profileCtrl", ["$scope", "$rootScope", "$http", function ($scope, $rootScope, $http) {
+        $scope.startup = true;
+        $scope.startVerification = function () {
+            $scope.startup = false;
+            console.log($rootScope.user);
+            $scope.verify = {};
+            $scope.verify.firstname = $rootScope.user.firstname;
+        }
         if ($rootScope.isLogged == false) {
             console.log(location);
             location.href = '/';
