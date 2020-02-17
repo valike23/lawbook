@@ -51,6 +51,7 @@ router.post("/uploadpics", function (req, res) {
   
         if (!(authen.user.dp == base)) {
             console.log("lmk");
+
             let mybase = './public/' + authen.user.dp;
             try {
                 if (fs.existsSync(mybase)) {
