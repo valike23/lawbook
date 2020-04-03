@@ -42,6 +42,24 @@
         //write home controller code
     }])
     app.controller("profileCtrl", ["$scope", "$rootScope", "$http", function ($scope, $rootScope, $http) {
+        $scope.index = null;
+        $scope.addRecord = function(){
+            if($scope.index){
+$scope.institution[$scope.index] = $scope.institution;
+$scope.institution = {};
+$scope.index = null;
+return;
+            }
+$scope.institutions.push( $scope.institution);
+$scope.institution = {};
+console.log($scope.institutions)
+        };
+        $scope.loadInstitution = function(index){
+            $scope.index = index;
+            $scope.institution = $scope.institutions[index];
+        }
+        $scope.institution = {};
+        $scope.institutions = [];
         $scope.startup = true;
         $scope.startVerification = function () {
             $scope.startup = false;

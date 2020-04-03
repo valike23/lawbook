@@ -22,7 +22,55 @@
 
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
+<style>
+    #myfile{
+        width:0;
+        height:0;
+        position: absolute;
+        z-index: -1;
+        overflow: hidden;
+        opacity: 0;
+    }
+    .chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
+.chip img {
+  float: left;
+  margin: 0 10px 0 -25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.closebtn {
+  padding-left: 10px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
 
+.closebtn:hover {
+  color: #000;
+}
+#label{
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+}
+</style>
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
@@ -316,11 +364,37 @@
                         <input type="button" name="next" class="next action-button" value="Next" />
                     </fieldset>
                     <fieldset>
-                        <h2 class="fs-title">Create your account</h2>
+                        <h2 class="fs-title">Add Academic Exprience</h2>
                         <h3 class="fs-subtitle">Fill in your credentials</h3>
-                        <input type="text" name="email" placeholder="Email" />
-                        <input type="password" name="pass" placeholder="Password" />
-                        <input type="password" name="cpass" placeholder="Confirm Password" />
+                        <div ng-click="loadInstitution($index)" ng-repeat="institution in institutions  track by $index" class="chip">
+                         
+                          {{$index + 1}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                          </div>
+                        <div>
+                            <input type="text" ng-model="institution.name" placeholder="Name of Institution" />
+                            <input type="text" ng-model="institution.address" placeholder="Address of the Institution" />
+                     <div class="row">
+                         <div class="col">
+                            <input type="text" ng-model="institution.degree" placeholder="What type of Degree Bsc LLB Msc etc" />
+                         </div>
+                         <div class="col">
+                            <input type="text" ng-model="institution.grade" placeholder="Type in your grade" />
+                        </div>
+    
+                     </div>  
+                     <div class="row">
+                        <div class="col">
+                           <input type="date" ng-model="institution.year" placeholder="Year of Graduation" />
+                        </div>
+                        <div class="col">
+                           <input id="myfile" type="file" file-input="institution.document" ng-model="institution.document"  />
+                           <label id="label" for="myfile" >{{institution.document[0].name || "Upload Certification Document"}}</label>
+                       </div>
+                        </div>
+                        <input type="submit" ng-click="addRecord()" class="submit action-button" value="Add Record" />
+
+                </div>    
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         <input type="submit" name="submit" class="submit action-button" value="Submit" />
                     </fieldset>

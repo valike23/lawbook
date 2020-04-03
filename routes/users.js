@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var auth = require('./auth');
-const config = require("./config");
+const util = require('../utils/utils')
 var multer = require('multer');
 var fs = require('fs');
 var filename;
@@ -33,7 +33,7 @@ router.use(function (req, res, next) {
 
 
 
-var connection = mysql.createConnection(config.db4free);
+var connection = mysql.createConnection(util.db);
 
 
 /* GET users listing. */
@@ -50,7 +50,7 @@ router.post("/uploadpics", function (req, res) {
    
   
         if (!(authen.user.dp == base)) {
-            console.log("lmk");
+            console.log("delete");
 
             let mybase = './public/' + authen.user.dp;
             try {

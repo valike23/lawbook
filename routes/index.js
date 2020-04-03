@@ -7,10 +7,10 @@ const saltRounds = bcrypt.genSaltSync(10);
 const cryptoRandomString = require('crypto-random-string');
 const FileReader = require('filereader');
 var fileReader = new FileReader();
-const config = require("./config");
+const util = require('../utils/utils');
 var auth = require("./auth");
 
-var connection = mysql.createConnection(config.db4free);
+var connection = mysql.createConnection(util.db);
 
 
 /* GET home page. */
