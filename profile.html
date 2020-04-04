@@ -355,8 +355,8 @@
                         <input type="button" name="next" class="next action-button" value="Next" />
                     </fieldset>
                     <fieldset>
-                        <h2 class="fs-title">Contact Details</h2>
-                        <h3 class="fs-subtitle">How can we reach you </h3>
+                        <h2 class="fs-title">Social Media</h2>
+                        <h3 class="fs-subtitle">Even More Ways you can be seen </h3>
                         <input type="text" name="twitter" placeholder="Twitter" />
                         <input type="text" name="facebook" placeholder="Facebook" />
                         <input type="text" name="gplus" placeholder="Google Plus" />
@@ -369,7 +369,7 @@
                         <div ng-click="loadInstitution($index)" ng-repeat="institution in institutions  track by $index" class="chip">
                          
                           {{$index + 1}}
-                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            <span class="closebtn" ng-click="deleteInstitution($index)">&times;</span>
                           </div>
                         <div>
                             <input type="text" ng-model="institution.name" placeholder="Name of Institution" />

@@ -42,6 +42,10 @@
         //write home controller code
     }])
     app.controller("profileCtrl", ["$scope", "$rootScope", "$http", function ($scope, $rootScope, $http) {
+        $scope.deleteInstitution = function(index){
+            $scope.institutions.splice(index,1);
+            console.log($scope.institutions);
+        }
         $scope.index = null;
         $scope.addRecord = function(){
             if($scope.index){

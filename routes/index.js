@@ -39,7 +39,7 @@ router.post('/login', function (req, res) {
                         return {
                             user: results[0],
                             session: random,
-                            duration: parseInt(Date.now()) + config.duration * 60000
+                            duration: parseInt(Date.now()) + util.duration * 60000
                         }
                     }
                     else {

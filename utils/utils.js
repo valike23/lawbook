@@ -2,7 +2,8 @@ let config = require('../routes/config');
 
 
 let utils = {
-    db: config.db4free
+    db: config.localDB,
+    duration: config.duration
 }
 
 module.exports = utils;
