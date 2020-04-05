@@ -2,7 +2,7 @@ let config = require('../routes/config');
 
 
 let utils = {
-    db: config.localDB,
+    db: config.db4free,
     duration: config.duration
 }
 
