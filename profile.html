@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/aos.css">
     <link href="fonts/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/profile.css">
 
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
@@ -337,7 +338,7 @@
 
     <section class=" bg-light text-center" ng-hide="startup" style="margin-top:-10px" >
         <div class="row">
-            <div class="col-xs-12 col-md-12 ">
+            <div id="myForm" class="col-xs-12 col-md-12 ">
                 <form id="msform">
                     <!-- progressbar -->
                     <ul id="progressbar">
@@ -375,19 +376,19 @@
                             <input type="text" ng-model="institution.name" placeholder="Name of Institution" />
                             <input type="text" ng-model="institution.address" placeholder="Address of the Institution" />
                      <div class="row">
-                         <div class="col">
+                         <div class="col-xs-12 col-md-6">
                             <input type="text" ng-model="institution.degree" placeholder="What type of Degree Bsc LLB Msc etc" />
                          </div>
-                         <div class="col">
+                         <div class="col-xs-12 col-md-6">
                             <input type="text" ng-model="institution.grade" placeholder="Type in your grade" />
                         </div>
     
                      </div>  
                      <div class="row">
-                        <div class="col">
+                        <div class="col-xs-12 col-md-6">
                            <input type="date" ng-model="institution.year" placeholder="Year of Graduation" />
                         </div>
-                        <div class="col">
+                        <div class="col-xs-12 col-md-6">
                            <input id="myfile" type="file" file-input="institution.document" ng-model="institution.document"  />
                            <label id="label" for="myfile" >{{institution.document[0].name || "Upload Certification Document"}}</label>
                        </div>
