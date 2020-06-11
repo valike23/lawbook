@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>LAWBOOK: everything law here</title>
+<title>{{title}}</title>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
@@ -18,17 +18,17 @@
     
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
     
-<div id="page">
+<div id="page" ng-controller="homeCtrl">
     
     <!-- header and footer bar go here-->
     <div class="header header-fixed header-logo-center">
-        <a href="index.html" class="header-title">lawbook</a>
+        <a href="index.html" class="header-title">{{title}}</a>
         <a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
     </div>
     <div id="footer-bar" class="footer-bar-1">
-        <a href="index.html"><i class="fa fa-home"></i><span>Home</span></a>
-        <a href="index-components.html" class="active-nav"><i class="fa fa-star"></i><span>Features</span></a>
+        <a href="index.html" class="active-nav"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="index-components.html" ><i class="fa fa-star"></i><span>Features</span></a>
         <a href="index-pages.html"><i class="fa fa-heart"></i><span>Pages</span></a>
         <a href="index-search.html"><i class="fa fa-search"></i><span>Search</span></a>
         <a href="#" data-menu="menu-settings"><i class="fa fa-cog"></i><span>Settings</span></a>
@@ -36,7 +36,13 @@
     
     <!--start of page content, add your stuff here-->
     <div class="page-content header-clear-medium">
+         <ui-view>
+             
+         </ui-view>
+       
+    </div>    
 
+    
     </div>    
     <!--end of page content, off canvas elements here-->
     
@@ -195,8 +201,16 @@
     <!--end of div id page-->
 </div>    
 
-
 <script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/pwa.js"></script>
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/controllers.js"></script>
+<script type="text/javascript" src="js/routes.js"></script>
+<script type="text/javascript" src="js/service.js"></script>
+<script type="text/javascript" src="js/directives.js"></script>
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
 </body>
