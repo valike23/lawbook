@@ -1,3 +1,11 @@
 ﻿#jumbotron{
     background-image: url('../images/home/lady.jpg')
 }
+.tags {
+    margin: 8px;
+    padding: 4px;
+    color: white;
+}
+.tag-body {
+    margin-bottom: -2px
+}
