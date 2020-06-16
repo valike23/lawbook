@@ -92,7 +92,7 @@ $(document).ready(function(){
         var menu = $('.menu'),
             body = $('body'),
             menuFixed = $('.nav-fixed'),
-            menuFooter = $('#footer-bar'),
+            //menuFooter = $('#footer-bar'),
             menuHider = $('body').find('.menu-hider'),
             menuClose = $('.close-menu'),
             header = $('.header'),
