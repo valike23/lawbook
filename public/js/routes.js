@@ -2,7 +2,7 @@
     'use strict';
 
    const ROUTES = angular.module('app');
-   ROUTES.config(function($stateProvider, $urlRouterProvider) {
+    ROUTES.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -17,11 +17,17 @@
       url: '/home',
       templateUrl: 'templates/home.htm',
       controller: 'homeCtrl'
+           })
+       .state('lib', {
+      url: '/',
+      templateUrl: 'templates/lib.htm',
+      controller: 'libCtrl'
     })
   
   
   
-  $urlRouterProvider.otherwise('/home')
+       $urlRouterProvider.otherwise('/home');
+       
   
   
   });

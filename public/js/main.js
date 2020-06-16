@@ -7,7 +7,8 @@
      ]);
      APP.run(($rootScope)=>{
         const ROOT = $rootScope;
-        ROOT.title = "Lawbook: Everything Law";
+         ROOT.title = "Lawbook: Everything Law";
+         ROOT.header = "Lawbook";
      })
     })();
 
