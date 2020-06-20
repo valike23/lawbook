@@ -19,9 +19,13 @@
       controller: 'homeCtrl'
            })
        .state('lib', {
-      url: '/',
+      url: '/lib',
       templateUrl: 'templates/lib.htm',
       controller: 'libCtrl'
+    }).state('books', {
+      url: '/books',
+      templateUrl: 'templates/lib/books.htm',
+      controller: 'booksCtrl'
     })
   
   
