@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
     <link rel="stylesheet" type="text/css" href="scss/main.css">
     <link href="styles/app.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="scss/splide.min.css">
     <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
@@ -41,51 +41,520 @@
         <!--start of page content, add your stuff here-->
         <div ng-controller="booksCtrl" class="page-content header-clear-medium">
             <div>
-                <h2>Top Free Books</h2>
-                <div id="splide" class="splide">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <li class="splide__slide">
-                                <div class="item">
-                                <div data-card-height="180" class="card rounded-m shadow-l" style="height: 180px;background-image: url('images/books/fashion.jpg');">
-                                    <div class="card-top ml-3 mt-3">
-                                        <i class="fa fa-star fa-4x color-yellow1-dark"></i>
+                <div id="top-free-book">
+                    <h2>Top Free Books</h2>
+                    <div id="splide--free" class="splide d-none d-sm-block">
+                        <div class="splide__track">
+                            <ul class="splide__list ">
+
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
                                     </div>
-                                    <div class="card-bottom ml-3">
-                                        <h2 class="color-white font-900 mb-0">Quality</h2>
-                                        <p class="color-white font-11 mt-n1 mb-2">Built with Care and Detail</p>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;
+background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
                                     </div>
-                                    <div class="card-overlay bg-black opacity-60"></div>
-                                </div>
-                            </div></li>
-                            <li class="splide__slide"><div class="item">
-                                <div data-card-height="180" class="card rounded-m shadow-l bg-3" style="height: 180px;">
-                                    <div class="card-top ml-3 mt-3">
-                                        <i class="fa fa-star fa-4x color-yellow1-dark"></i>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Business Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
                                     </div>
-                                    <div class="card-bottom ml-3">
-                                        <h2 class="color-white font-900 mb-0">Quality</h2>
-                                        <p class="color-white font-11 mt-n1 mb-2">Built with Care and Detail</p>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="splide--mobile--free" class="splide d-sm-none d-block">
+                        <div class="splide__track">
+                            <ul class="splide__list ">
+
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
                                     </div>
-                                    <div class="card-overlay bg-black opacity-80"></div>
-                                </div>
-                            </div></li>
-                            <li class="splide__slide"><div class="item">
-                                <div data-card-height="180" class="card rounded-m shadow-l bg-3" style="height: 180px;">
-                                    <div class="card-top ml-3 mt-3">
-                                        <i class="fa fa-star fa-4x color-yellow1-dark"></i>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
                                     </div>
-                                    <div class="card-bottom ml-3">
-                                        <h2 class="color-white font-900 mb-0">Quality</h2>
-                                        <p class="color-white font-11 mt-n1 mb-2">Built with Care and Detail</p>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Business Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
                                     </div>
-                                    <div class="card-overlay bg-black opacity-80"></div>
-                                </div>
-                            </div></li>
-                        </ul>
+
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
-           </div>
+                <br/>
+                <div id="top-paid-book">
+                    <h2>Top Paid Books</h2>
+                    <div id="splide--paid" class="splide d-none d-sm-block">
+                        <div class="splide__track">
+                            <ul class="splide__list ">
+
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;
+background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Business Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="splide--mobile--paid" class="splide d-sm-none d-block">
+                        <div class="splide__track">
+                            <ul class="splide__list ">
+
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Business Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div id="all-book">
+                    <h2>All Books</h2>
+                    <div id="splide--all" class="splide d-none d-sm-block">
+                        <div class="splide__track">
+                            <ul class="splide__list ">
+
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;
+background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Business Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="splide--mobile--all" class="splide d-sm-none d-block">
+                        <div class="splide__track">
+                            <ul class="splide__list ">
+
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Fashion Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                    <div class="item">
+                                        <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                        </div>
+                                        <div style="line-height:10px;margin-top:-22px">
+                                            <h4 class="color-black">Business Law</h4>
+                                            <p>by Micheal Chan</p>
+                                            <div class="ml-sm-0" style="margin-top:-18px">
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-yellow1-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                                <i class="fa fa-star  color-plum-dark"></i>
+                                            </div>
+                                            <p><small></small></p>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 

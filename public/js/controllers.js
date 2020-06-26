@@ -6,6 +6,7 @@
     Ctrl.controller('libCtrl', libController);
     Ctrl.controller('booksCtrl', booksController);
     Ctrl.controller('navCtrl', navController);
+    Ctrl.controller('detailsCtrl', detailsController);
 
    // homeController.$inject = [''];
     function homeController($scope) {
@@ -37,12 +38,47 @@
         activate();
 
         function activate() {
-            new Splide( '#splide', {
+            new Splide( '#splide--paid', {
                 type   : 'loop',
-                perPage: 3,
+                perPage: 4,
                 focus  : 'center',
-            } ).mount();
+            }).mount();
+            new Splide('#splide--mobile--paid', {
+                type: 'loop',
+                perPage: 2,
+                focus: 'center',
+            }).mount();
+            new Splide('#splide--free', {
+                type: 'loop',
+                perPage: 4,
+                focus: 'center',
+            }).mount();
+            new Splide('#splide--mobile--free', {
+                type: 'loop',
+                perPage: 2,
+                focus: 'center',
+            }).mount();
+            new Splide('#splide--all', {
+                type: 'loop',
+                perPage: 4,
+                focus: 'center',
+            }).mount();
+            new Splide('#splide--mobile--all', {
+                type: 'loop',
+                perPage: 2,
+                focus: 'center',
+            }).mount();
+           
             console.log("books loaded");
+        }
+    }
+    function detailsController($scope) {
+
+        activate();
+
+        function activate() {
+           
+            console.log("details loaded");
         }
     }
 })();
