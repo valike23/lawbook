@@ -77,6 +77,16 @@
         activate();
 
         function activate() {
+            new Splide('#splide--favorite', {
+                type: 'loop',
+                perPage: 4,
+                focus: 'center',
+            }).mount();
+            new Splide('#splide--mobile--favorite', {
+                type: 'loop',
+                perPage: 2,
+                focus: 'center',
+            }).mount();
            
             console.log("details loaded");
         }
