@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="app" >
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,7 +17,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
 
-<body class="theme-light" data-background="none" data-highlight="red2">
+<body ng-controller="homeCtrl" class="theme-light" data-background="none" data-highlight="red2">
 
     <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
 
@@ -38,7 +38,7 @@
         </div>
 
         <!--start of page content, add your stuff here-->
-        <div ng-controller="homeCtrl" class="page-content header-clear-medium">
+        <div  class="page-content header-clear-medium">
             <div>
                 <div class="single-slider slider-boxed owl-carousel owl-no-dots d-xl-none ">
                     <div class="card rounded-m shadow-l">

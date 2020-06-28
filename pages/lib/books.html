@@ -47,7 +47,7 @@
                         <div class="splide__track">
                             <ul class="splide__list ">
 
-                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+                                <li ng-click="openBook('fashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
 
                                     <div class="item">
                                         <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/fashion.jpg');background-size:cover">
@@ -72,7 +72,7 @@
                                     </div>
 
                                 </li>
-                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+                                <li ng-click="openBook('fashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
 
                                     <div class="item">
                                         <div data-card-height="400" class="card  shadow-l" style="height: 400px;
@@ -98,7 +98,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                                     </div>
 
                                 </li>
-                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+                                <li ng-click="openBook('fashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
 
                                     <div class="item">
                                         <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/business_law.jpg');background-size:cover">
@@ -131,7 +131,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                         <div class="splide__track">
                             <ul class="splide__list ">
 
-                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+                                <li ng-click="openBook('ashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
 
                                     <div class="item">
                                         <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
@@ -156,7 +156,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                                     </div>
 
                                 </li>
-                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+                                <li onclick="openBook('ashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
 
                                     <div class="item">
                                         <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
@@ -181,7 +181,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                                     </div>
 
                                 </li>
-                                <li class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+                                <li onclick="openBook('ashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
 
                                     <div class="item">
                                         <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/business_law.jpg');background-size:cover">
@@ -211,7 +211,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                         </div>
                     </div>
                 </div>
-                <br/>
+                <br />
                 <div id="top-paid-book">
                     <h2>Top Paid Books</h2>
                     <div id="splide--paid" class="splide d-none d-sm-block">
@@ -382,7 +382,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                         </div>
                     </div>
                 </div>
-                <br/>
+                <br />
                 <div id="all-book">
                     <h2>All Books</h2>
                     <div id="splide--all" class="splide d-none d-sm-block">
@@ -722,11 +722,17 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
     <script type="text/javascript" src="js/pwa.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
+
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/service.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
-
+    <script>
+        function openBook(data) {
+            alert(data);
+            location.href = "/lib/books/details"
+        }
+    </script>
 </body>
 </html>

@@ -7,6 +7,9 @@
         const ROOT = $rootScope;
          ROOT.title = "Lawbook: Everything Law";
          ROOT.header = "Lawbook";
+         ROOT.openBook = function (data) {
+             alert(data)
+         }
      })
     })();
 

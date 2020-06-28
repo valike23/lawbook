@@ -43,6 +43,9 @@ app.get('/login', function (req, res, next) {
 app.get('/lib/books/details', function (req, res, next) {
     res.sendFile(__dirname + '/pages/lib/details.html');
 });
+app.get('/lib/pay', function (req, res, next) {
+    res.sendFile(__dirname + '/pages/pay.html');
+});
 app.get('/register', function (req, res, next) {
     res.sendFile(__dirname + '/register.html');
 });
