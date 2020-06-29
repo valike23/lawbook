@@ -79,8 +79,8 @@
 
     function detailsController($scope) {
         $scope.pay = function () {
-            location.href="/"
-        }
+            location.href="/lib/pay";
+        };
         activate();
 
         function activate() {
