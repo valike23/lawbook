@@ -1,11 +1,13 @@
 ﻿'use strict';
 var debug = require('debug');
 var express = require('express');
+require('./routes/config').rootDir = __dirname;
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var books = require('./routes/books');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -27,25 +29,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', routes);
 app.use('/secure', users);
+app.use('/lib', books);
 
 app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/pages/home.html');
-})
-app.get('/lib', function (req, res, next) {
-    res.sendFile(__dirname + '/pages/lib.html');
-})
-app.get('/lib/books', function (req, res, next) {
-    res.sendFile(__dirname + '/pages/lib/books.html');
-})
+});
+
 app.get('/login', function (req, res, next) {
     res.sendFile(__dirname + '/login.html');
 });
-app.get('/lib/books/details', function (req, res, next) {
-    res.sendFile(__dirname + '/pages/lib/details.html');
-});
-app.get('/lib/pay', function (req, res, next) {
-    res.sendFile(__dirname + '/pages/pay.html');
-});
+
 app.get('/register', function (req, res, next) {
     res.sendFile(__dirname + '/register.html');
 });

@@ -4,3 +4,11 @@
 .pb {
     padding-bottom: 14px
 }
+.status {
+   padding: 15px
+}
+.image-status {
+    height: 30vh;
+    width: 95%;
+    margin-bottom: 10px;
+}

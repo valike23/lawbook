@@ -49,6 +49,7 @@
     Ctrl.controller('navCtrl', navController);
     Ctrl.controller('detailsCtrl', detailsController);
     Ctrl.controller('payCtrl', payController);
+    Ctrl.controller('statusCtrl', statusController);
 
    // homeController.$inject = [''];
     function homeController($scope) {
@@ -108,6 +109,15 @@
         function activate() {
            
             console.log("pay loaded");
+        }
+    }
+    function statusController($scope) {
+       
+        activate();
+
+        function activate() {
+           
+            console.log("status loaded");
         }
     }
 

@@ -101,7 +101,7 @@ router.post("/uploadpics", function (req, res) {
     
   
    
-})
+});
 router.put("/update", function (req, res) {
     var edit = req.body;
     var authen = req.authen;
@@ -125,14 +125,6 @@ router.put("/update", function (req, res) {
         res.json("update successful");
         res.end();
     })
-})
-
-
-
-
-
-
-
-
+});
 
 module.exports = router;

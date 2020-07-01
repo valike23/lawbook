@@ -13,7 +13,8 @@ let config = {
       password: 'law_book',
       database: 'law_book'
     },
-    duration: 1
+    duration: 1,
+    rootDir: ''
 
 }
 
