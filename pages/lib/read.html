@@ -1,11 +1,11 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="en" ng-app="app">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-    <title>LawBook: Statutes List</title>
+    <title>LawBook: PDF reader Page</title>
     <base href="/">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
 
-<body ng-controller="statusCtrl" class="theme-light" data-background="none" data-highlight="red2">
+<body ng-controller="readCtrl" class="theme-light" data-background="none" data-highlight="red2">
 
     <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
 
@@ -40,62 +40,8 @@
 
         <!--start of page content, add your stuff here-->
         <div class="page-content header-clear-medium">
-            <div>
-                <div id="search-bar">
-                    <div class="search-box search-header bg-theme card-style mr-3 ml-3">
-                        <i class="fa fa-search"></i>
-                        <input type="text" class="border-0" placeholder="Search for statutes" data-search="">
-                        <a href="#" class="disabled"><i class="fa fa-times-circle color-red2-dark"></i></a>
-                    </div>
-                </div>
-                <div id="statutes">
-                    <div id="A">
-                        <h2>A</h2>
-                        <div class="row status">
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div id="B">
-                        <h2>B</h2>
-                        <div class="row status">
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+         
+            <canvas id="the-canvas"></canvas>
         </div>
 
 
@@ -106,6 +52,7 @@
     </div>
 
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/pdf.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/splide.min.js"></script>
     <script type="text/javascript" src="js/pwa.js"></script>

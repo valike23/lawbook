@@ -12,3 +12,6 @@
     width: 95%;
     margin-bottom: 10px;
 }
+#the-canvas {
+    direction: ltr;
+}

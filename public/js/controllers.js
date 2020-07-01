@@ -1,3 +1,4 @@
+/// <reference path="pdf.js" />
 (function() {
     'use strict';
 
@@ -50,6 +51,7 @@
     Ctrl.controller('detailsCtrl', detailsController);
     Ctrl.controller('payCtrl', payController);
     Ctrl.controller('statusCtrl', statusController);
+    Ctrl.controller('readCtrl', readController);
 
    // homeController.$inject = [''];
     function homeController($scope) {
@@ -112,7 +114,9 @@
         }
     }
     function statusController($scope) {
-       
+       $scope.readStatus = ()=>{
+           location.href= '/lib/read'
+       }
         activate();
 
         function activate() {
@@ -120,7 +124,16 @@
             console.log("status loaded");
         }
     }
-
+    function readController($scope){
+        (()=> {
+            var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
+            console.log("reader loaded");
+            $scope.book = {
+                name: "The Nigerian Constitution"
+            }
+        })();
+    }
+  
 
    
 })();
