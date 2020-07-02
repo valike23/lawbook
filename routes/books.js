@@ -20,6 +20,14 @@ router.get('/pay', function (req, res) {
 router.get('/statutes', function (req, res) {
     res.sendFile(root + '/pages/lib/status.html');
 });
+
+router.get('/cases', function (req, res) {
+    res.sendFile(root + '/pages/lib/cases.html');
+});
+
+router.get('/favorites', function (req, res) {
+    res.sendFile(root + '/pages/lib/favorites.html');
+});
 router.get('/read', (req, res)=> {
     res.sendFile(root + '/pages/lib/read.html');
 })

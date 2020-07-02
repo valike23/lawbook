@@ -14,4 +14,9 @@
 }
 #the-canvas {
     direction: ltr;
+    width: 100%
+}
+.fav-toolbar {
+    padding-left:1vw;
+    padding-right: 1vw
 }

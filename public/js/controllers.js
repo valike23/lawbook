@@ -126,10 +126,32 @@
     }
     function readController($scope){
         (()=> {
-            var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
-            console.log("reader loaded");
-            $scope.book = {
-                name: "The Nigerian Constitution"
+            var myState = {
+                pdf: null,
+                currentPage: 1,
+                zoom: 1
+            };
+            pdfjsLib.getDocument('/pdf/Nigeria_1999.pdf').then((pdf) => {
+                myState.pdf = pdf;
+                render();
+                console.log("workign");
+             
+            });
+            function render() {
+                myState.pdf.getPage(myState.currentPage).then((page) => {
+
+                    var canvas = document.getElementById("the-canvas");
+                    var ctx = canvas.getContext('2d');
+
+                    var viewport = page.getViewport(myState.zoom);
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    page.render({
+                        canvasContext: ctx,
+                        viewport: viewport
+                    });
+
+                });
             }
         })();
     }
