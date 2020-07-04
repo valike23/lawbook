@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html lang="en" ng-app="app">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
 
-<body ng-controller="statusCtrl" class="theme-light" data-background="none" data-highlight="red2">
+<body ng-controller="favoriteCtrl" class="theme-light" data-background="none" data-highlight="red2">
 
     <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
 
@@ -33,7 +33,7 @@
         <div id="footer-bar" class="footer-bar-1">
             <a href="/"><i class="fa fa-home"></i><span>Home</span></a>
             <a href="/lib" class="active-nav"><i class="fa fa-book"></i><span>E-Library</span></a>
-            <a href="index-pages.html"><i class="fa fa-heart"></i><span>Pages</span></a>
+            <a href="/blog"><i class="fa fa-blogger"></i><span>Blog</span></a>
             <a href="index-search.html"><i class="fa fa-search"></i><span>Search</span></a>
             <a href="#" data-menu="menu-settings"><i class="fa fa-cog"></i><span>Settings</span></a>
         </div>
@@ -49,71 +49,85 @@
                     </div>
                 </div>
                 <div class="fav-toolbar" id="toolbar">
-                    <div class="row">
-                        <div class="col-4">
-                            <a ng-click="pay()" class="btn btn-m btn-full mb-3
+                    <div class="row pl-1 pr-1">
+                        <div class="col-3 p-1">
+                            <a id="all" ng-click="toggleSearch('all')" class="btn btn-m btn-full mb-3
+                                   rounded-xl text-uppercase font-900 shadow-s
+                                   color-white" style="background-color:#f0d377">All</a>
+                        </div>
+                        <div class="col-3 p-1">
+                            <a id="books" ng-click="toggleSearch('books')" class="btn btn-m btn-full mb-3
                                    rounded-xl text-uppercase font-900 shadow-s
                                    color-white" style="background-color:#f0d377">Books</a>
                         </div>
-                        <div class="col-4">
-                            <a ng-click="pay()" class="btn btn-m btn-full mb-3
-                                   rounded-xl text-uppercase font-900 shadow-s
-                                   color-white" style="background-color:#f0d377">Statutes</a>
+                        <div class="col-3 p-1">
+                            <a id="statutes" ng-click="toggleSearch('statutes')" class="btn   btn-m btn-full mb-3
+                                   rounded-xl  font-900 shadow-s
+                                   color-white" style="background-color:#f0d377; padding-left:-4px">
+                                <span class="d-block d-sm-none">Statutes</span>
+                                <span class="d-none d-sm-block">STATUTES</span>
+                            </a>
+
                         </div>
-                        <div class="col-4">
-                            <a ng-click="pay()" class="btn btn-m btn-full mb-3
+                        <div class="col-3 p-1">
+                            <a id="cases" ng-click="toggleSearch('cases')" class="btn btn-m btn-full mb-3
                                    rounded-xl text-uppercase font-900 shadow-s
                                    color-white" style="background-color:#f0d377">Cases</a>
                         </div>
                     </div>
 
                 </div>
-                <div id="statutes">
-                    <div id="favorites">
-                        <h2>Favorites</h2>
-                        <div class="row status">
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
 
-
+                <div id="favorites">
+                    <h2>Favorites</h2>
+                    <div class="row status">
+                        <div class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/pursuit.jpg">
                         </div>
-                        <button>Load More</button>
+                        <div class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/pursuit.jpg">
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/pursuit.jpg">
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/pursuit.jpg">
+                        </div>
+
 
                     </div>
-                    <div id="B">
-                        <h2>B</h2>
-                        <div class="row status">
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-
-                        </div>
+                    <div class="text-center">
+                        <a id="all"  class="btn btn-m btn-lg mb-3
+                                   rounded-xl text-uppercase font-900 shadow-s
+                                   color-white" style="background-color:#f0d377">Load More</a>
                     </div>
+
+                </div>
+                <br/>
+                <div id="YouMayAlsoLove">
+                    <h2>You may also love</h2>
+                    <div class="row status">
+                        <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/fashion.jpg">
+                        </div>
+                        <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/fashion.jpg">
+                        </div>
+                        <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/fashion.jpg">
+                        </div>
+                        <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/fashion.jpg">
+                        </div>
+                        <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/fashion.jpg">
+                        </div>
+                        <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
+                            <img class="image-status" src="images/books/fashion.jpg">
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>

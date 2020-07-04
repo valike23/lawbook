@@ -52,6 +52,7 @@
     Ctrl.controller('payCtrl', payController);
     Ctrl.controller('statusCtrl', statusController);
     Ctrl.controller('readCtrl', readController);
+    Ctrl.controller('favoriteCtrl', favoriteController);
 
    // homeController.$inject = [''];
     function homeController($scope) {
@@ -155,7 +156,47 @@
             }
         })();
     }
-  
+    function favoriteController($scope){
+        let setAllBtnDefault = ( btn ) =>{
+            allBtn.style.backgroundColor = "#f0d377";
+            booksBtn.style.backgroundColor = "#f0d377";
+            casesBtn.style.backgroundColor = "#f0d377";
+            statutesBtn.style.backgroundColor = "#f0d377";
+            btn.style.backgroundColor = "red"
+            }
+            
+        let booksBtn, casesBtn, statutesBtn, allBtn;
+       ( ()=>{
+        allBtn = document.getElementById("all");
+        booksBtn = document.getElementById("books");
+        casesBtn = document.getElementById("cases");
+        statutesBtn = document.getElementById("statutes");
+        setAllBtnDefault(allBtn);
+       })();
+
+       $scope.toggleSearch = function( filter ){
+switch (filter) {
+    case 'all':
+setAllBtnDefault( allBtn);
+        
+        break;
+    case 'books':
+        setAllBtnDefault( booksBtn);
+                    
+        break;
+    case 'cases':
+        setAllBtnDefault( casesBtn);
+                                
+        break;
+    case 'statutes':
+        setAllBtnDefault( statutesBtn);
+                                    
+    break;
+    default:
+        break;
+}
+       }
+    }
 
    
 })();
