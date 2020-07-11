@@ -1,0 +1,102 @@
+﻿<!DOCTYPE HTML>
+<html lang="en" ng-app="app" ng-controller="wallCtrl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>Lawbook :  {{user.username}} page</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="scss/social.css">
+    <link href="styles/app.css" rel="stylesheet" />
+    <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/socialControllers.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pwa.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+</head>
+
+<body  class="theme-light" data-background="none" data-highlight="red2">
+
+    <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+    <div id="page">
+
+        <!-- header and footer bar go here-->
+        <div  class="header header-fixed header-logo-center">
+            <a href="/" class="header-title">LawBook</a>
+            <a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+            <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
+        </div>
+       <my-footer active="social">
+
+       </my-footer>
+
+        <!--start of page content, add your stuff here-->
+        <div  class="page-content header-clear-medium">
+            <div>
+                <div class="search-box search-header bg-theme card-style mr-3 ml-3">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="border-0" placeholder="What are you looking for? " data-search="">
+                    <a href="#" class="disabled"><i class="fa fa-times-circle color-red2-dark"></i></a>
+                </div>
+                <div class="card-style ml-1 mr-1 pl-n1 pr-n1 mt-n2  card pt-2 pb-2 pt-md-3">
+                    <div class="content mt-n1 mb-n1 row ml-n1 mr-n1">
+                        <div class="col-md-1 col-2">
+                            <img ng-src="{{user.profilePics}}" class="rounded-circle  profile-pics-desktop d-none d-md-block" />
+                            <img ng-src="{{user.profilePics}}" class="rounded-circle mt-1 profile-pics-mobile d-md-none" />
+                        </div>
+                        <div class="col-md-10 col-8 mr-n2">
+                            <textarea placeholder="write post here" class="form-control rounded-l" rows="1" id="post"></textarea>
+                        </div>
+                        <div class="col-md-1 col-2 mt-n2">
+                            <span class="fa fa-images fa-3x d-none d-md-block mt-2 mb-n2"></span><br />
+                            <span class="fa fa-images fa-2x d-md-none mt-n3"></span>
+                            <small class="d-none d-md-block mt-n3">Pick Image</small>
+                        </div>
+                    </div>
+                </div>
+
+               </div>
+        </div>
+
+
+        <!--end of page content, off canvas elements here-->
+
+      
+       <!-- Install instructions for iOS -->
+        <div id="menu-install-pwa-ios"
+             class="menu menu-box-bottom menu-box-detached rounded-l"
+             data-menu-height="320"
+             data-menu-effect="menu-parallax">
+            <div class="boxed-text-xl mt-4">
+                <img class="rounded-l mb-3" src="app/icons/icon-128x128.png" alt="img" width="90">
+                <h4 class="mt-3">Add Sticky on your Home Screen</h4>
+                <p class="mb-0 pb-0">
+                    Install Sticky on your home screen, and access it just like a regular app.  Open your Safari menu and tap "Add to Home Screen".
+                </p>
+                <div class="clear"></div>
+                <a href="#" class="pwa-dismiss close-menu color-highlight uppercase ultrabold opacity-80 top-25">Maybe later</a>
+                <i class="fa-ios-arrow fa fa-caret-down font-40"></i>
+            </div>
+        </div>
+
+        <!--end of div id page-->
+    </div>
+
+
+
+</body>
+</html>

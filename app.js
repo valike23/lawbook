@@ -8,9 +8,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var books = require('./routes/books');
-
+var blog = require('./routes/blog');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var social = require('./routes/social');
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -30,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', routes);
 app.use('/secure', users);
 app.use('/lib', books);
+app.use('/blog', blog);
+app.use('/social', social);
 
 app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/pages/home.html');
