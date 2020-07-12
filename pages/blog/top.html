@@ -53,11 +53,11 @@
                     <a href="#" class="disabled"><i class="fa fa-times-circle color-red2-dark"></i></a>
                 </div>
             </div>
-            <div id="blog-list">
+            <div id="blog-list" class="container-fluid">
                 <h1>Top Blog Post</h1>
                 <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div ng-repeat="article in articles" class="card card-style " data-card-height="175" style="height: 175px; background-image:url({{article.image}})">
+                    <div ng-repeat="article in articles" class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        <div  class="card card-style " data-card-height="175" style="height: 175px; background-image:url({{article.image}})">
                             <div class="card-top pt-1">
                                 <p class="tag-body"><span ng-repeat="tag in article.tags" class="{{tag.class}}">{{tag.title}}</span></p>
                             </div>
