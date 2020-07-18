@@ -5,30 +5,41 @@
     const Ctrl = angular.module('app');
     Ctrl.controller('blogCtrl', blogController);
     Ctrl.controller('topCtrl', topController);
+    Ctrl.controller('allCtrl', allController);
     Ctrl.controller('navCtrl', blogController);
 
-    function blogController($scope) {
-        console.log('blog controller');
+    function blogController($scope, $http) {
+        $scope.navigate = function(area){
+            var user = JSON.parse(sessionStorage.getItem('user'));
+            location.href = "/blog/author/" + 'mysession';
+        }
     }
-    function topController($scope) {
+    function topController($scope, $http) {
         
         activate();
         function activate() {
             console.log('top blog controller');
-            $scope.articles = [
-                {
-                    title:'Law school students makes first class',
-                    image: 'images/blog/school.jpg', 
-                    author: 'Emmanuel Valentine',
-                    tags: [{
-                        title: 'family law',
-                        class: 'bg-primary tags'
-                    },
-                        {
-                            title: 'Law School',
-                            class: 'bg-secondary tags'
-                        }]
-                },
+            $http.get('/api/blog/top/1').then(function (res) {
+                $scope.articles = res.data;
+                console.log($scope.articles);
+            }, function (err) {
+
+            })
+        }
+    }
+    function allController($scope, $http) {
+
+        activate();
+        function activate() {
+            $http.get('/api/blog/all/1').then(function (res) {
+                $scope.articles = res.data;
+                console.log($scope.articles);
+            }, function (err) {
+
+            })
+            console.log('all blog controller');
+            $scope.article = [
+              
                 {
                     title: 'Law school produces 147 first class',
                     image: 'images/blog/bar.jpg',
@@ -41,19 +52,11 @@
                         title: 'Law School',
                         class: 'bg-secondary tags'
                     }]
-                },
-                {
-                    title: 'Nigeria Senate passes electoral act into law overriding the President',
-                    image: 'images/blog/senate.jpg',
-                    author: 'Kelvin Law',
-                    tags: [{
-                        title: 'Constitutional law',
-                        class: 'bg-green1-dark tags'
-                    }]
                 }
+               
             ]
         }
     }
-   
+
 
 })();

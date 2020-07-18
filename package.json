@@ -17,11 +17,17 @@
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "filereader": "^0.10.3",
+    "mongodb": "^3.5.9",
     "morgan": "^1.7.0",
     "multer": "^1.4.1",
     "mysql": "^2.16.0",
     "opn": "^6.0.0",
     "pug": "^2.0.0-beta6",
     "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/express": "^4.17.7",
+    "@types/mongodb": "^3.5.25"
   }
 }
