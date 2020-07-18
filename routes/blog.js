@@ -17,7 +17,7 @@ router.get('/all', function (req, res) {
 });
 router.get('/author/:session', function (req, res) {
     console.log(req.params.session);
-    res.sendFile(root + '/pages/blog/author.html');
+    res.redirect('/login');
 });
 module.exports = router;
 //# sourceMappingURL=blog.js.map

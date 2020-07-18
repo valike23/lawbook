@@ -11,6 +11,8 @@ var bodyParser = require('body-parser');
 var books = require('./routes/books');
 var blog = require('./routes/blog');
 var BLOG_API = require('./routes/api/blog');
+var UTIL_API = require('./routes/api/util');
+var ACCOUNTS_API = require('./routes/api/accounts');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var social = require('./routes/social');
@@ -24,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/blog', BLOG_API);
+app.use('/api/util', UTIL_API);
 app.use('/secure', users);
 app.use('/lib', books);
 app.use('/blog', blog);
@@ -31,11 +34,11 @@ app.use('/social', social);
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/pages/home.html');
 });
-app.get('/login', function (res) {
-    res.sendFile(__dirname + '/login.html');
+app.get('/login', function (req, res) {
+    res.sendFile(__dirname + '/pages/accounts/login.html');
 });
-app.get('/register', function (res) {
-    res.sendFile(__dirname + '/register.html');
+app.get('/register', function (req, res) {
+    res.sendFile(__dirname + '/pages/accounts/register.html');
 });
 app.get('/profile', function (res) {
     res.sendFile(__dirname + '/profile.html');

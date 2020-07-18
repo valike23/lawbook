@@ -18,7 +18,8 @@ router.get('/all', function (req: Express.Request, res: Express.Response) {
 });
 router.get('/author/:session', function (req: Express.Request, res: Express.Response) {
    console.log(req.params.session);
-    res.sendFile(root + '/pages/blog/author.html');
+   res.redirect('/login');
+   // res.sendFile(root + '/pages/blog/author.html');
 });
 
 module.exports = router;

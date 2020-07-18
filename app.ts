@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 var books = require('./routes/books');
 var blog = require('./routes/blog');
 const BLOG_API = require('./routes/api/blog');
+const UTIL_API = require('./routes/api/util');
+const ACCOUNTS_API = require('./routes/api/accounts');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var social = require('./routes/social');
@@ -29,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/blog', BLOG_API);
+app.use('/api/util', UTIL_API);
 app.use('/secure', users);
 app.use('/lib', books);
 app.use('/blog', blog);
@@ -38,16 +41,17 @@ app.get('/', function (req: express.Request, res: express.Response) {
     res.sendFile(__dirname + '/pages/home.html');
 });
 
-app.get('/login', function ( res: express.Response) {
-    res.sendFile(__dirname + '/login.html');
+app.get('/login', function (req: express.Request, res: express.Response) {
+    res.sendFile(__dirname + '/pages/accounts/login.html');
 });
 
-app.get('/register', function ( res: express.Response) {
-    res.sendFile(__dirname + '/register.html');
+app.get('/register', function (req: express.Request,  res: express.Response) {
+    res.sendFile(__dirname + '/pages/accounts/register.html');
 });
 app.get('/profile', function ( res: express.Response) {
     res.sendFile(__dirname + '/profile.html');
 });
+
 
 // catch 404 and forward to error handler
 app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {

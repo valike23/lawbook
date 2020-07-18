@@ -5,6 +5,7 @@
     const Ctrl = angular.module('app');
     Ctrl.controller('homeCtrl', homeController);
     Ctrl.controller('libCtrl', libController);
+    Ctrl.controller('accountsCtrl', accountsController);
     Ctrl.controller('booksCtrl', function($scope) {
 
         activate();
@@ -61,6 +62,28 @@
             $scope.header = "lawbooks";
          }
     }
+
+    function accountsController($scope, $http) {
+        (() => {
+            $http.get('api/util/get_all_countries').then((res) => {
+                console.log(res);
+                $scope.countries = res.data;
+            })
+            console.log('accounts');
+        })();
+        $scope.user = {};
+        $scope.register = function () {
+            console.log($scope.user);
+            for (var property in $scope.user) {
+                if (!$scope.user[property]) return;
+            }
+            if ($scope.user.password !== $scope.confirm) return;
+
+        }
+       
+
+    }
+
     function navController($scope) {
        
         activate();
