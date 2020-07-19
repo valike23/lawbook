@@ -7,6 +7,8 @@
     Ctrl.controller('topCtrl', topController);
     Ctrl.controller('allCtrl', allController);
     Ctrl.controller('navCtrl', blogController);
+    Ctrl.controller('favoritesCtrl', favoriteController);
+    Ctrl.controller('contentCtrl', contentController);
 
     function blogController($scope, $http) {
         $scope.navigate = function (area) {
@@ -74,7 +76,18 @@
                
             ]
         }
+        $scope.gotoArticle = function (article) {
+           location.href= 'blog/content/'+ article._id
+        }
     }
-
+    function favoriteController($scope, $http) {
+        
+    }
+    function contentController($scope, $http) {
+        $http.get('api/blog/content/' + (location.pathname).split('/')[3]).then(function (res) {
+            console.log(res.data);
+            $scope.content = res.data;
+        })
+    }
 
 })();

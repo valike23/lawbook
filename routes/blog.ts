@@ -41,4 +41,8 @@ else{
    
 });
 
+router.get('/content/:data', function (req: Express.Request, res: Express.Response) {
+    res.sendFile(root + '/pages/blog/content.html');
+});
+
 module.exports = router;

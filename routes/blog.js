@@ -34,5 +34,8 @@ router.get('/author/:session', function (req, res) {
         res.redirect('/login');
     }
 });
+router.get('/content/:data', function (req, res) {
+    res.sendFile(root + '/pages/blog/content.html');
+});
 module.exports = router;
 //# sourceMappingURL=blog.js.map
