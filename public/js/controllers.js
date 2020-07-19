@@ -72,12 +72,26 @@
             console.log('accounts');
         })();
         $scope.user = {};
+        $scope.login = {};
+        $scope.signIn = function () {
+            console.log($scope.login);
+            for (var property in $scope.login) {
+                if (!$scope.login[property]) return;
+            }
+            console.log('sec',$scope.login);
+            $http.post('api/accounts/login', $scope.login).then(function (res) {
+                let data = res.data;
+                document.cookie = data.session;
+                location.href = '/';
+            })
+        }
         $scope.register = function () {
             console.log($scope.user);
             for (var property in $scope.user) {
                 if (!$scope.user[property]) return;
             }
             if ($scope.user.password !== $scope.confirm) return;
+           // $scope.post('')
 
         }
        

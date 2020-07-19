@@ -44,16 +44,16 @@
                         <i class="input-icon fa fa-user color-theme"></i>
                         <span>email</span>
                         <em>(required)</em>
-                        <input type="email" placeholder="email">
+                        <input type="email" ng-model="login.email" placeholder="email">
                     </div>
                     <div class="input-style has-icon input-style-1 input-required pb-1">
                         <i class="input-icon fa fa-lock color-theme"></i>
                         <span>Password</span>
                         <em>(required)</em>
-                        <input type="password" placeholder="Password">
+                        <input ng-model="login.password" type="password" placeholder="Password">
                     </div>
 
-                    <a href="#" class="btn btn-m mt-2 mb-4 btn-full bg-green1-dark text-uppercase font-900">Login</a>
+                    <a ng-click="signIn()" class="btn btn-m mt-2 mb-4 btn-full bg-green1-dark text-uppercase font-900">Login</a>
 
                     <div class="divider"></div>
                     <div class="row">

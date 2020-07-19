@@ -1,5 +1,8 @@
 ﻿import * as Express from 'express';
 import {Router} from 'express';
+import {Auth } from '../routes/auth';
+import { Iuser, Isession } from '../utils/models';
+const auth = new Auth();
  const  router = Router();
 var root = require('./config').rootDir;
 
@@ -18,8 +21,24 @@ router.get('/all', function (req: Express.Request, res: Express.Response) {
 });
 router.get('/author/:session', function (req: Express.Request, res: Express.Response) {
    console.log(req.params.session);
-   res.redirect('/login');
-   // res.sendFile(root + '/pages/blog/author.html');
+   let user: any;
+   
+ user = auth.isAuth((req.params.session).trim());
+ console.log('user', user);
+ if(user){
+if(user.user.type == "author"){
+    res.sendFile(root + '/pages/blog/author.html');
+}
+else{
+    res.sendfile(root + '/pages/blog/become_an_author.html' )
+}
+    
+ }
+ else{
+    res.redirect('/login');
+ }
+  
+   
 });
 
 module.exports = router;

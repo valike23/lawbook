@@ -13,6 +13,7 @@ exports.dbFree = {
     database: 'law_book'
 };
 exports.duration = 1;
+exports.sessions = [];
 exports.rootDir = '';
 exports.localMongo = 'mongodb://localhost:27017/?readPreference=primary&ssl=false';
 exports.mongodb = 'mongodb+srv://lawbook_user:G9yJAwyId0D0Xky5@cluster0-rrnxg.mongodb.net/<lawbook>?retryWrites=true&w=majority';

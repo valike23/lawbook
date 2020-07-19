@@ -6,14 +6,15 @@ var Auth = (function () {
     function Auth() {
     }
     Auth.prototype.isAuth = function (sessionString) {
-        if (auth.sessions.length < 1) {
+        console.log("sessions", config_1.sessions);
+        if (config_1.sessions.length < 1) {
             return false;
         }
-        for (var i = 0; i < auth.sessions.length; i++) {
-            console.log("user", sessionString);
-            console.log("provider", auth.sessions[i].session);
-            if (auth.sessions[i].session == sessionString) {
-                return auth.sessions[i];
+        for (var i = 0; i < config_1.sessions.length; i++) {
+            console.log("user", sessionString, sessionString.length);
+            console.log("provider", config_1.sessions[i].session, config_1.sessions[i].session.length);
+            if (config_1.sessions[i].session == sessionString) {
+                return config_1.sessions[i];
                 break;
             }
         }
@@ -30,10 +31,10 @@ var Auth = (function () {
     Auth.prototype.refresh = function () {
         var current = Date.now();
         console.log(current);
-        if (auth.sessions.length > 0) {
-            for (var i = 0; i < auth.sessions.length; i++) {
-                if (auth.sessions[i].duration < current) {
-                    console.log(auth.sessions.splice(i, 1));
+        if (config_1.sessions.length > 0) {
+            for (var i = 0; i < config_1.sessions.length; i++) {
+                if (config_1.sessions[i].duration < current) {
+                    console.log(config_1.sessions.splice(i, 1));
                     this.refresh();
                     break;
                 }
@@ -45,9 +46,9 @@ var Auth = (function () {
         }
     };
     Auth.prototype.update = function (session) {
-        for (var i = 0; i < auth.sessions.length; i++) {
-            if (session.user.id == auth.sessions[i].user.id) {
-                auth.sessions[i] = session;
+        for (var i = 0; i < config_1.sessions.length; i++) {
+            if (session.user.id == config_1.sessions[i].user.id) {
+                config_1.sessions[i] = session;
                 return true;
                 break;
             }
@@ -55,6 +56,7 @@ var Auth = (function () {
         return false;
     };
     Auth.prototype.createSession = function (user) {
+        console.log(config_1.sessions);
         var random = cryptoRandomString({ length: 20 });
         var session;
         if (this.isUnique(random)) {
@@ -63,14 +65,13 @@ var Auth = (function () {
                 session: random,
                 duration: Date.now() + config_1.duration * 60000
             };
-            Auth.sessions.push(session);
+            config_1.sessions.push(session);
             return session;
         }
         else {
             this.createSession(user);
         }
     };
-    Auth.sessions = [];
     return Auth;
 }());
 exports.Auth = Auth;

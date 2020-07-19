@@ -11,7 +11,7 @@ var saltRounds = bcrypt.genSaltSync(10);
 var cryptoRandomString = require('crypto-random-string');
 var config_1 = require("../config");
 var connection = mysql_1.createConnection(config_1.dbFree);
-router.get('/login', function (req, res) {
+router.post('/login', function (req, res) {
     var form;
     form = req.body;
     console.log(form);

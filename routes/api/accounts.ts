@@ -13,7 +13,7 @@ import { Iuser } from '../../utils/models';
  var connection = createConnection(dbFree);
 
 
- router.get('/login', function (req: Express.Request, res: Express.Response) {
+ router.post('/login', function (req: Express.Request, res: Express.Response) {
      let form: Iuser;
     form = <Iuser>req.body;
     console.log(form);

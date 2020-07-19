@@ -9,9 +9,27 @@
     Ctrl.controller('navCtrl', blogController);
 
     function blogController($scope, $http) {
-        $scope.navigate = function(area){
-            var user = JSON.parse(sessionStorage.getItem('user'));
-            location.href = "/blog/author/" + 'mysession';
+        $scope.navigate = function (area) {
+            try {
+                var user = document.cookie;
+                user = user.split(';')[1];
+                alert(user);
+                
+                console.log('user', user);
+                alert();
+                alert(user);
+                location.href = "/blog/author/" + user;
+            }
+            catch (err) {
+                console.log(err);
+                alert("test");
+                
+                location.href = "/blog/author/" + 'string';
+            }
+            
+            
+        
+            
         }
     }
     function topController($scope, $http) {

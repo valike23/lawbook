@@ -1,21 +1,23 @@
 ﻿import {Iuser, Isession} from '../utils/models';
-import {duration} from '../routes/config';
+import {duration, sessions} from '../routes/config';
 const cryptoRandomString = require('crypto-random-string');
 
 export class Auth {
-    static sessions: Array<Isession> = [];
+    
     constructor() {
         
     }
-    isAuth( sessionString: string): boolean | Isession{
-        if(auth.sessions.length < 1){
+    isAuth( sessionString: string): Isession | boolean{
+        console.log("sessions", sessions);
+        if(sessions.length < 1){
             return false
         }
-        for (var i = 0; i < auth.sessions.length; i++) {
-            console.log("user", sessionString);
-            console.log("provider", auth.sessions[i].session)
-            if (auth.sessions[i].session == sessionString) {
-                return auth.sessions[i];
+        for (var i = 0; i < sessions.length; i++) {
+            console.log("user", sessionString, sessionString.length);
+            console.log("provider", sessions[i].session, sessions[i].session.length)
+
+            if (sessions[i].session == sessionString) {
+                return sessions[i];
                 break;
             }
            
@@ -37,10 +39,10 @@ export class Auth {
     refresh(): string{
         let current = Date.now();
         console.log(current);
-        if (auth.sessions.length > 0) {
-            for (var i = 0; i < auth.sessions.length; i++) {
-                if (auth.sessions[i].duration < current) {
-                    console.log(auth.sessions.splice(i, 1));
+        if (sessions.length > 0) {
+            for (var i = 0; i < sessions.length; i++) {
+                if (sessions[i].duration < current) {
+                    console.log(sessions.splice(i, 1));
                     this.refresh();
                     break;
                 }
@@ -53,9 +55,9 @@ export class Auth {
     }
 
     update(session: Isession): boolean {
-        for (var i = 0; i < auth.sessions.length; i++) {
-            if (session.user.id == auth.sessions[i].user.id) {
-                auth.sessions[i] = session;
+        for (var i = 0; i < sessions.length; i++) {
+            if (session.user.id == sessions[i].user.id) {
+               sessions[i] = session;
                 return true;
                 break;
             }
@@ -64,6 +66,7 @@ export class Auth {
         return false;
     }
     createSession(user: Iuser): Isession{
+        console.log(sessions);
         let random = cryptoRandomString({ length: 20 });
         let session: Isession;
         if (this.isUnique(random)) {
@@ -72,7 +75,7 @@ export class Auth {
                 session: random,
                 duration: <number>Date.now() + duration * 60000
             }
-            Auth.sessions.push(session);
+            sessions.push(session);
             return session;
         }
         else {

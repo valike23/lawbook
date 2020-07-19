@@ -1,4 +1,5 @@
-﻿
+﻿import { Isession } from "../utils/models";
+
 interface Idb {
   host: string,
   user: string,
@@ -22,6 +23,7 @@ export let dbFree: Idb = {
 }
 
 export let duration = 1;
+export let sessions: Array<Isession> = [];
 
 export let rootDir = '';
 export let localMongo = 'mongodb://localhost:27017/?readPreference=primary&ssl=false';

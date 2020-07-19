@@ -1358,8 +1358,8 @@ $(document).ready(function(){
         if(!$('.reloader').length){$('body').append('<a href="#" class="reloader" style="position:fixed; background-color:#000; color:#FFF; z-index:9999; bottom:80px; left:50%; margin-left:-105px; border-radius:10px; width:210px; line-height:40px; text-align:center;">Developer Mode - Tap to Reload</a>');}
         $('.reloader').on('click',function(){window.location.reload(true);})
         caches.delete('workbox-runtime').then(function(){});
-        localStorage.clear();
-        sessionStorage.clear()
+       // localStorage.clear();
+       // sessionStorage.clear()
         caches.keys().then(cacheNames => {
           cacheNames.forEach(cacheName => {
             caches.delete(cacheName);
