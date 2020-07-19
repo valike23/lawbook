@@ -1,7 +1,7 @@
 ﻿export interface Iblog {
     _id?: any;
     title: string;
-    content: string;
+    content: Array<Icontent>;
     image: string;
     createdDate?: Date;
     rate?: number;
@@ -9,7 +9,12 @@
     authorId: number;
     author: string;
     media?: string;
+    
     comments?: Array<Icomment>;
+}
+export interface Icontent {
+    type: string,
+    data: string
 }
 
 export interface Icomment {

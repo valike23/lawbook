@@ -27,6 +27,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/pwa.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
+    
 </head>
 
 <body ng-controller="contentCtrl" class="theme-light" data-background="none" data-highlight="red2">
@@ -50,52 +51,33 @@
 
             <main class="blog-post-single">
                 <div class="container">
-                    <h1 class="post-title wow fadeInUp">Blog Standard</h1>
                     <div class="row">
                         <div class="col-md-8 blog-post-wrapper">
                             <div class="post-header wow fadeInUp">
                                 <img ng-src="{{content.image}}" alt="blog post" class="post-featured-image">
-                                <p class="post-date">January 29, 2020</p>
+                                <p class="post-date">{{content.createdDate | date: small}}</p>
                             </div>
                             <div class="post-content wow fadeInUp">
                                 <h4>{{content.title}}</h4>
-                                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
-                                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
-                                <blockquote class="blockquote wow fadeInUp">
-                                    <p>It’s safe to say that because of my unique professional experiences, I’ve tested out a lot of headphones.</p>
-                                </blockquote>
-                                <h5>
-                                    The High-Quality Architecture Solutions from a Silicon Valley.</h4>
-                                    <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
-                                    <h5>
-                                        Outdoor Work: a Designer’s Checklist for Every UX Project.</h4>
-                                        <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
-                            </div>
-                            <div class="post-tags wow fadeInUp">
-                                <a href="#!" class="post-tag">Design Studio</a>
-                                <a href="#!" class="post-tag">Creative Design</a>
-                            </div>
-                            <div class="post-navigation wow fadeInUp">
-                                <button class="btn prev-post"> Prev Post</button>
-                                <button class="btn next-post"> Next Post</button>
-                            </div>
+                                <div id="content" ng-repeat="blog in content.content">
+                                    <p ng-if="blog.type == 'para'">{{blog.data}}</p>
+                                    <h5 ng-if="blog.type == 'heading'">{{blog.data}}</h5>
+                                    <blockquote ng-if="blog.type == 'quote'" class="blockquote wow fadeInUp">
+                                        <p>{{blog.data}}</p>
+                                    </blockquote>
+                                </div>
+                               
+                             </div>
+                           
+                           
                             <div class="comment-section wow fadeInUp">
-                                <h5 class="section-title">Leave a Reply</h5>
+                                <h5 class="section-title">Leave a comment</h5>
                                 <form action="POST" class="oleez-comment-form">
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <input type="text" class="oleez-input" id="fullName" name="fullName" required>
-                                            <label for="fullName">*Full name</label>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="email" class="oleez-input" id="fullName" name="email" required>
-                                            <label for="email">*Email</label>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="row">
                                         <div class="form-group col-12">
                                             <label for="message">*Message</label>
-                                            <textarea name="message" id="message" rows="10" class="oleez-textarea" required></textarea>
+                                            <textarea name="message" id="message" rows="4" class="oleez-textarea" required></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -122,7 +104,7 @@
                                 <h5 class="widget-title">Share</h5>
                                 <div class="widget-content">
                                     <nav class="social-links">
-                                        <a href="#!">Fb</a>
+                                        <span style="color:blue" class="fa fa-twitter"></span>
                                         <a href="#!">Tw</a>
                                         <a href="#!">In</a>
                                         <a href="#!">Be</a>
