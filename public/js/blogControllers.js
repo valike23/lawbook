@@ -15,16 +15,14 @@
             try {
                 var user = document.cookie;
                 user = user.split(';')[1];
-                alert(user);
-                
+                             
                 console.log('user', user);
-                alert();
-                alert(user);
+                
                 location.href = "/blog/author/" + user;
             }
             catch (err) {
                 console.log(err);
-                alert("test");
+              
                 
                 location.href = "/blog/author/" + 'string';
             }
@@ -81,12 +79,25 @@
         }
     }
     function favoriteController($scope, $http) {
-        
+        (()=>{
+            $http.get('api/blog/favorite/1/1' ).then(function (res) {
+                console.log(res.data.length);
+                $scope.articles = res.data;
+
+            }, function(err){
+console.log(err);
+$scope.articles = [];
+            })
+        })()
     }
     function contentController($scope, $http) {
         $http.get('api/blog/content/' + (location.pathname).split('/')[3]).then(function (res) {
             console.log(res.data);
             $scope.content = res.data;
+        });
+        $http.get('api/blog/related/' ).then(function (res) {
+            console.log(res.data);
+            $scope.articles = res.data;
         })
     }
 

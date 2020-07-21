@@ -60,6 +60,16 @@
         activate();
         function activate() {
             $scope.header = "lawbooks";
+            new Splide('#splide--free', {
+                type: 'loop',
+                perPage: 4,
+                focus: 'center',
+            }).mount();
+            new Splide('#splide--mobile--free', {
+                type: 'loop',
+                perPage: 2,
+                focus: 'center',
+            }).mount();
          }
     }
 

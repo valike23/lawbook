@@ -14,7 +14,7 @@ router.get('/top_post', function (req: Express.Request, res: Express.Response) {
     res.sendFile(root + '/pages/blog/top.html');
 });
 router.get('/favorites', function (req: Express.Request, res: Express.Response) {
-    res.sendFile(root + '/pages/blog/favorites.html');
+    res.sendFile(root + '/pages/blog/favorite.html');
 });
 router.get('/all', function (req: Express.Request, res: Express.Response) {
     res.sendFile(root + '/pages/blog/all.html');
@@ -27,6 +27,7 @@ router.get('/author/:session', function (req: Express.Request, res: Express.Resp
  console.log('user', user);
  if(user){
 if(user.user.type == "author"){
+    console.log("registered");
     res.sendFile(root + '/pages/blog/author.html');
 }
 else{

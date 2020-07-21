@@ -9,7 +9,7 @@
     authorId: number;
     author: string;
     media?: string;
-    
+    tags?: Array<Itag>;
     comments?: Array<Icomment>;
 }
 export interface Icontent {
@@ -21,6 +21,10 @@ export interface Icomment {
 username: string;
 comment: string;
 createdDate: Date
+}
+export interface Itag {
+    title: string;
+    class: string;
 }
 
 export interface Isession {

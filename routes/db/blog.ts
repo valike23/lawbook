@@ -97,29 +97,7 @@ class BlogDatabase {
             this.errorHandler(res, err);
         })
     }
-    getAllFavorite(res: Express.Response, page: number) {
-        this.connect().then((data: MongoClient) => {
-            let name = this.name;
-
-            const dbo = data.db(name);
-            dbo.collection("blog").find({},
-                { projection: { "content": 0 } })
-                .sort({ createdDate: -1 })
-                .skip(((page - 1) * this.difference))
-                .limit(5).toArray((err: MongoError, result: Array<Iblog>) => {
-                    if (err) {
-                        this.errorHandler(res, err);
-                        return;
-                    }
-                    res.json(result);
-                    res.end();
-
-                })
-
-        }, (err: MongoError) => {
-            this.errorHandler(res, err);
-        })
-    }
+  
     getContent(res: Express.Response, id: string) {
         this.connect().then((data: MongoClient) => {
             let name = this.name;
@@ -142,7 +120,7 @@ class BlogDatabase {
         })
     }
 
-createIndex(res:Express.Response){
+getFavoritesBlog(res:Express.Response, id: number){
     this.connect().then((data: MongoClient) => {
         let name = this.name;
         const dbo = data.db(name);
@@ -158,6 +136,9 @@ this.errorHandler(res, err);
     
     
     })
+
+}
+createIndexFavorite(res: Express.Response){
 
 }
 

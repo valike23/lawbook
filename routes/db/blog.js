@@ -76,26 +76,6 @@ var BlogDatabase = (function () {
             _this.errorHandler(res, err);
         });
     };
-    BlogDatabase.prototype.getAllFavorite = function (res, page) {
-        var _this = this;
-        this.connect().then(function (data) {
-            var name = _this.name;
-            var dbo = data.db(name);
-            dbo.collection("blog").find({}, { projection: { "content": 0 } })
-                .sort({ createdDate: -1 })
-                .skip(((page - 1) * _this.difference))
-                .limit(5).toArray(function (err, result) {
-                if (err) {
-                    _this.errorHandler(res, err);
-                    return;
-                }
-                res.json(result);
-                res.end();
-            });
-        }, function (err) {
-            _this.errorHandler(res, err);
-        });
-    };
     BlogDatabase.prototype.getContent = function (res, id) {
         var _this = this;
         this.connect().then(function (data) {
@@ -117,7 +97,7 @@ var BlogDatabase = (function () {
             _this.errorHandler(res, err);
         });
     };
-    BlogDatabase.prototype.createIndex = function (res) {
+    BlogDatabase.prototype.getFavoritesBlog = function (res, id) {
         var _this = this;
         this.connect().then(function (data) {
             var name = _this.name;
@@ -131,6 +111,8 @@ var BlogDatabase = (function () {
                 _this.errorHandler(res, err);
             });
         });
+    };
+    BlogDatabase.prototype.createIndexFavorite = function (res) {
     };
     BlogDatabase.prototype.updateRate = function (blog, db, OBJECT_ID) {
         var name = this.name;

@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
     <link rel="stylesheet" type="text/css" href="scss/main.css">
     <link href="styles/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="scss/splide.min.css">
     <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
@@ -35,7 +36,7 @@
 
         <!--start of page content, add your stuff here-->
         <div class="page-content header-clear-medium">
-            <div>
+            <div id="home">
                 <div class="single-slider slider-boxed owl-carousel owl-no-dots d-xl-none ">
                     <div class="card rounded-m shadow-l">
                         <div class="card-bottom text-center mb-0">
@@ -84,7 +85,8 @@
                             </div>
                             <div class="card-overlay bg-black opacity-70"></div>
                         </div>
-                    </div>  <div class="col-12 col-md-4 ">
+                    </div>
+                    <div class="col-12 col-md-4 ">
                         <div class="card card-style bg-18" data-card-height="175" style="height: 175px;">
                             <div class="card-top">
                                 <i class="fa fa-sun color-yellow1-dark fa-3x float-right mr-3 mt-3"></i>
@@ -112,73 +114,174 @@
                     </div>
 
                 </div>
-                <div class="m-2"><span class="h2">Personality Of the Week</span></div>
-                <div class="row justify-content-center">
-                    <div class="card card-style col-10">
-                        <div class="content">
+                <div id="splide--free" class="splide d-none d-sm-block">
+                    <div class="splide__track">
+                        <ul class="splide__list ">
 
-                            <div class="text-center mt-3">
-                                <img class="rounded-l shadow-xl mb-4 preload-img" src="images/pictures/faces/1s.png" data-src="images/pictures/faces/1s.png" width="180">
-                                <h1 class="font-35 font-700 mb-2">Enabled</h1>
-                                <p class="mt-n3 mb-2 color-highlight">Company Executive Officer</p>
-                                <p class="boxed-text-l">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt euismod nisl, in maximus urna tincidunt sit amet.
-                                </p>
-                                <a href="#" class="icon shadow-xl icon-m rounded-circle bg-facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="icon shadow-xl icon-xl mr-2 ml-2 rounded-circle bg-phone"><i class="fa fa-phone"></i></a>
-                                <a href="#" class="icon shadow-xl icon-m rounded-circle bg-twitter"><i class="fab fa-twitter"></i></a>
-                            </div>
+                            <li ng-click="openBook('fashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
 
-                        </div>
-                    </div>
-                </div>
-                <div class="card card-style">
-                    <div class="content mb-4">
-                        <h1 class="text-center mb-0">Care &amp; Quality</h1>
-                        <p class="text-center color-highlight font-11 mt-n1 pb-0">No stone left unturned, no aspect overlooked.</p>
-                        <p class="text-center font-20 mt-n2">
-                            <i class="fa fa-star color-yellow1-dark"></i>
-                            <i class="fa fa-star color-yellow1-dark"></i>
-                            <i class="fa fa-star color-yellow1-dark"></i>
-                            <i class="fa fa-star color-yellow1-dark"></i>
-                            <i class="fa fa-star color-yellow1-dark"></i>
-                        </p>
-                        <div class="single-slider slider-boxed owl-carousel owl-no-dots owl-loaded owl-drag">
+                                <div class="item">
+                                    <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/fashion.jpg');background-size:cover">
 
 
-                            <div class="owl-stage-outer" ui-sref="lib">
-                                <div class="owl-stage" style="transform: translate3d(-678px, 0px, 0px); transition: all 0.25s ease 0s; width: 2034px;">
-                                    <div class="owl-item cloned" style="width: 319px; margin-right: 20px;">
-                                        <h2 class="text-center font-300 line-height-xl content mb-0 mt-0">
-                                            The code is always great with any Enabled template, the customer support that wins me over always.
-                                        </h2>
-                                    </div><div class="owl-item cloned" style="width: 319px; margin-right: 20px;">
-                                        <h2 class="text-center font-300 line-height-xl content mb-0 mt-0">
-                                            The best support I have ever had, it's so good I purchased another theme. Highlighy Recommended.
-                                        </h2>
-                                    </div><div class="owl-item active" style="width: 319px; margin-right: 20px;">
-                                        <h2 class="text-center font-300 line-height-xl content mb-0 mt-0">
-                                            The code is always great with any Enabled template, the customer support that wins me over always.
-                                        </h2>
-                                    </div><div class="owl-item" style="width: 319px; margin-right: 20px;">
-                                        <h2 class="text-center font-300 line-height-xl content mb-0 mt-0">
-                                            The best support I have ever had, it's so good I purchased another theme. Highlighy Recommended.
-                                        </h2>
-                                    </div><div class="owl-item cloned" style="width: 319px; margin-right: 20px;">
-                                        <h2 class="text-center font-300 line-height-xl content mb-0 mt-0">
-                                            The code is always great with any Enabled template, the customer support that wins me over always.
-                                        </h2>
-                                    </div><div class="owl-item cloned" style="width: 319px; margin-right: 20px;">
-                                        <h2 class="text-center font-300 line-height-xl content mb-0 mt-0">
-                                            The best support I have ever had, it's so good I purchased another theme. Highlighy Recommended.
-                                        </h2>
                                     </div>
+                                    <div style="line-height:10px;margin-top:-22px">
+                                        <h4 class="color-black">Fashion Law</h4>
+                                        <p>by Micheal Chan</p>
+                                        <div class="ml-sm-0" style="margin-top:-18px">
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                        </div>
+                                        <p><small></small></p>
+
+                                    </div>
+
+
                                 </div>
-                            </div><div class="owl-nav disabled"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div>
-                        </div>
-                        <a href="#" class="btn btn-m btn-center-l text-uppercase font-900 bg-red2-dark rounded-sm shadow-xl mt-4 mb-0">More Testimonials</a>
+
+                            </li>
+                            <li ng-click="openBook('fashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                <div class="item">
+                                    <div data-card-height="400" class="card  shadow-l" style="height: 400px;
+background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                    </div>
+                                    <div style="line-height:10px;margin-top:-22px">
+                                        <h4 class="color-black">Fashion Law</h4>
+                                        <p>by Micheal Chan</p>
+                                        <div class="ml-sm-0" style="margin-top:-18px">
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                        </div>
+                                        <p><small></small></p>
+
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+                            <li ng-click="openBook('fashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                <div class="item">
+                                    <div data-card-height="400" class="card  shadow-l" style="height: 400px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                    </div>
+                                    <div style="line-height:10px;margin-top:-22px">
+                                        <h4 class="color-black">Business Law</h4>
+                                        <p>by Micheal Chan</p>
+                                        <div class="ml-sm-0" style="margin-top:-18px">
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                        </div>
+                                        <p><small></small></p>
+
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
+                <div id="splide--mobile--free" class="splide d-sm-none d-block">
+                    <div class="splide__track">
+                        <ul class="splide__list ">
+
+                            <li ng-click="openBook('ashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                <div class="item">
+                                    <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                    </div>
+                                    <div style="line-height:10px;margin-top:-22px">
+                                        <h4 class="color-black">Fashion Law</h4>
+                                        <p>by Micheal Chan</p>
+                                        <div class="ml-sm-0" style="margin-top:-18px">
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                        </div>
+                                        <p><small></small></p>
+
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+                            <li onclick="openBook('ashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                <div class="item">
+                                    <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/fashion.jpg');background-size:cover">
+
+
+                                    </div>
+                                    <div style="line-height:10px;margin-top:-22px">
+                                        <h4 class="color-black">Fashion Law</h4>
+                                        <p>by Micheal Chan</p>
+                                        <div class="ml-sm-0" style="margin-top:-18px">
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                        </div>
+                                        <p><small></small></p>
+
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+                            <li onclick="openBook('ashion')" class="splide__slide rounded-m ml-sm-n2 mr-sm-n2">
+
+                                <div class="item">
+                                    <div data-card-height="200" class="card  shadow-l" style="height: 200px;background-image: url('images/books/business_law.jpg');background-size:cover">
+
+
+                                    </div>
+                                    <div style="line-height:10px;margin-top:-22px">
+                                        <h4 class="color-black">Business Law</h4>
+                                        <p>by Micheal Chan</p>
+                                        <div class="ml-sm-0" style="margin-top:-18px">
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-yellow1-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                            <i class="fa fa-star  color-plum-dark"></i>
+                                        </div>
+                                        <p><small></small></p>
+
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -349,6 +452,7 @@
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/splide.min.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/service.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>

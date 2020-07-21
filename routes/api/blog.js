@@ -44,7 +44,17 @@ router.get('/content/:id', function (req, res) {
 });
 router.get('/favorites/:page/:id', function (req, res) {
     try {
-        blogDb.createIndex(res);
+        blogDb.getFavoritesBlog(res, req.params.id);
+    }
+    catch (error) {
+        res.status(403);
+        res.json("parameter error");
+        res.end();
+    }
+});
+router.get('/related', function (req, res) {
+    try {
+        blogDb.getAllBlogs(res, 1);
     }
     catch (error) {
         res.status(403);
