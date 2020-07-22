@@ -56,7 +56,7 @@
     Ctrl.controller('favoriteCtrl', favoriteController);
 
    // homeController.$inject = [''];
-    function homeController($scope) {
+    function homeController($scope, $http) {
         activate();
         function activate() {
             $scope.header = "lawbooks";
@@ -70,7 +70,19 @@
                 perPage: 2,
                 focus: 'center',
             }).mount();
+           
+            
+            $http.get('api/home/personalities').then(function (res) {
+                $scope.personalities = res.data;
+                console.log('app');
+
+            })
+
          }
+        $scope.openPerson = function (data) {
+            $('#personality').modal('show');
+            $scope.person = data;
+        }
     }
 
     function accountsController($scope, $http) {

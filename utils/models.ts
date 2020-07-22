@@ -17,6 +17,14 @@ export interface Icontent {
     data: string
 }
 
+export interface Ipersonality {
+    _id?: any;
+    image: string;
+    name: string;
+    bio: string;
+    createdDate?: Date
+}
+
 export interface Icomment {
 username: string;
 comment: string;

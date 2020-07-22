@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="scss/splide.min.css">
     <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+
 </head>
 
 <body ng-controller="homeCtrl" class="theme-light" data-background="none" data-highlight="red2">
@@ -25,17 +26,15 @@
     <div id="page">
 
         <!-- header and footer bar go here-->
-        <div class="header header-fixed header-logo-center">
-            <a href="index.html" class="header-title">{{header}}</a>
-            <a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-            <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
-        </div>
+        <my-header active="home">
+
+        </my-header>
         <my-footer active="home">
 
         </my-footer>
 
         <!--start of page content, add your stuff here-->
-        <div class="page-content header-clear-medium">
+        <div class="page-content header-clear-small">
             <div id="home">
                 <div class="single-slider slider-boxed owl-carousel owl-no-dots d-xl-none ">
                     <div class="card rounded-m shadow-l">
@@ -284,48 +283,57 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                     </div>
 
                 </div>
-              <div id="wall_of_fame">
+                <div id="wall_of_fame">
+                    <div class="card card-style">
+
+                        <div class="content mb-0 pb-n2">
+                            <h1 class="text-center mb-0">Wall of Fame</h1>
+                            <p class=" mt-0">
+                                Lawyers are some of the most outstanding individuals in the world.
+                                In the past month, these six persons have been even more outstanding
+                                in their respective capacities. Why do we deem them so?
+                                Click on the pictures to find out why.
+                            </p>
+                            <div class="row">
+                                <div ng-click="openPerson(personality)" class="col-6 col-sm-4 card" ng-repeat="personality in personalities">
+                                    <img class="rounded-l" ng-src="{{personality.image}}" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="contact">
 <div class="card card-style">
-    
-    <div class="content mb-0">
-        <h1 class="text-center mb-0">Wall of Fame</h1>
-        <p class=" mt-0">
-            Lawyers are some of the most outstanding individuals in the world.
-            In the past month, these six persons have been even more outstanding
-            in their respective capacities. Why do we deem them so?
-            Click on the pictures to find out why.
-        </p>
-        <div class="gallery gallery-filter" style="padding: 0px; position: relative; height: 307.689px;">
-            <a href="images/pictures/9t.jpg" data-lightbox="gallery-1" class="filtr-item default-link" title="Cream Pie" data-category="1" style="opacity: 1; transform: scale(1) translate3d(0px, 0px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
-                <img src="images/pictures/9s.jpg" data-src="images/pictures/9s.jpg" class="preload-img rounded-s shadow-m" alt="sample image">
-            </a>
-            <a href="images/pictures/14t.jpg" data-lightbox="gallery-2" class="filtr-item default-link" title="Typeweritter and Vynil" data-category="2" style="opacity: 1; transform: scale(1) translate3d(102.563px, 0px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
-                <img src="images/pictures/14s.jpg" data-src="images/pictures/14s.jpg" class="preload-img rounded-s shadow-m" alt="sample image">
-            </a>
-            <a href="images/pictures/18t.jpg" data-lightbox="gallery-3" class="filtr-item default-link" title="Autumn Leaves" data-category="3" style="opacity: 1; transform: scale(1) translate3d(205.126px, 0px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
-                <img src="images/pictures/18s.jpg" data-src="images/pictures/18s.jpg" class="preload-img rounded-s shadow-m" alt="sample image">
-            </a>
-            <a href="images/pictures/21t.jpg" data-lightbox="gallery-3" class="filtr-item default-link" title="Cookies and Flowers" data-category="3" style="opacity: 1; transform: scale(1) translate3d(0px, 102.563px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
-                <img src="images/pictures/21s.jpg" data-src="images/pictures/21s.jpg" class="preload-img rounded-s shadow-m" alt="sample image">
-            </a>
-            <a href="images/pictures/29t.jpg" data-lightbox="gallery-2" class="filtr-item default-link" title="Beautiful Camera" data-category="2" style="opacity: 1; transform: scale(1) translate3d(102.563px, 102.563px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
-                <img src="images/pictures/29s.jpg" data-src="images/pictures/29s.jpg" class="preload-img rounded-s shadow-m" alt="sample image">
-            </a>
-            <a href="images/pictures/15t.jpg" data-lightbox="gallery-1" class="filtr-item default-link" title="Pots and Recipes" data-category="1" style="opacity: 1; transform: scale(1) translate3d(205.126px, 102.563px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
-                <img src="images/pictures/15s.jpg" data-src="images/pictures/15s.jpg" class="preload-img rounded-s shadow-m" alt="sample image">
-            </a>
-           
-        </div>
+    <div class="content">
+<h2 class="text-uppercase text-center">contact us and follow us everywhere</h2>
     </div>
 
 </div>
-              </div>
+                </div>
             </div>
 
 
         </div>
 
-
+        <div id="personality" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document" >
+                <div class="modal-content" style="background-color:black">
+                   
+                    <div class="modal-body">
+                        <h2 class="text-center text-capitalize color-white">{{person.name}}</h2>
+                        <p class="text-center color-white">{{person.bio}}</p>
+                        <img style="height: 400px; width:100%" ng-src="{{person.image}}"/>
+                        <div class="text-center">
+                            <span class="fa fa-times fa-3x" style="color:red" data-dismiss="modal"></span>
+                           
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
         <!--end of page content, off canvas elements here-->
 
         <div id="menu-share" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="345" data-menu-effect="menu-over">
@@ -483,7 +491,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
         <!--end of div id page-->
     </div>
 
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript"  src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/pwa.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>

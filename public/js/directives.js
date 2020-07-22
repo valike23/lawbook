@@ -1,5 +1,5 @@
 (() => {
-    const DIRECTIVES = angular.module('app');
+    const DIRECTIVES = angular.module('app'); 
 
     DIRECTIVES.directive('myFooter', [function () {
         return {
@@ -24,6 +24,33 @@
                     case 'social': social.classList.add("active-nav"); break;
                     default: break;
                 }
+
+            }
+        }
+    }])
+    DIRECTIVES.directive('myHeader', [function () {
+        return {
+            restrict: 'E',
+            template: ` <div class="header header-demo header-logo-center mb-2">
+        <a href="/" class="header-logo">Lawbook<span class="color-highlight"> Mobile</span></a>
+        <a href="#" class="header-icon header-icon-1"><i class="fas fa-envelope"></i><span class="badge bg-blue2-dark">5</span></a>
+        <a href="#" class="header-icon header-icon-2"><i class="fas fa-bars"></i></a>
+        <a href="#" class="header-icon header-icon-3"><i class="fas fa-heart color-red2-light"></i></a>
+        <a href="#" class="header-icon header-icon-4"><i class="fas fa-share-alt"></i></a>
+    </div>`,
+            link: function (scope, element, attr) {
+                //const active = attr.active;
+                //let home = document.getElementById("home");
+                //let lib = document.getElementById("lib");
+                //let blog = document.getElementById("blog");
+                //let social = document.getElementById("social");
+                //switch (active) {
+                //    case 'home': home.classList.add("active-nav"); break;
+                //    case 'lib': lib.classList.add("active-nav"); break;
+                //    case 'blog': blog.classList.add("active-nav"); break;
+                //    case 'social': social.classList.add("active-nav"); break;
+                //    default: break;
+                //}
 
             }
         }
