@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML>
-<html lang="en" ng-app="app" >
+<html lang="en" ng-app="app">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -70,49 +70,25 @@
                         <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
                     </div>
                 </div>
-                <div class="m-2"><span class="h2">Blog</span><span class="float-right"><a>show all</a></span></div>
-                <div class="row ">
-                    <div class="col-12 col-md-4 ">
-                        <div class="card card-style bg-18" data-card-height="175" style="height: 175px;">
-                            <div class="card-top">
-                                <i class="fa fa-sun color-yellow1-dark fa-3x float-right mr-3 mt-3"></i>
+                <div class="m-2"><span class="h2">Blog</span><span class="float-right"><a href="/blog/top_post">show all</a></span></div>
+                <div class="row">
+                    <div ng-click="gotoArticle(article)" ng-repeat="article in articles" class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="card card-style " data-card-height="175" style="height: 175px; background-image:url({{article.image}})">
+                            <div class="card-top pt-1">
+                                <p class="tag-body"><span ng-repeat="tag in article.tags" class="{{tag.class}}">{{tag.title}}</span></p>
                             </div>
                             <div class="card-bottom">
-                                <p class="tag-body"><span class="bg-primary tags">Civil Law</span><span class="tags bg-secondary">Family Law</span></p>
-                                <h1 class="color-white ml-3 mb-n1">Experts condemn violation of regulatory laws in Nigeria�s extractive industry</h1>
-                                <p class="color-white opacity-60 ml-3">Jan, 17th 2019 | valentine Emmanuel</p>
+
+                                <h4 class="color-white ml-3 mb-1">{{article.title}}</h4>
+                                <p class="color-white opacity-60 ml-3">Jan, 17th 2019 | {{article.author}}</p>
                             </div>
-                            <div class="card-overlay bg-black opacity-70"></div>
+                            <div class="card-overlay bg-black opacity-50"></div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-4 ">
-                        <div class="card card-style bg-18" data-card-height="175" style="height: 175px;">
-                            <div class="card-top">
-                                <i class="fa fa-sun color-yellow1-dark fa-3x float-right mr-3 mt-3"></i>
-                            </div>
-                            <div class="card-bottom">
-                                <p class="tag-body"><span class="bg-primary tags">Civil Law</span><span class="tags bg-secondary">Family Law</span></p>
-                                <h1 class="color-white ml-3 mb-n1">Experts condemn violation of regulatory laws in Nigeria�s extractive industry</h1>
-                                <p class="color-white opacity-60 ml-3">Jan, 17th 2019 | valentine Emmanuel</p>
-                            </div>
-                            <div class="card-overlay bg-black opacity-70"></div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 ">
-                        <div class="card card-style bg-18" data-card-height="175" style="height: 175px;">
-                            <div class="card-top">
-                                <i class="fa fa-sun color-yellow1-dark fa-3x float-right mr-3 mt-3"></i>
-                            </div>
-                            <div class="card-bottom">
-                                <p class="tag-body"><span class="bg-primary tags">Civil Law</span><span class="tags bg-secondary">Family Law</span></p>
-                                <h1 class="color-white ml-3 mb-n1">Experts condemn violation of regulatory laws in Nigeria�s extractive industry</h1>
-                                <p class="color-white opacity-60 ml-3">Jan, 17th 2019 | valentine Emmanuel</p>
-                            </div>
-                            <div class="card-overlay bg-black opacity-70"></div>
-                        </div>
+
                     </div>
 
                 </div>
+
                 <div id="books">
                     <div id="splide--free" class="splide d-none d-sm-block">
                         <div class="splide__track">
@@ -296,7 +272,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                             </p>
                             <div class="row">
                                 <div ng-click="openPerson(personality)" class="col-6 col-sm-4 card" ng-repeat="personality in personalities">
-                                    <img class="rounded-l" ng-src="{{personality.image}}" />
+                                    <img class="rounded-l" style="height:152px" ng-src="{{personality.image}}" />
                                 </div>
 
                             </div>
@@ -305,12 +281,71 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
                     </div>
                 </div>
                 <div id="contact">
-<div class="card card-style">
-    <div class="content">
-<h2 class="text-uppercase text-center">contact us and follow us everywhere</h2>
-    </div>
+                    <div class="card card-style">
+                        <div class="content">
+                            <h2 class="text-uppercase text-center mb-2 ">contact us and follow us everywhere</h2>
+                            <div class="row pl-2 pr-2 pr-sm-5 mt-3">
+                                <div class="col-3 col-sm-2 offset-sm-3" style="padding-right: -10px">
+                                    <img src="images/social/twitter_black.png" style="height:50px; width:50px" />
+                                    <br />
+                                    <small class="color-blue2-dark">Twitter</small>
+                                </div>
+                                <div class="col-3 col-sm-2" style="padding-right: -10px">
+                                    <img src="images/social/facebook_black.png" style="height:50px; width:50px" />
+                                    <br />
+                                    <small class="color-blue2-light">Facebook</small>
+                                </div>
+                                <div class="col-3 col-sm-2" style="padding-right: -10px">
+                                    <img src="images/social/linkedin_black.png" style="height:50px; width:50px" />
+                                    <br />
+                                    <small class="color-black">linkedin</small>
+                                </div>
+                                <div class="col-3 col-sm-2" style="padding-right: -10px">
+                                    <img src="images/social/instagram-black.png" style="height:50px; width:50px" />
+                                    <br />
+                                    <small class="color-brown1-light">instagram</small>
+                                </div>
+                            </div>
+                        </div>
 
-</div>
+                    </div>
+                </div>
+
+                <div id="testimonials">
+                    <div class="card card-style">
+                        <div class="content mb-3 pt-2">
+                            <h6 class="color-highlight text-center text-uppercase font-700 font-13">Our customers say we rock</h6>
+                            <h1 class="text-uppercase text-center font-900 mt-n1 font-30">Testimonials</h1>
+                            <p class="text-center mt-4">
+                                <i class="fa font-16 fa-star color-yellow1-dark"></i>
+                                <i class="fa font-24 ml-2 fa-star color-yellow1-dark"></i>
+                                <i class="fa font-38 mr-2 ml-2 fa-star color-yellow1-dark"></i>
+                                <i class="fa font-24 mr-2 fa-star color-yellow1-dark"></i>
+                                <i class="fa font-16 fa-star color-yellow1-dark"></i>
+                            </p>
+                            <div id="splide--testimonial" class="splide">
+
+
+                                <div class="splide__track">
+                                    <div class="splide__list" style="transform: translate3d(-954px, 0px, 0px); transition: all 0.25s ease 0s; width: 1908px;">
+                                        <div class="splide__slide" style="width: 298px; margin-right: 20px;">
+                                            <h2 class="text-center font-300 pl-3 pr-3 line-height-xl">
+                                                The code is always great with any Enabled template, the customer support that wins me over always.
+                                            </h2>
+                                            <p class="text-center color-red2-light font-18">- Lionel Messi</p>
+                                        </div>
+                                        <div class="splide__slide" style="width: 298px; margin-right: 20px;">
+                                            <h2 class="text-center font-300 pl-3 pr-3 line-height-xl">
+                                                The best support I have ever had, it's so good I purchased another theme. Highlighy Recommended.
+                                            </h2>
+                                            <p class="text-center color-red2-light font-18">- Lionel Messi</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -318,19 +353,19 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
         </div>
 
         <div id="personality" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document" >
+            <div class="modal-dialog" role="document">
                 <div class="modal-content" style="background-color:black">
-                   
+
                     <div class="modal-body">
                         <h2 class="text-center text-capitalize color-white">{{person.name}}</h2>
                         <p class="text-center color-white">{{person.bio}}</p>
-                        <img style="height: 400px; width:100%" ng-src="{{person.image}}"/>
+                        <img style="height: 400px; width:100%" ng-src="{{person.image}}" />
                         <div class="text-center">
                             <span class="fa fa-times fa-3x" style="color:red" data-dismiss="modal"></span>
-                           
+
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -491,7 +526,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
         <!--end of div id page-->
     </div>
 
-    <script type="text/javascript"  src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/pwa.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>

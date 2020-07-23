@@ -57,6 +57,9 @@
 
    // homeController.$inject = [''];
     function homeController($scope, $http) {
+        $scope.gotoArticle = function (article) {
+            location.href = 'blog/content/' + article._id
+        }
         activate();
         function activate() {
             $scope.header = "lawbooks";
@@ -65,20 +68,38 @@
                 perPage: 4,
                 focus: 'center',
             }).mount();
+            new Splide('#splide--testimonial', {
+                type: 'loop',
+                perPage: 1,
+                focus: 'center',
+            }).mount();
             new Splide('#splide--mobile--free', {
                 type: 'loop',
                 perPage: 2,
                 focus: 'center',
             }).mount();
            
-            
-            $http.get('api/home/personalities').then(function (res) {
-                $scope.personalities = res.data;
-                console.log('app');
+            $http.get('api/home/blog').then(function (res) {
+                
+                $http.get('api/home/personalities').then(function (res) {
+                    $scope.personalities = res.data;
+                    console.log('app');
+
+                })
+                let temp = res.data;
+                $scope.articles = [];
+                for (var i = 0; i < temp.length; i++) {
+                    if (i < 3) {
+                        $scope.articles.push(temp[i])
+                    }
+                }
+                console.log('blogs');
 
             })
+           
 
-         }
+        }
+
         $scope.openPerson = function (data) {
             $('#personality').modal('show');
             $scope.person = data;

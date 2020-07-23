@@ -33,7 +33,9 @@
         }
     }
     function topController($scope, $http) {
-        
+        $scope.gotoArticle = function (article) {
+            location.href = 'blog/content/' + article._id
+        }
         activate();
         function activate() {
             console.log('top blog controller');
