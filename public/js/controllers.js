@@ -71,6 +71,7 @@
             new Splide('#splide--testimonial', {
                 type: 'loop',
                 perPage: 1,
+                autoplay: true,
                 focus: 'center',
             }).mount();
             new Splide('#splide--mobile--free', {
