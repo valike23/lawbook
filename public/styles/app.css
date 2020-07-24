@@ -34,3 +34,10 @@
 .muggy {
     line-height:24px
 }
+.profileImg {
+    width: 60px;
+    height: 60px;
+}
+.myborder{
+    border:1px solid black
+}

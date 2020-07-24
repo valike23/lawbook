@@ -91,7 +91,7 @@ p {
 
 /*Logos*/
 .header-logo {
-  background-size: 28px 28px;
+  background-size: 78px 78px;
   width: 50px;
 }
 
@@ -102,19 +102,19 @@ p {
 }
 
 .theme-light .header .header-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(../images/logo.png);
 }
 
 .theme-dark .header .header-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(../images/logo.png);
 }
 
 .theme-light .footer .footer-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(../images/logo.png);
 }
 
 .theme-dark .footer .footer-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(../images/logo.png);
 }
 
 /*--Header---*/

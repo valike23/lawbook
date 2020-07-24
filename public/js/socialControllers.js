@@ -7,7 +7,12 @@
     Ctrl.controller('navCtrl', blogController);
 
     function blogController($scope) {
-        console.log('blog controller');
+        new Splide('#suggested__mobile', {
+            
+            perPage: 2,
+            focus: 'center',
+        }).mount();
+        console.log('wall controller');
         $scope.user = {
             username: "valike23",
             profilePics: "images/user.jpg"

@@ -125,6 +125,7 @@
             console.log('sec',$scope.login);
             $http.post('api/accounts/login', $scope.login).then(function (res) {
                 let data = res.data;
+                localStorage.setItem("user", res.data);
                 document.cookie = data.session;
                 location.href = '/';
             })

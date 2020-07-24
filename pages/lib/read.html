@@ -25,33 +25,23 @@
     <div id="page">
 
         <!-- header and footer bar go here-->
-        <div class="header header-fixed header-logo-center">
-            <a href="/" class="header-title">Lawbook</a>
-            <a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-            <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
-        </div>
-        <div id="footer-bar" class="footer-bar-1">
-            <a href="/"><i class="fa fa-home"></i><span>Home</span></a>
-            <a href="/lib" class="active-nav"><i class="fa fa-book"></i><span>E-Library</span></a>
-            <a href="/blog"><i class="fa fa-newspaper"></i><span>Blog</span></a>
-            <a href="index-search.html"><i class="fa fa-search"></i><span>Search</span></a>
-            <a href="#" data-menu="menu-settings"><i class="fa fa-cog"></i><span>Settings</span></a>
-        </div>
+        <my-header active="lib"></my-header>
+        <my-footer active="lib"></my-footer>
 
         <!--start of page content, add your stuff here-->
         <div class="page-content header-clear-medium text-center">
             <div class="card " style="width:90vw; margin-left:5vw; overflow: auto; border-radius: 5%">
                 <canvas class="card-body" id="the-canvas"></canvas>
             </div>
-           
+
         </div>
 
         <div id="navigation_controls">
             <button id="go_previous">Previous</button>
-            <input id="current_page" value="1" type="number"/>
+            <input id="current_page" value="1" type="number" />
             <button id="go_next">Next</button>
         </div>
-        <div id="zoom_controls">  
+        <div id="zoom_controls">
             <button id="zoom_in">+</button>
             <button id="zoom_out">-</button>
         </div>
