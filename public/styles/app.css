@@ -35,9 +35,21 @@
     line-height:24px
 }
 .profileImg {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
 }
 .myborder{
     border:1px solid black
+}
+.suggest_name {
+    font-weight:600;
+    font-style:normal;
+    font-size: 20px;
+    color: black;
+}
+.suggest_job {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    color: darkslategrey;
 }

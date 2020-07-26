@@ -2,7 +2,7 @@
     (function() {
         'use strict';
     
-    const APP = angular.module('app', []);
+        const APP = angular.module('app', ['LocalForageModule']);
         APP.run(($rootScope, $http) => {
             const ROOT = $rootScope;
             ROOT.title = "Lawbook: Everything Law";

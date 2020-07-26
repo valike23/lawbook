@@ -6,12 +6,22 @@
     Ctrl.controller('wallCtrl', blogController);
     Ctrl.controller('navCtrl', blogController);
 
-    function blogController($scope) {
+    function blogController($scope, $localForage) {
+        $localForage.getItem('myName').then(function (data) {
+            var myName = data;
+            console.log(data);
+        }); 
         new Splide('#suggested__mobile', {
             
-            perPage: 2,
+            perPage: 1,
             focus: 'center',
         }).mount();
+        //new Splide('#suggested__desktop', {
+        //    loop: true,
+        //    perPage: 3,
+        //    focus: 'center',
+        //}).mount();
+
         console.log('wall controller');
         $scope.user = {
             username: "valike23",

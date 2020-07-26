@@ -56,12 +56,19 @@
     Ctrl.controller('favoriteCtrl', favoriteController);
 
    // homeController.$inject = [''];
-    function homeController($scope, $http) {
+    function homeController($scope, $http, $localForage) {
+        $localForage.setItem('myName', 'Olivier Combe').then(function () {
+            $localForage.getItem('myName').then(function (data) {
+                var myName = data;
+                console.log(data);
+            });
+        });
         $scope.gotoArticle = function (article) {
             location.href = 'blog/content/' + article._id
         }
         activate();
         function activate() {
+
             $scope.header = "lawbooks";
             new Splide('#splide--free', {
                 type: 'loop',

@@ -9,8 +9,8 @@
 "short_name" : "lawbook",
 "description" : "",
 "orientation" : "portrait",
-"background_color": "#000000",
-"theme_color": "#000000",
+"background_color": "#ff0000",
+"theme_color": "#ff3400",
 "generated" : "true",
   "icons": [
     {
