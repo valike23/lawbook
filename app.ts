@@ -10,6 +10,7 @@ var books = require('./routes/books');
 var blog = require('./routes/blog');
 const BLOG_API = require('./routes/api/blog');
 const UTIL_API = require('./routes/api/util');
+const SOCIAL_API = require('./routes/api/social');
 const ACCOUNTS_API = require('./routes/api/accounts');
 const HOME_API = require('./routes/api/home');
 var routes = require('./routes/index');

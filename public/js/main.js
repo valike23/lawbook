@@ -10,6 +10,7 @@
             ROOT.openBook = function (data) {
                 alert(data)
             }
+           
            // $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
         });
 

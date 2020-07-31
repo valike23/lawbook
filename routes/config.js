@@ -12,6 +12,11 @@ exports.dbFree = {
     password: 'law_book',
     database: 'law_book'
 };
+exports.cloudinary = {
+    cloud_name: 'tjconnect',
+    api_key: '556459332373436',
+    api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg'
+};
 exports.duration = 1;
 exports.sessions = [];
 exports.rootDir = '';

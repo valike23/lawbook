@@ -6,6 +6,11 @@ interface Idb {
   password: string,
   database: string
 }
+interface Icloud {
+  cloud_name: string;
+  api_key: string;
+  api_secret: string;
+}
 
 
 export let localDb: Idb = {
@@ -20,6 +25,12 @@ export let dbFree: Idb = {
   user: 'law_book',
   password: 'law_book',
   database: 'law_book'
+}
+
+export let cloudinary: Icloud = {
+  cloud_name: 'tjconnect',
+  api_key: '556459332373436',
+  api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg'
 }
 
 export let duration = 1;

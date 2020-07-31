@@ -59,3 +59,22 @@ export interface Iuser {
     state: string | number;
 }
 
+export interface Ipost {
+    _id?: any;
+    post: string;
+    image?: string;
+    secureImage?: string;
+    createdDate?: Date;
+    likes?: number;
+    dislikes?: number;
+    userId?: number;
+    publicId?: string;
+}
+
+export interface Ireply {
+    comment: string;
+    createdDate?: Date;
+    likes?: number;
+    dislikes?: number;
+}
+

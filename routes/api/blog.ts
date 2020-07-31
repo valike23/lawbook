@@ -1,6 +1,6 @@
 ﻿"use strict";
 import { Iblog } from '../../utils/models';
-import { mongodb, localMongo } from '../config'
+import { mongodb, localMongo } from '../config';
 import BlogDatabase from '../db/blog';
 import * as express from 'express';
 const router = express.Router();

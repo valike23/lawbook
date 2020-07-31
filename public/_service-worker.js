@@ -8,7 +8,7 @@ workbox.setConfig({
 //Caching Everything Inside the Folder of our Item
 workbox.routing.registerRoute(
     new RegExp('.*'),
-    new workbox.strategies.cacheFirst()
+    new workbox.strategies.NetworkFirst()
 );
 
 

@@ -20,6 +20,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/localforage.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/splide.min.js"></script>
@@ -27,11 +28,12 @@
     <script type="text/javascript" src="js/angular-localForage.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/socialControllers.js"></script>
+    <script type="text/javascript" src="js/accountsController.js"></script>
     <script type="text/javascript" src="js/service.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/pwa.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+
 </head>
 
 <body  class="theme-light" data-background="none" data-highlight="red2">
@@ -42,21 +44,21 @@
 
         <!-- header and footer bar go here-->
         <my-header active="social"></my-header>
-       <my-footer active="social"></my-footer>
+        <my-footer active="social"></my-footer>
 
         <!--start of page content, add your stuff here-->
-        <div  class="page-content header-clear-small">
+        <div class="page-content header-clear-small">
             <div id="mobile" class="d-block d-md-none">
                 <div class="search-box search-header bg-theme card-style mr-3 ml-3">
                     <i class="fa fa-search"></i>
-                    <input type="text" class="border-0" placeholder="What are you looking for? " data-search="">
+                    <input type="search" autocomplete="on" value="" class="border-0" placeholder="What are you looking for? " data-search="">
                     <a href="#" class="disabled"><i class="fa fa-times-circle color-red2-dark"></i></a>
                 </div>
                 <div class="card-style ml-1 mr-1 pl-n1 pr-n1 mt-n2  card pt-2 pb-2 pt-md-3">
                     <div class="content mt-n1 mb-n1 row ml-n1 mr-n1">
                         <div class="col-md-1 col-2">
-                            <img ng-src="{{user.profilePics}}" class="rounded-circle  profile-pics-desktop d-none d-md-block" />
-                            <img ng-src="{{user.profilePics}}" class="rounded-circle mt-1 profile-pics-mobile d-md-none" />
+                            <img ng-src="{{user.dp}}" class="rounded-circle  profile-pics-desktop d-none d-md-block" />
+                            <img ng-src="{{user.dp}}" class="rounded-circle mt-1 profile-pics-mobile d-md-none" />
                         </div>
                         <div class="col-md-10 col-8 mr-n2">
                             <textarea placeholder="write post here" class="form-control rounded-l" rows="1" id="post"></textarea>
@@ -201,9 +203,9 @@
                             </div>
 
                         </div>
-                         </div>
+                    </div>
                 </div>
-               </div>
+            </div>
             <div id="desktop" class="d-none d-md-block mt-n5">
                 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
                     <!-- The Grid -->
@@ -224,8 +226,8 @@
                             <br>
 
                             <!-- Accordion -->
-                            <div class="w3-card w3-round">
-                                <div class="w3-white">
+                            <div class="card card-style">
+                                <div class="content">
                                     <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
                                     <div id="Demo1" class="w3-hide w3-container">
                                         <p>Some text..</p>
@@ -263,8 +265,8 @@
                             <br>
 
                             <!-- Interests -->
-                            <div class="w3-card w3-round w3-white w3-hide-small">
-                                <div class="w3-container">
+                            <div class="card card-style w3-hide-small">
+                                <div class="content">
                                     <p>Interests</p>
                                     <p>
                                         <span class="w3-tag w3-small w3-theme-d5">News</span>
@@ -300,7 +302,7 @@
 
                             <div class="w3-row-padding">
                                 <div class="w3-col m12">
-                                    <div class="card card-style w3-white">
+                                    <div class="card card-style">
                                         <div class="content w3-padding">
                                             <h6 class="w3-opacity">Lawbook social Page</h6>
                                             <p contenteditable="true" class="w3-border w3-padding rounded-m">Status: Feeling Blue</p>
@@ -310,8 +312,8 @@
                                 </div>
                             </div>
                             <div class="card card-style w3-margin">
-                                <div class="content w3-white  ">
-                                    
+                                <div class="content   ">
+
                                     <img src="images/user.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px; height:60px">
                                     <span class="w3-right w3-opacity">1 min</span>
                                     <h4>John Doe</h4>
@@ -329,7 +331,7 @@
                                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
                                 </div>
                             </div>
-                            <div class="card card-style w3-white  w3-margin">
+                            <div class="card card-style   w3-margin">
 
 
                                 <div class="content">
@@ -344,8 +346,8 @@
                                 </div>
                             </div>
                             <div class="card card-style">
-                                <div class="content w3-white  w3-margin">
-                                   
+                                <div class="content   w3-margin">
+
                                     <img src="images/pictures/faces/2s.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
                                     <span class="w3-right w3-opacity">32 min</span>
                                     <h4>Angie Jane</h4>
@@ -358,13 +360,13 @@
                                 </div>
 
                             </div>
-                          
+
                             <!-- End Middle Column -->
                         </div>
 
                         <!-- Right Column -->
                         <div class="w3-col m2">
-                            <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-card w3-round  w3-center">
                                 <div class="w3-container">
                                     <p>Upcoming Events:</p>
                                     <img src="images/pictures_vertical/bg2.jpg" alt="Forest" style="width:100%; height:150px">
@@ -375,7 +377,7 @@
                             </div>
                             <br>
 
-                            <div class="w3-card rounded-s  w3-white w3-center">
+                            <div class="w3-card rounded-s   w3-center">
                                 <div class="w3-container">
                                     <p>Friend Request</p>
                                     <img src="images/pictures/faces/1s.png" alt="Avatar" style="width:50%; height:100px"><br>
@@ -392,12 +394,12 @@
                             </div>
                             <br>
 
-                            <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+                            <div class="w3-card w3-round w3-padding-16 w3-center">
                                 <p>ADS</p>
                             </div>
                             <br>
 
-                            <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
+                            <div class="w3-card w3-round w3-padding-32 w3-center">
                                 <p><i class="fa fa-bug w3-xxlarge"></i></p>
                             </div>
 
@@ -414,9 +416,45 @@
 
 
         <!--end of page content, off canvas elements here-->
+        <div ng-controller="accountsCtrl" id="menu-signin" class="menu menu-box-bottom menu-box-detached rounded-m"
+             data-menu-height="320"
+             data-menu-effect="menu-over">
+            <div class="content mb-0">
+                <h1 class="text-uppercase font-900 mb-0">LOGIN</h1>
+                <p class="font-11  mt-n1 mb-0">
+                    Hello, stranger! Please enter your credentials below.
+                </p>
 
-      
-       <!-- Install instructions for iOS -->
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-user font-11"></i>
+                    <span>Email</span>
+                    <em>(required)</em>
+                    <input ng-model="login.email" type="email" placeholder="Enter Email">
+                </div>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-lock font-11"></i>
+                    <span>Password</span>
+                    <em>(required)</em>
+                    <input ng-model="login.password" type="password" placeholder="Password">
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="#" data-menu="menu-forgot" class="font-10">Forgot Password?</a>
+                    </div>
+                    <div class="col-6">
+                        <a data-menu="menu-signup" href="#" class="float-right font-10">Create Account</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <a ng-click="signIn()" data-toast="toast-5" class="btn btn-full btn-m shadow-l rounded-s text-uppercase font-900 bg-green1-dark mt-4">LOGIN</a>
+            </div>
+        </div>
+        <div id="toast-1" class="toast toast-tiny toast-top bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Logging In...</div>
+
+        <div id="toast-4" class="toast toast-tiny toast-top bg-red2-dark" data-delay="5000" data-autohide="true"><i class="fa fa-times mr-3"></i>Crendential Incorrect</div>
+        <div id="toast-5" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="true"><i class="fa fa-sync fa-spin mr-3"></i>Processing...</div>
+        <div id="toast-8" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Retrieving...</div>
+        <!-- Install instructions for iOS -->
         <div id="menu-install-pwa-ios"
              class="menu menu-box-bottom menu-box-detached rounded-l"
              data-menu-height="320"

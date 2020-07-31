@@ -12,6 +12,7 @@ var books = require('./routes/books');
 var blog = require('./routes/blog');
 var BLOG_API = require('./routes/api/blog');
 var UTIL_API = require('./routes/api/util');
+var SOCIAL_API = require('./routes/api/social');
 var ACCOUNTS_API = require('./routes/api/accounts');
 var HOME_API = require('./routes/api/home');
 var routes = require('./routes/index');
