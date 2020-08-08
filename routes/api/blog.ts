@@ -4,7 +4,7 @@ import { mongodb, localMongo } from '../config';
 import BlogDatabase from '../db/blog';
 import * as express from 'express';
 const router = express.Router();
-let blogDb = new BlogDatabase(localMongo , 'lawbook');
+let blogDb = new BlogDatabase(mongodb , 'lawbook');
 
 router.post('/create',  (req: express.Request, res: express.Response) => {
     let blog: Iblog = req.body;

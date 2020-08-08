@@ -69,9 +69,12 @@ export interface Ipost {
     dislikes?: number;
     userId?: number;
     publicId?: string;
+    profilePics: string;
 }
 
 export interface Ireply {
+    userId?: number;
+    profilePics: string;
     comment: string;
     createdDate?: Date;
     likes?: number;

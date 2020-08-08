@@ -13,7 +13,8 @@ let socialDb = new socialDatabase(localMongo , 'lawbook');
 
 
 router.post('/create_post', middleWare,  (req: any, res: express.Response) => {
-    var thumbFile = req.files.file.path;
+  console.log(req.files);
+    var thumbFile = req.files.thumb.path;
     let post: Ipost;
     post = req.body;
     post.userId = 7;

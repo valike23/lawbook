@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/blog', BLOG_API);
 app.use('/api/util', UTIL_API);
 app.use('/api/accounts', ACCOUNTS_API);
+app.use('/api/social', SOCIAL_API);
 app.use('/api/home', HOME_API);
 app.use('/secure', users);
 app.use('/lib', books);
