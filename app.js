@@ -18,10 +18,16 @@ var HOME_API = require('./routes/api/home');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var social = require('./routes/social');
+var cors = require("cors");
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200
+};
 var app = express();
 var port = process.env.PORT || 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

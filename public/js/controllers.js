@@ -214,14 +214,16 @@
             console.log("status loaded");
         }
     }
-    function readController($scope){
-        (()=> {
-            var myState = {
+    function readController($scope) {
+        var myState;
+        (() => {
+            $scope.zoom = 1;
+            myState = {
                 pdf: null,
-                currentPage: 1,
-                zoom: 1
+                currentPage: 9,
+                zoom: $scope.zoom
             };
-            pdfjsLib.getDocument('/pdf/Nigeria_1999.pdf').then((pdf) => {
+            pdfjsLib.getDocument('https://res.cloudinary.com/tjconnect/image/upload/v1596991286/Google_AdSense_For_Dummies_vcuyly.pdf').then((pdf) => {
                 myState.pdf = pdf;
                 render();
                 console.log("workign");

@@ -3,12 +3,26 @@ exports.__esModule = true;
 var cloudinary_1 = require("cloudinary");
 var connectM = require('connect-multiparty');
 var middleWare = connectM();
+var auth_1 = require("../auth");
+var auth = new auth_1.Auth();
 var config_1 = require("../config");
 cloudinary_1.v2.config(config_1.cloudinary);
 var express = require("express");
 var social_1 = require("../db/social");
 var router = express.Router();
 var socialDb = new social_1["default"](config_1.localMongo, 'lawbook');
+router.use(function (req, res, next) {
+    console.log("sound", req.headers.authorization);
+    if (auth.isAuth(req.headers.authorization)) {
+        next(auth.isAuth(req.headers.authorization));
+    }
+    else {
+        res.status(406);
+        res.json("you are not logged in");
+        res.end();
+        return;
+    }
+});
 router.post('/create_post', middleWare, function (req, res) {
     console.log(req.files);
     var thumbFile = req.files.thumb.path;

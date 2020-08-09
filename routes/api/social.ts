@@ -4,6 +4,8 @@ import { v2 as cloud, UploadApiErrorResponse, UploadApiResponse } from 'cloudina
 import {} from 'multer';
 const connectM = require('connect-multiparty');
 const middleWare = connectM();
+import {Auth} from '../auth';
+const auth = new Auth();
 import { mongodb, localMongo, cloudinary } from '../config';
 cloud.config(cloudinary);
 import * as express from 'express';
@@ -11,7 +13,21 @@ import socialDatabase from '../db/social';
 const router = express.Router();
 let socialDb = new socialDatabase(localMongo , 'lawbook');
 
+router.use((req: express.Request, res: express.Response, next: express.NextFunction) =>{
+  console.log("sound", req.headers.authorization);
+  if(auth.isAuth(req.headers.authorization)){
+    next(auth.isAuth(req.headers.authorization));
+  }
+  else{
+    res.status(406);
+    res.json("you are not logged in");
+    res.end();
+    return;
+  }
 
+
+
+})
 router.post('/create_post', middleWare,  (req: any, res: express.Response) => {
   console.log(req.files);
     var thumbFile = req.files.thumb.path;

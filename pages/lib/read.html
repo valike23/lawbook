@@ -29,22 +29,22 @@
         <my-footer active="lib"></my-footer>
 
         <!--start of page content, add your stuff here-->
-        <div class="page-content header-clear-medium text-center">
-            <div class="card " style="width:90vw; margin-left:5vw; overflow: auto; border-radius: 5%">
+        <div class="page-content header-clear-small text-center">
+            <div class="card " style="width:90vw; height: 80vh; margin-left:5vw; overflow: auto; border-radius: 5%">
                 <canvas class="card-body" id="the-canvas"></canvas>
             </div>
 
+            <div id="navigation_controls">
+                <button id="go_previous">Previous</button>
+                <input id="current_page" value="1" type="number" />
+                <button id="go_next">Next</button>
+            </div>
+            <div id="zoom_controls">
+                <button id="zoom_in">+</button>
+                <button id="zoom_out">-</button>
+            </div>
         </div>
 
-        <div id="navigation_controls">
-            <button id="go_previous">Previous</button>
-            <input id="current_page" value="1" type="number" />
-            <button id="go_next">Next</button>
-        </div>
-        <div id="zoom_controls">
-            <button id="zoom_in">+</button>
-            <button id="zoom_out">-</button>
-        </div>
         <!--end of page content, off canvas elements here-->
 
 
@@ -59,6 +59,8 @@
     <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
 
+    <script type="text/javascript" src="js/localforage.js"></script>
+    <script type="text/javascript" src="js/angular-localForage.min.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>

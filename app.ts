@@ -16,6 +16,13 @@ const HOME_API = require('./routes/api/home');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var social = require('./routes/social');
+import * as cors from 'cors';
+import {CorsOptions} from 'cors';
+
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -23,7 +30,7 @@ var port = process.env.PORT || 3000;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
+app.use(cors(corsOptions));
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
