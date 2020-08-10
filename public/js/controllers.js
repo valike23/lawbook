@@ -203,7 +203,7 @@
             console.log("pay loaded");
         }
     }
-    function statusController($scope) {
+    function statusController($scope, $http) {
        $scope.readStatus = ()=>{
            location.href= '/lib/read'
        }
@@ -215,37 +215,68 @@
         }
     }
     function readController($scope) {
+        $scope.$watch('page', function (oldValue, newValue) {
+            console.log("new value", oldValue);
+            if (oldValue > $scope.totalPage) {
+                $scope.page = $scope.totalPage;
+                return;
+            };
+             myState.currentPage = oldValue;
+
+            render();
+        });
+        $scope.$watch('zoom', function (oldValue, newValue) {
+            myState.zoom = $scope.zoom;
+            render();
+        })
+        $scope.goForward = function () {
+            $scope.page = $scope.page + 1; 
+        }
+        $scope.zoomIn = function () {
+            $scope.zoom = $scope.zoom + 1;
+        }
+        $scope.zoomOut = function () {
+            $scope.zoom = $scope.zoom - 1;
+        }
+        $scope.goBackward = function () {
+            $scope.page = $scope.page -1;
+            }
         var myState;
         (() => {
             $scope.zoom = 1;
+            $scope.page = 1;
             myState = {
                 pdf: null,
-                currentPage: 9,
+                currentPage: $scope.page,
                 zoom: $scope.zoom
             };
-            pdfjsLib.getDocument('https://res.cloudinary.com/tjconnect/image/upload/v1596991286/Google_AdSense_For_Dummies_vcuyly.pdf').then((pdf) => {
+            pdfjsLib.getDocument('https://res.cloudinary.com/tjconnect/image/upload/v1596995413/angular-ui-router_d57gkf.pdf').then((pdf) => {
+
+                $scope.totalPage = pdf.numPages;
                 myState.pdf = pdf;
                 render();
                 console.log("workign");
              
             });
-            function render() {
-                myState.pdf.getPage(myState.currentPage).then((page) => {
-
-                    var canvas = document.getElementById("the-canvas");
-                    var ctx = canvas.getContext('2d');
-
-                    var viewport = page.getViewport(myState.zoom);
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    page.render({
-                        canvasContext: ctx,
-                        viewport: viewport
-                    });
-
-                });
-            }
         })();
+
+        function render() {
+            myState.pdf.getPage(myState.currentPage).then((page) => {
+
+                var canvas = document.getElementById("the-canvas");
+                var ctx = canvas.getContext('2d');
+
+                var viewport = page.getViewport(myState.zoom);
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                page.render({
+                    canvasContext: ctx,
+                    viewport: viewport
+                });
+
+            });
+        }
+
     }
     function favoriteController($scope){
         let setAllBtnDefault = ( btn ) =>{

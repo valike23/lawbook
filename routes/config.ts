@@ -1,16 +1,12 @@
 ﻿import { Isession } from "../utils/models";
-
+import { ConfigOptions } from "cloudinary";
 interface Idb {
   host: string,
   user: string,
   password: string,
   database: string
 }
-interface Icloud {
-  cloud_name: string;
-  api_key: string;
-  api_secret: string;
-}
+
 
 
 export let localDb: Idb = {
@@ -27,10 +23,12 @@ export let dbFree: Idb = {
   database: 'law_book'
 }
 
-export let cloudinary: Icloud = {
+export let cloudinary: ConfigOptions = {
   cloud_name: 'tjconnect',
   api_key: '556459332373436',
-  api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg'
+  api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg',
+  provisioning_api_key: '556459332373436',
+  provisioning_api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg'
 }
 
 export let duration = 1;

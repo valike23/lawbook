@@ -81,3 +81,13 @@ export interface Ireply {
     dislikes?: number;
 }
 
+export interface Ibook {
+    id?: number;
+    title: string;
+    page: number;
+    category: string| number;
+    type: string;
+    picture: string;
+    content: string;
+}
+

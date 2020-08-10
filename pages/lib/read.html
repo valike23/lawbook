@@ -33,15 +33,15 @@
             <div class="card " style="width:90vw; height: 80vh; margin-left:5vw; overflow: auto; border-radius: 5%">
                 <canvas class="card-body" id="the-canvas"></canvas>
             </div>
-
+            <div><span>{{"Page " + page + " of" + totalPage}}</span></div>
             <div id="navigation_controls">
                 <button id="go_previous">Previous</button>
-                <input id="current_page" value="1" type="number" />
-                <button id="go_next">Next</button>
+                <input id="current_page" ng-model="page" type="number" />
+                <button ng-click="goForward()" id="go_next">Next</button>
             </div>
             <div id="zoom_controls">
-                <button id="zoom_in">+</button>
-                <button id="zoom_out">-</button>
+                <button ng-click="zoomIn()">+</button>
+                <button ng-click="zoomOut()">-</button>
             </div>
         </div>
 

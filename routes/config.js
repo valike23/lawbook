@@ -15,7 +15,9 @@ exports.dbFree = {
 exports.cloudinary = {
     cloud_name: 'tjconnect',
     api_key: '556459332373436',
-    api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg'
+    api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg',
+    provisioning_api_key: '556459332373436',
+    provisioning_api_secret: '-vfzmuQdlkLrB1rdqR5hTAf5wJg'
 };
 exports.duration = 1;
 exports.sessions = [];
