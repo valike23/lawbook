@@ -20,16 +20,45 @@ var libDatabase = (function () {
             });
         });
     };
-    libDatabase.prototype.createPost = function (res, post) {
-        this.connection = mysql_1.createConnection(config_1.dbFree);
-        this.connection.query;
-    };
-    libDatabase.prototype.createIndexFavorite = function (res) {
-    };
     libDatabase.prototype.errorHandler = function (res, error) {
         res.status(503);
         res.json(error.message);
         console.log(error);
+    };
+    libDatabase.prototype.sqlErrorHandler = function (res, error) {
+        res.status(503);
+        res.json(error.message);
+        console.log(error);
+    };
+    libDatabase.prototype.createPost = function (res, book) {
+        this.connection = mysql_1.createConnection(config_1.localDb);
+        var query = "INSERT INTO book set ? ";
+        this.connection.query(query, book, function (err, result) {
+            if (err) {
+                res.status(503);
+                res.json(err.message);
+                console.log(err);
+                return;
+            }
+            res.json(result);
+            res.end();
+        });
+    };
+    libDatabase.prototype.retrieveBook = function (res, type) {
+        this.connection = mysql_1.createConnection(config_1.dbFree);
+        var query = "select * from book where type ='" + type + "'";
+        this.connection.query(query, function (err, result) {
+            if (err) {
+                res.status(503);
+                res.json(err.message);
+                console.log(err);
+                return;
+            }
+            res.json(result);
+            res.end();
+        });
+    };
+    libDatabase.prototype.createIndexFavorite = function (res) {
     };
     return libDatabase;
 }());

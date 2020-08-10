@@ -84,10 +84,19 @@ export interface Ireply {
 export interface Ibook {
     id?: number;
     title: string;
-    page: number;
-    category: string| number;
+    pages: number;
+    category_id: string| number;
     type: string;
     picture: string;
     content: string;
+    secure_content: string;
+    secured_picture: string;
+    public_picture: string;
+    public_content: string;
+    created_time?: Date;
+    price?: string;
+    description?: string;
+    available?: boolean;
+    author: string;
 }
 

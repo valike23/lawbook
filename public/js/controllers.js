@@ -203,18 +203,25 @@
             console.log("pay loaded");
         }
     }
-    function statusController($scope, $http) {
-       $scope.readStatus = ()=>{
-           location.href= '/lib/read'
+    function statusController($scope, $http, $localForage) {
+        $scope.readStatus = (book) => {
+            $localForage.setItem("book", book).then(function (res) {
+                alert(JSON.stringify(res));
+                location.href = '/lib/read';
+            });
+           
        }
         activate();
 
         function activate() {
+            $http.get('api/lib/book/statuses').then(function (res) {
+                $scope.statuses = res.data;
+            })
            
             console.log("status loaded");
         }
     }
-    function readController($scope) {
+    function readController($scope, $localForage) {
         $scope.$watch('page', function (oldValue, newValue) {
             console.log("new value", oldValue);
             if (oldValue > $scope.totalPage) {
@@ -243,19 +250,22 @@
             }
         var myState;
         (() => {
-            $scope.zoom = 1;
-            $scope.page = 1;
-            myState = {
-                pdf: null,
-                currentPage: $scope.page,
-                zoom: $scope.zoom
-            };
-            pdfjsLib.getDocument('https://res.cloudinary.com/tjconnect/image/upload/v1596995413/angular-ui-router_d57gkf.pdf').then((pdf) => {
+            $localForage.getItem('book').then(function (res) {
+                $scope.book = res;
+                $scope.zoom = 1;
+                $scope.page = 1;
+                myState = {
+                    pdf: null,
+                    currentPage: $scope.page,
+                    zoom: $scope.zoom
+                };
+                pdfjsLib.getDocument($scope.book.secure_content).then((pdf) => {
 
-                $scope.totalPage = pdf.numPages;
-                myState.pdf = pdf;
-                render();
-                console.log("workign");
+                    $scope.totalPage = pdf.numPages;
+                    myState.pdf = pdf;
+                    render();
+                    console.log("workign");
+            })
              
             });
         })();

@@ -40,48 +40,16 @@
                 </div>
                 <div id="statutes">
                     <div id="A">
-                        <h2>A</h2>
+                        <h2>Statuses</h2>
                         <div class="row status">
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
+                            <div ng-repeat="status in statuses" ng-click="readStatus(status)" class="col-4 col-sm-3 col-md-2">
+                                <img style="width:100%;" class="image-status" ng-src="{{status.picture}}">
                             </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-                            <div class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/pursuit.jpg">
-                            </div>
-
+                           
 
                         </div>
                     </div>
-                    <div id="B">
-                        <h2>B</h2>
-                        <div class="row status">
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-                            <div ng-click="readStatus()" class="col-4 col-sm-3 col-md-2">
-                                <img class="image-status" src="images/books/fashion.jpg">
-                            </div>
-
-                        </div>
-                    </div>
+                  
                 </div>
 
             </div>

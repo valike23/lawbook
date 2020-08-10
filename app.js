@@ -12,22 +12,17 @@ var books = require('./routes/books');
 var blog = require('./routes/blog');
 var BLOG_API = require('./routes/api/blog');
 var UTIL_API = require('./routes/api/util');
+var LIB_API = require('./routes/api/lib');
 var SOCIAL_API = require('./routes/api/social');
 var ACCOUNTS_API = require('./routes/api/accounts');
 var HOME_API = require('./routes/api/home');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var social = require('./routes/social');
-var cors = require("cors");
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200
-};
 var app = express();
 var port = process.env.PORT || 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/blog', BLOG_API);
 app.use('/api/util', UTIL_API);
 app.use('/api/accounts', ACCOUNTS_API);
+app.use('/api/lib', LIB_API);
 app.use('/api/social', SOCIAL_API);
 app.use('/api/home', HOME_API);
 app.use('/secure', users);

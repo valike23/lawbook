@@ -1,5 +1,5 @@
 "use strict";
-import { Ipost } from '../../utils/models';
+import { Ibook } from '../../utils/models';
 import { v2 as cloud, UploadApiErrorResponse, UploadApiResponse, ConfigOptions } from 'cloudinary';
 import {} from 'multer';
 const connectM = require('connect-multiparty');
@@ -11,7 +11,7 @@ cloud.config(cloudinary);
 import * as express from 'express';
 import libDatabase from '../db/lib';
 const router = express.Router();
-let libDb = new libDatabase(localMongo , 'lawbook');
+let libDb = new libDatabase(mongodb , 'lawbook');
 
 // router.use((req: express.Request, res: express.Response, next: express.NextFunction) =>{
 //   console.log("sound", req.headers.authorization);
@@ -32,27 +32,42 @@ router.post('/create', middleWare,  (req: any, res: express.Response) => {
   console.log(req.files);
   let config: ConfigOptions;
   
+  var rawFile = req.files.raw.path;
     var thumbFile = req.files.thumb.path;
-    let post: Ipost;
-    post = req.body;
-    post.userId = 7;
-    post.createdDate = new Date();
-    post.likes = 0;
-    post.dislikes = 0;
-    cloud.uploader.upload(thumbFile, (err: UploadApiErrorResponse, response: UploadApiResponse )=>{
+    let book: Ibook;
+    book = req.body;
+    cloud.uploader.upload(rawFile,
+        { resource_type: "auto" } ,(err: UploadApiErrorResponse, content: UploadApiResponse )=>{
 if(err){
-  console.log(err.message)  ;
+  console.log(err.message);
   res.status(503);
   res.json(err.name);
   return;
 }
 
-post.secureImage = response.secure_url;
-post.image = response.url;
-post.publicId = response.public_id;
+cloud.uploader.upload(thumbFile, (err: UploadApiErrorResponse, picture: UploadApiResponse )=>{
+  if(err){
+  console.log(err.message)  ;
+  res.status(503);
+  res.json(err.name);
+  return;
+  }
+  book.picture = picture.url;
+  book.content = content.url;
+  book.secure_content = content.secure_url;
+  book.secured_picture = picture.secure_url;
+  book.public_content = content.public_id;
+  book.public_picture = picture.public_id;
+  libDb.createPost(res, book);
+  
+  })
 
     })
    
 });
+
+router.get('/book/:id', function(req: express.Request, res: express.Response){
+libDb.retrieveBook(res, req.params.id);
+})
 
 module.exports = router;

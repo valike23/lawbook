@@ -10,19 +10,20 @@ var books = require('./routes/books');
 var blog = require('./routes/blog');
 const BLOG_API = require('./routes/api/blog');
 const UTIL_API = require('./routes/api/util');
+const LIB_API = require('./routes/api/lib');
 const SOCIAL_API = require('./routes/api/social');
 const ACCOUNTS_API = require('./routes/api/accounts');
 const HOME_API = require('./routes/api/home');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var social = require('./routes/social');
-import * as cors from 'cors';
-import {CorsOptions} from 'cors';
+ var social = require('./routes/social');
+// import * as cors from 'cors';
+// import {CorsOptions} from 'cors';
 
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
+// var corsOptions = {
+//     origin: '*',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+//   }
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -30,7 +31,7 @@ var port = process.env.PORT || 3000;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/blog', BLOG_API);
 app.use('/api/util', UTIL_API);
 app.use('/api/accounts', ACCOUNTS_API);
+app.use('/api/lib', LIB_API);
 app.use('/api/social', SOCIAL_API);
 app.use('/api/home', HOME_API);
 app.use('/secure', users);
