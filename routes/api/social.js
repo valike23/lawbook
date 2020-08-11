@@ -10,7 +10,7 @@ cloudinary_1.v2.config(config_1.cloudinary);
 var express = require("express");
 var social_1 = require("../db/social");
 var router = express.Router();
-var socialDb = new social_1["default"](config_1.localMongo, 'lawbook');
+var socialDb = new social_1["default"](config_1.mongodb, 'lawbook');
 router.use(function (req, res, next) {
     console.log("sound", req.headers.authorization);
     if (auth.isAuth(req.headers.authorization)) {

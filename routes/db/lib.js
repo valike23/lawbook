@@ -8,6 +8,7 @@ var libDatabase = (function () {
         this.uri = uri;
         this.name = name;
         this.difference = 10;
+        this.connection = mysql_1.createConnection(config_1.dbFree);
     }
     libDatabase.prototype.connect = function () {
         var _this = this;
@@ -31,7 +32,6 @@ var libDatabase = (function () {
         console.log(error);
     };
     libDatabase.prototype.createPost = function (res, book) {
-        this.connection = mysql_1.createConnection(config_1.localDb);
         var query = "INSERT INTO book set ? ";
         this.connection.query(query, book, function (err, result) {
             if (err) {
@@ -45,7 +45,6 @@ var libDatabase = (function () {
         });
     };
     libDatabase.prototype.retrieveBook = function (res, type) {
-        this.connection = mysql_1.createConnection(config_1.dbFree);
         var query = "select * from book where type ='" + type + "'";
         this.connection.query(query, function (err, result) {
             if (err) {

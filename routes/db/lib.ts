@@ -11,10 +11,12 @@ class libDatabase {
     difference: number;
     client: MongoClient;
     connection: Connection;
+
     constructor(uri: string, name: string) {
         this.uri = uri;
         this.name = name;
         this.difference = 10;
+        this.connection = createConnection(dbFree);
     }
     private connect() {
         return new Promise((resolve, reject) => {
@@ -40,7 +42,7 @@ class libDatabase {
        console.log(error);
     }
     createPost(res: Express.Response, book: Ibook) {
-      this.connection = createConnection(dbFree);
+     
       let query = `INSERT INTO book set ? `;
       this.connection.query(query, book, function(err: MysqlError , result: any){
 if(err){
@@ -54,7 +56,6 @@ res.end();
       })
     }
     retrieveBook(res: Express.Response, type: string ){
-this.connection = createConnection(dbFree);
 let query = `select * from book where type ='${type}'`;
 this.connection.query(query, function(err: MysqlError , result: any){
     if(err){
