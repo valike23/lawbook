@@ -30,7 +30,20 @@
 
         <!--start of page content, add your stuff here-->
         <div class="page-content header-clear-small text-center">
-            <div class="card " style="width:90vw; height: 80vh; margin-left:5vw; overflow: auto; border-radius: 5%">
+            <div class="row pt-2 pb-0 pl-2 bg-white">
+                <div ng-click="goBackward()" class="col-2"><span class="fa fa-3x fa-fast-backward"></span></div>
+                <div class="col-3 input-style input-style-2 input-required">
+
+                    <input class="form-control" type="number" ng-model="page">
+                    <span class="color-highlight input-style-1-inactive">{{totalPage}}</span>
+
+                </div>
+                <div ng-click="goForward()" class="col-2"><span class="fa fa-3x fa-fast-forward"></span></div>
+                <div class="offset-2 col-2 "><span class="fa fa-3x fa-heart"></span></div>
+
+            </div>
+
+            <div class="card " style="width:93vw; height: 80vh; margin-left:5vw; overflow: auto; border-radius: 4%">
                 <canvas class="card-body" id="the-canvas"></canvas>
             </div>
             <div><span>{{"Page " + page + " of" + totalPage}}</span></div>
