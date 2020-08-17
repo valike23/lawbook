@@ -3,7 +3,8 @@ import { timeStamp } from 'console';
 import * as Express from 'express';
 import {dbFree, localDb } from '../config';
 import {createConnection, Connection, MysqlError } from 'mysql';
-import { Ibook } from '../../utils/models';
+import { Ibook, IbookShelf } from '../../utils/models';
+import {queryUpdateAndSelect, queryInsert} from './common';
 
 class libDatabase {
     uri: string;
@@ -16,7 +17,7 @@ class libDatabase {
         this.uri = uri;
         this.name = name;
         this.difference = 10;
-        this.connection = createConnection(dbFree);
+        this.connection = createConnection(localDb);
     }
     private connect() {
         return new Promise((resolve, reject) => {
@@ -44,19 +45,12 @@ class libDatabase {
     createPost(res: Express.Response, book: Ibook) {
      
       let query = `INSERT INTO book set ? `;
-      this.connection.query(query, book, function(err: MysqlError , result: any){
-if(err){
-    res.status(503);
-    res.json(err.message);
-    console.log(err);
-    return;
-}
-res.json(result);
-res.end();
-      })
+      queryInsert(res, query,this.connection, book);     
+     
     }
     retrieveBook(res: Express.Response, type: string ){
 let query = `select * from book where type ='${type}'`;
+queryUpdateAndSelect(res, query,this.connection);
 this.connection.query(query, function(err: MysqlError , result: any){
     if(err){
         res.status(503);
@@ -67,6 +61,11 @@ this.connection.query(query, function(err: MysqlError , result: any){
     res.json(result);
     res.end();
           })
+    }
+
+    addToFavorite( res: Express.Response, bookShelf: IbookShelf ){
+        let query = `UPDATE book_shelf SET favorite = ${true} WHERE book_id = ${bookShelf.book_id} and user_id = ${bookShelf.user_id}`;
+       queryUpdateAndSelect(res, query, this.connection);
     }
   
 createIndexFavorite(res: Express.Response){

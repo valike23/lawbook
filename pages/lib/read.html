@@ -39,28 +39,22 @@
 
                 </div>
                 <div ng-click="goForward()" class="col-2"><span class="fa fa-3x fa-fast-forward"></span></div>
-                <div class="offset-2 col-2 "><span class="fa fa-3x fa-heart"></span></div>
+                <div class="offset-2 col-2 ">
+                <span ng-click="toggleFav(true)" ng-show="favorite" style="color: red" class="fa fa-3x fa-heart"></span>
+                <span ng-click="toggleFav(false)" ng-hide="favorite" class="fa fa-3x fa-heart"></span>
+                </div>
 
             </div>
 
             <div class="card " style="width:93vw; height: 80vh; margin-left:5vw; overflow: auto; border-radius: 4%">
                 <canvas class="card-body" id="the-canvas"></canvas>
             </div>
-            <div><span>{{"Page " + page + " of" + totalPage}}</span></div>
-            <div id="navigation_controls">
-                <button id="go_previous">Previous</button>
-                <input id="current_page" ng-model="page" type="number" />
-                <button ng-click="goForward()" id="go_next">Next</button>
-            </div>
-            <div id="zoom_controls">
-                <button ng-click="zoomIn()">+</button>
-                <button ng-click="zoomOut()">-</button>
-            </div>
+           
         </div>
 
         <!--end of page content, off canvas elements here-->
 
-
+        <my-sideBar></my-sideBar>
 
     </div>
 

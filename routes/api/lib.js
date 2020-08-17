@@ -45,5 +45,9 @@ router.post('/create', middleWare, function (req, res) {
 router.get('/book/:id', function (req, res) {
     libDb.retrieveBook(res, req.params.id);
 });
+router.post('/addFavorite', function (req, res) {
+    var bookShelf = req.body;
+    libDb.addToFavorite(res, bookShelf);
+});
 module.exports = router;
 //# sourceMappingURL=lib.js.map

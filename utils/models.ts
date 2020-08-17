@@ -100,3 +100,10 @@ export interface Ibook {
     author: string;
 }
 
+export interface IbookShelf {
+    book_id: number;
+    user_id: number;
+    likes?: number;
+    favorite?: boolean;
+}
+

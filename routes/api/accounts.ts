@@ -59,4 +59,12 @@ import { Iuser } from '../../utils/models';
 });
 
 
+router.get('/is_logged/:session', function(req: Express.Request, res: Express.Response){
+ let session: string = req.params.session;
+ let result: any = auth.isAuth(session);
+ res.json(result);
+ res.end();
+})
+
+
  module.exports = router;

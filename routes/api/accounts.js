@@ -52,5 +52,11 @@ router.post('/login', function (req, res) {
         }
     });
 });
+router.get('/is_logged/:session', function (req, res) {
+    var session = req.params.session;
+    var result = auth.isAuth(session);
+    res.json(result);
+    res.end();
+});
 module.exports = router;
 //# sourceMappingURL=accounts.js.map

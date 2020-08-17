@@ -1,5 +1,5 @@
 "use strict";
-import { Ibook } from '../../utils/models';
+import { Ibook, IbookShelf } from '../../utils/models';
 import { v2 as cloud, UploadApiErrorResponse, UploadApiResponse, ConfigOptions } from 'cloudinary';
 import {} from 'multer';
 const connectM = require('connect-multiparty');
@@ -68,6 +68,11 @@ cloud.uploader.upload(thumbFile, (err: UploadApiErrorResponse, picture: UploadAp
 
 router.get('/book/:id', function(req: express.Request, res: express.Response){
 libDb.retrieveBook(res, req.params.id);
+});
+
+router.post('/addFavorite', function(req:express.Request, res: express.Response){
+  let bookShelf = <IbookShelf> req.body;
+  libDb.addToFavorite(res, bookShelf);
 })
 
 module.exports = router;

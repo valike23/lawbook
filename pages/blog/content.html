@@ -57,11 +57,12 @@
                         <div class="col-md-8 blog-post-wrapper">
                             <div class="post-header wow fadeInUp">
                                 <img ng-src="{{content.image}}" alt="blog post" class="post-featured-image">
-                                <p class="post-date">{{content.createdDate | date: small}} 
-                                      <span style="color:red" class="fa fa-heart float-right"></span>
-                                      <span ng-if="undefined" class="fa fa-heart float-right"></span>
-                                    </p>
-                                
+                                <p class="post-date">
+                                    {{content.createdDate | date: small}}
+                                    <span style="color:red" class="fa fa-heart float-right"></span>
+                                    <span ng-if="undefined" class="fa fa-heart float-right"></span>
+                                </p>
+
                             </div>
                             <div class="post-content wow fadeInUp">
                                 <h4>{{content.title}}</h4>
@@ -129,8 +130,8 @@
                                 <h5 class="widget-title">Related Posts</h5>
                                 <div class="widget-content">
                                     <div class="row">
-                                        <div  ng-click="gotoArticle(article)" ng-repeat="article in articles" class="col-12 muggy ">
-                                            <div  class="card card-style  " data-card-height="175" style="height: 175px; background-image:url({{article.image}})">
+                                        <div ng-click="gotoArticle(article)" ng-repeat="article in articles" class="col-12 muggy ">
+                                            <div class="card card-style  " data-card-height="175" style="height: 175px; background-image:url({{article.image}})">
                                                 <div class="card-top pt-2 pb-n1 ">
                                                     <p class="tag-body muggy"><span ng-repeat="tag in article.tags" class="{{tag.class}}">{{tag.title}}</span></p>
                                                 </div>
@@ -152,7 +153,7 @@
                                 <div class="widget-content">
                                     <ul class="category-list">
                                         <li><a href="#!">Civil Law</a></li>
-                                       
+
                                     </ul>
                                 </div>
                             </div>
@@ -164,7 +165,7 @@
 
         </div>
 
-
+        <my-sideBar></my-sideBar>
         <!--end of page content, off canvas elements here-->
         <!-- All Menus, Action Sheets, Modals, Notifications, Toasts get Placed outside the <div class="page-content"> -->
         <div id="menu-settings" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="300">

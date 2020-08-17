@@ -221,7 +221,8 @@
             console.log("status loaded");
         }
     }
-    function readController($scope, $localForage) {
+    function readController($scope, $localForage, $http, $rootScope) {
+       
         $scope.$watch('page', function (oldValue, newValue) {
             console.log("new value", oldValue);
             if (oldValue > $scope.totalPage) {
@@ -247,7 +248,21 @@
         }
         $scope.goBackward = function () {
             $scope.page = $scope.page -1;
+        }
+        $scope.toggleFav = function (data) {
+            if ($scope.user) {
+                if (data) {
+                    $scope.favorite = false;
+                }
+                else {
+                    $scope.favorite = true;
+                }
             }
+            else {
+                alert("you have to be logged in ")
+            }
+          
+        }
         var myState;
         (() => {
             $localForage.getItem('book').then(function (res) {
@@ -268,6 +283,7 @@
             })
              
             });
+          
         })();
 
         function render() {
@@ -329,6 +345,5 @@ setAllBtnDefault( allBtn);
 }
        }
     }
-
    
 })();
