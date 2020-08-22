@@ -12,17 +12,20 @@
             }
             $localForage.getItem("session").then(function (res) {
                 let session = isLoggedIn($http, res);
-                if (session) {
-                    ROOT.logged = true;
-                    ROOT.user = session;
-                }
-                else {
-                    ROOT.logged = false;
-                    $localForage.removeItem("user").then(function () { });
-                    $localForage.removeItem("session").then(function () { });
-                    return;
-                }
+                session.then(function (response) {
+                    if (response) {
+                        ROOT.logged = true;
+                        ROOT.user = session;
+                    }
+                    else {
+                        ROOT.logged = false;
+                        $localForage.removeItem("user").then(function () { });
+                        $localForage.removeItem("session").then(function () { });
+                        return;
+                    }
 
+                })
+            
             }, function () {
                     ROOT.logged = false;
                 })

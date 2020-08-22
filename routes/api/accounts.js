@@ -24,30 +24,41 @@ router.post('/login', function (req, res) {
             res.end();
             return;
         }
+        console.log("test results", results);
         if (results.length > 0) {
+            console.log("eenter");
             var test = bcrypt.compare(form.password, results[0].password);
-            if (test) {
-                console.log(test);
-                var session = auth.createSession(results[0]);
-                session.user.password = null;
-                res.json(session);
+            test.then(function (resd) {
+                if (resd) {
+                    console.log("status", resd);
+                    var session = auth.createSession(results[0]);
+                    session.user.password = null;
+                    res.json(session);
+                    res.end();
+                }
+                else if (!resd) {
+                    var data = {
+                        user: '',
+                        response: "password is incorrect!!!!"
+                    };
+                    res.status(402);
+                    res.json("password is incorrect!!!!");
+                    res.end();
+                }
+            }, function (myErr) {
+                console.log(myErr);
+                res.status(503);
+                res.json("password conversion failed");
                 res.end();
-            }
-            else if (!test) {
-                var data = {
-                    user: '',
-                    response: "password is incorrect!!!!"
-                };
-                res.json(data);
-                res.end();
-            }
+            });
         }
         else {
             var data = {
                 user: '',
                 response: "email is incorrect!!!!"
             };
-            res.json(data);
+            res.status(402);
+            res.json("email is incorrect!!!!");
             res.end();
         }
     });

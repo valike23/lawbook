@@ -114,7 +114,7 @@
         }
     }
 
-    function accountsController($scope, $http) {
+    function accountsController($scope, $http, $localForage) {
         (() => {
             $http.get('api/util/get_all_countries').then((res) => {
                 console.log(res);
@@ -123,19 +123,32 @@
             console.log('accounts');
         })();
         $scope.user = {};
+        $scope.loader = false;
         $scope.login = {};
         $scope.signIn = function () {
             console.log($scope.login);
             for (var property in $scope.login) {
                 if (!$scope.login[property]) return;
             }
-            console.log('sec',$scope.login);
+            console.log('sec', $scope.login);
+            $scope.loader = true;
             $http.post('api/accounts/login', $scope.login).then(function (res) {
                 let data = res.data;
-                localStorage.setItem("user", res.data);
-                document.cookie = data.session;
-                location.href = '/';
-            })
+                console.log(data);
+                $localForage.setItem("user", data.user).then(function () {
+                    $localForage.setItem("session", data.session).then(function () {
+                    window.history.back();
+                    })
+                })
+               
+               
+            }, function (err) {
+                $scope.err = err.data;
+                $scope.loader = false;
+                $('#snackbar-3').toast('show');
+                console.log(err);
+                 
+                })
         }
         $scope.register = function () {
             console.log($scope.user);

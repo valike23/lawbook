@@ -26,34 +26,48 @@ import { Iuser } from '../../utils/models';
             res.end();
             return;
         }
+        console.log("test results",results);
         if (results.length > 0) {
+            console.log("eenter");
             var test = bcrypt.compare(form.password, results[0].password);
-            if (test) {
-                console.log(test);
-              let session =  auth.createSession(results[0]);
-              
-               session.user.password = null;
+            test.then(function(resd: any){
+                if (resd) {
+                    console.log("status",resd);
+                  let session =  auth.createSession(results[0]);
                   
-                res.json(session);
-                res.end();
-            }
-            else if (!test) {
-                let data = {
-                    user: '',
-                    response: "password is incorrect!!!!"
+                   session.user.password = null;
+                      
+                    res.json(session);
+                    res.end();
                 }
-                res.json(data);
-                res.end();
-            }
+                else if (!resd) {
+                    let data = {
+                        user: '',
+                        response: "password is incorrect!!!!"
+                    }
+                    res.status(402);
+                    res.json("password is incorrect!!!!");
+                    res.end();
+                }
+               
+            }, function(myErr: any){
+console.log(myErr);
+res.status(503);
+res.json("password conversion failed");
+res.end();
+            })
+          
         }
         else {
             let data = {
                 user: '',
                 response: "email is incorrect!!!!"
             }
-            res.json(data);
+            res.status(402);
+            res.json("email is incorrect!!!!");
             res.end();
         }
+      
     })
  
 });

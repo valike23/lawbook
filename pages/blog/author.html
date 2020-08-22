@@ -9,9 +9,11 @@
     <base href="/">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
     <link rel="stylesheet" type="text/css" href="scss/main.css">
+    <link href="css/material.min.css" rel="stylesheet" />
     <link href="styles/app.css" rel="stylesheet" />
     <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
@@ -24,135 +26,154 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/blogControllers.js"></script>
     <script type="text/javascript" src="js/service.js"></script>
+    <script src="js/material.min.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/pwa.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
 </head>
 
-<body ng-controller="allCtrl" class="theme-light" data-background="none" data-highlight="red2">
+<body ng-controller="createCtrl" class="theme-light" data-background="none" data-highlight="red2">
 
     <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
 
     <div id="page">
 
         <!-- header and footer bar go here-->
-        <div class="header header-fixed header-logo-center">
-            <a href="/" class="header-title">LawBook</a>
-            <a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-            <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
-        </div>
+        <my-header></my-header>
         <my-footer active="blog">
 
         </my-footer>
 
+        <my-sideBar></my-sideBar>
+
         <!--start of page content, add your stuff here-->
-        <div class="page-content header-clear-medium">
-            <div id="search-bar">
-                <div class="search-box search-header bg-theme card-style mr-3 ml-3">
-                    <i class="fa fa-search"></i>
-                    <input type="text" class="border-0" placeholder="Search All Blog Directory " data-search="">
-                    <a href="#" class="disabled"><i class="fa fa-times-circle color-red2-dark"></i></a>
-                </div>
-            </div>
+        <div class="page-content header-clear-small mt-n2">
             <div id="blog-list" class="container-fluid">
-                <h1>author Blog Post</h1>
-                <div class="row">
-                    <div ng-repeat="article in articles" class="col-12 col-sm-6 col-md-6 col-lg-4">
-                        <div class="card card-style " data-card-height="175" style="height: 175px; background-image:url({{article.image}})">
-                            <div class="card-top pt-1">
-                                <p class="tag-body"><span ng-repeat="tag in article.tags" class="{{tag.class}}">{{tag.title}}</span></p>
-                            </div>
-                            <div class="card-bottom">
 
-                                <h1 class="color-white ml-3 mb-n1">{{article.title}}</h1>
-                                <p class="color-white opacity-60 ml-3">Jan, 17th 2019 | {{article.author}}</p>
-                            </div>
-                            <div class="card-overlay bg-black opacity-50"></div>
+                <div class="card card-style ml-0 mr-0">
+                    <div class="content mb-0">
+                        <h3>Create Blog</h3>
+                        <p>
+                            fill the below details to create a blog post
+                        </p>
+
+                        <div class="input-style input-style-2 has-icon input-required">
+                            <i class="input-icon fa fa-book"></i>
+                            <span class="color-highlight">Title</span>
+                            <em>(required)</em>
+                            <input ng-model="article.title" class="form-control" type="text" min="5" maxlength="100">
+                        </div>
+                        <div class="file-data">
+                            <input type="file" class="upload-file bg-highlight shadow-s rounded-s " file-input="landPermit" id="myFileField" accept="image/*">
+                            <p class="upload-file-text color-white">Upload Image</p>
+                            <img src="images/empty.png">
                         </div>
 
+                        <p>Content</p>
+                        <div class="row">
+
+                            <div class="col" ng-repeat="content in article.content track by $index">
+                                <!-- Deletable Chip -->
+                                <span class="{{'mdl-chip mdl-chip--deletable' }}">
+                                    <span class="mdl-chip__text">{{content.data}}</span>
+                                    <button type="button" class="mdl-chip__action">
+                                        <i class="material-icons">cancel</i>
+                                    </button>
+                                </span>
+                            </div>
+
+                            <div class="col">
+
+                                <button ng-click="openContent()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>Tags</p>
+                        <div class="row">
+
+                            <div class="col" ng-repeat="tag in article.tags track by $index">
+                                <!-- Deletable Chip -->
+                                <span class="{{'mdl-chip mdl-chip--deletable' + tag.class}}">
+                                    <span class="mdl-chip__text">{{tag.title}}</span>
+                                    <button type="button" class="mdl-chip__action">
+                                        <i class="material-icons">cancel</i>
+                                    </button>
+                                </span>
+                            </div>
+
+                            <div class="col">
+
+                                <button ng-click="openTag()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-3d btn-m btn-full mb-3 rounded-0 text-uppercase font-900 shadow-s border-green1-dark bg-green1-light">Upload</a>
                     </div>
-
                 </div>
             </div>
         </div>
 
-
-        <!--end of page content, off canvas elements here-->
-        <!-- All Menus, Action Sheets, Modals, Notifications, Toasts get Placed outside the <div class="page-content"> -->
-        <div id="menu-settings" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="300">
-            <div class="menu-title"><h1>Settings</h1><p class="color-highlight">Flexible and Easy to Use</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
-            <div class="divider divider-margins mb-n2"></div>
-            <div class="content">
-                <div class="list-group list-custom-small">
-                    <a href="#" data-toggle-theme data-trigger-switch="switch-4" class="pb-2">
-                        <i class="fa font-12 fa-moon rounded-s bg-highlight color-white mr-3"></i>
-                        <span>Dark Mode</span>
-                        <div class="custom-control scale-switch ios-switch">
-                            <input data-toggle-theme-switch type="checkbox" class="ios-input" id="switch-4">
-                            <label class="custom-control-label" for="switch-4"></label>
-                        </div>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-                <div class="list-group list-custom-large">
-                    <a data-menu="menu-highlights" href="#">
-                        <i class="fa font-14 fa-tint bg-green1-dark rounded-s"></i>
-                        <span>Page Highlight</span>
-                        <strong>16 Colors Highlights Included</strong>
-                        <span class="badge bg-highlight color-white">HOT</span>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                    <a data-menu="menu-backgrounds" href="#" class="border-0">
-                        <i class="fa font-14 fa-cog bg-blue2-dark rounded-s"></i>
-                        <span>Background Color</span>
-                        <strong>10 Page Gradients Included</strong>
-                        <span class="badge bg-highlight color-white">NEW</span>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Be sure this is on your main visiting page, for example, the index.html page-->
-        <!-- Install Prompt for Android -->
-        <div id="menu-install-pwa-android" class="menu menu-box-bottom menu-box-detached rounded-l"
-             data-menu-height="350"
-             data-menu-effect="menu-parallax">
-            <div class="boxed-text-l mt-4">
-                <img class="rounded-l mb-3" src="app/icons/icon-128x128.png" alt="img" width="90">
-                <h4 class="mt-3">Add Sticky on your Home Screen</h4>
-                <p>
-                    Install Sticky on your home screen, and access it just like a regular app. It really is that simple!
+        <div id="openTag" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="320" data-menu-effect="menu-over" style="height: 320px; display: block;">
+            <div class="content mb-0">
+                <h3 class="text-uppercase font-900 mb-0">Enter Tag</h3>
+                <p class="font-11  mt-n1 mb-0">
+                    Take note! The class determines the color of the tag. A Tag title should be a
+                    single word with 14 characters at most.
                 </p>
-                <a href="#" class="pwa-install btn btn-s rounded-s shadow-l text-uppercase font-900 bg-highlight mb-2">Add to Home Screen</a><br>
-                <a href="#" class="pwa-dismiss close-menu color-gray2-light text-uppercase font-900 opacity-60 font-10">Maybe later</a>
-                <div class="clear"></div>
+
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-book font-11"></i>
+                    <span> Title</span>
+                    <em>(required)</em>
+                    <input ng-model="tag.title" required type="text" min="2" placeholder="Tag Title" maxlength="14">
+                </div>
+                <div class="input-style input-style-2 input-required mt-1">
+                    <span class="">Select a Class</span>
+                    <em>(required)</em>
+                    <select ng-model="tag.class" class="form-control">
+                        <option value="default" disabled="" selected="">Select a Value</option>
+                        <option value="bg-primary">Blue</option>
+                        <option value="bg-info ">Yellow</option>
+                        <option value="bg-danger">Red</option>
+                        <option value="bg-default">Gray</option>
+                    </select>
+                </div>
+
+                <a ng-click="addTag()" class="btn btn-full btn-m shadow-l rounded-s text-uppercase font-900 bg-green1-dark mt-4">ADD</a>
             </div>
         </div>
+        <div id="openContent" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="320" data-menu-effect="menu-over" style="height: 320px; display: block;">
+            <div class="content mb-0">
+                <h3 class="text-uppercase font-900 mb-0">Add Content</h3>
+               
+                <div class="input-style input-style-2 input-required mt-1">
+                    <span class="">Select a Type</span>
+                    <em>(required)</em>
+                    <select ng-model="content.type" class="form-control">
+                        <option value="default" disabled="" selected="">Select a Value</option>
+                        <option value="para">Paragarph</option>
+                        <option value="quote">Quote</option>
+                        
+                    </select>
+                </div>
 
-        <!-- Install instructions for iOS -->
-        <div id="menu-install-pwa-ios"
-             class="menu menu-box-bottom menu-box-detached rounded-l"
-             data-menu-height="320"
-             data-menu-effect="menu-parallax">
-            <div class="boxed-text-xl mt-4">
-                <img class="rounded-l mb-3" src="app/icons/icon-128x128.png" alt="img" width="90">
-                <h4 class="mt-3">Add Sticky on your Home Screen</h4>
-                <p class="mb-0 pb-0">
-                    Install Sticky on your home screen, and access it just like a regular app.  Open your Safari menu and tap "Add to Home Screen".
-                </p>
-                <div class="clear"></div>
-                <a href="#" class="pwa-dismiss close-menu color-highlight uppercase ultrabold opacity-80 top-25">Maybe later</a>
-                <i class="fa-ios-arrow fa fa-caret-down font-40"></i>
+
+                <div class="input-style has-icon input-style-1 input-required">
+                   
+                    <span> Title</span>
+                    <em>(required)</em>
+                    <textarea rows="3" ng-model="content.data" required type="text"  placeholder="{{'enter ' + content.type }}" ></textarea>
+                </div>
+                <a ng-click="addContent()" class="btn btn-full btn-m shadow-l rounded-s text-uppercase font-900 bg-green1-dark mt-4">ADD</a>
             </div>
         </div>
 
         <!--end of div id page-->
     </div>
-
-    <my-sideBar></my-sideBar>
 
 </body>
 </html>

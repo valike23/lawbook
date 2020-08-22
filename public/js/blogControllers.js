@@ -7,18 +7,28 @@
     Ctrl.controller('topCtrl', topController);
     Ctrl.controller('allCtrl', allController);
     Ctrl.controller('navCtrl', blogController);
+    Ctrl.controller('createCtrl', createController);
     Ctrl.controller('favoritesCtrl', favoriteController);
     Ctrl.controller('contentCtrl', contentController);
 
-    function blogController($scope, $http) {
+    function blogController($scope, $http, $localForage) {
         $scope.navigate = function (area) {
             try {
-                var user = document.cookie;
-                user = user.split(';')[1];
+                $localForage.getItem("session").then(function (result) {
+                    console.log("result", result);
+                    if (result) {
+                        location.href = "/blog/author/" + result;
+                    }
+                    else {
+                        location.href = '/login';
+                    }
+                })
+                //var user = document.cookie;
+                //user = user.split(';')[1];
                              
-                console.log('user', user);
+                //console.log('user', user);
                 
-                location.href = "/blog/author/" + user;
+                
             }
             catch (err) {
                 console.log(err);
@@ -102,5 +112,88 @@ $scope.articles = [];
             $scope.articles = res.data;
         })
     }
+    function createController($scope, $http) {
+       
+        class Article {
+            constructor(title, image, author) {
+                this.title = title;
+                this.tags = [];
+                this.image = image;
+                this.author = author;
+                this.content = [];
+            };
+         addTag = (tag) => {
+             this.tags.push(tag);
+            }
+            addContent = (content) => {
+                this.content.push(content);
+            }
+            
 
+        
+        }
+        class Tag {
+            constructor(title, myClass) {
+                this.class = myClass;
+                this.title = title;
+            }
+        }
+        class Content {
+            constructor(type, data) {
+                this.type = type;
+                this.data = data;
+            }
+        }
+        $scope.article = new Article("", "", "");
+        $scope.tag = new Tag("", "");
+        $scope.content = new Content("", "");
+        $scope.openTag = function () {
+            $('#openTag').showMenu();
+        }
+        $scope.openContent = function () {
+            $('#openContent').showMenu();
+        }
+        $scope.addTag = function () {
+            $('#openTag').hideMenu();
+            $scope.article.addTag($scope.tag);
+            alert(`tag title is ${$scope.tag.title} and tag class is ${$scope.tag.class}`);
+            console.log($scope.article);
+            $scope.tag = new Tag("", "");
+        }
+        $scope.addContent = function () {
+            $('#openContent').hideMenu();
+            $scope.article.addContent($scope.content);
+          //  alert(`tag title is ${$scope.tag.title} and tag class is ${$scope.tag.class}`);
+            console.log($scope.article);
+            $scope.content = new Content("", "");
+        }
+        var uploadFile = $('.upload-file');
+        function activate_upload_file() {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $scope.article.image = e.target.result;
+                        $('.file-data img').attr('src', e.target.result);
+                        $('.file-data img').attr('class', 'img-fluid rounded-xs mt-4');
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $(".upload-file").change(function (e) {
+                readURL(this);
+                var fileName = e.target.files[0].name;
+                $('.upload-file-data').removeClass('disabled');
+                $('.upload-file-name').html(e.target.files[0].name)
+                $('.upload-file-modified').html(e.target.files[0].lastModifiedDate);
+                $('.upload-file-size').html(e.target.files[0].size / 1000 + 'kb')
+                $('.upload-file-type').html(e.target.files[0].type)
+            });
+        };
+        if (uploadFile.length) { activate_upload_file(); }
+
+        $scope.gotoArticle = function (article) {
+            location.href = 'blog/content/' + article._id
+        }
+    }
 })();
