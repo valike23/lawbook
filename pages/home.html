@@ -32,7 +32,7 @@
         <my-footer active="home">
 
         </my-footer>
-
+        <my-sideBar></my-sideBar>
         <!--start of page content, add your stuff here-->
         <div class="page-content header-clear-small">
             <div id="home">
@@ -80,7 +80,7 @@
                             <div class="card-bottom">
 
                                 <h4 class="color-white ml-3 mb-1">{{article.title}}</h4>
-                                <p class="color-white opacity-60 ml-3">Jan, 17th 2019 | {{article.author}}</p>
+                                <p class="color-white opacity-60 ml-3">{{article.createdDate | date: small}} | {{article.author}}</p>
                             </div>
                             <div class="card-overlay bg-black opacity-50"></div>
                         </div>
@@ -368,7 +368,7 @@ background-image: url('images/books/fashion.jpg');background-size:cover">
 
 
         </div>
-        <my-sideBar></my-sideBar>
+
         <div id="personality" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="background-color:black">
