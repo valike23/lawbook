@@ -120,7 +120,9 @@ class BlogDatabase {
         })
     }
 
-getFavoritesBlog(res:Express.Response, id: number){
+
+
+ getFavoritesBlog(res:Express.Response, id: number){
     this.connect().then((data: MongoClient) => {
         let name = this.name;
         const dbo = data.db(name);

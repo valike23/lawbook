@@ -112,12 +112,13 @@ $scope.articles = [];
             $scope.articles = res.data;
         })
     }
-    function createController($scope, $http) {
+    function createController($scope, $http, $localForage) {
        
         class Article {
             constructor(title, image, author) {
                 this.title = title;
                 this.tags = [];
+                this.authorId = 0;
                 this.image = image;
                 this.author = author;
                 this.content = [];
@@ -144,6 +145,7 @@ $scope.articles = [];
                 this.data = data;
             }
         }
+        $scope.loader = false;
         $scope.article = new Article("", "", "");
         $scope.tag = new Tag("", "");
         $scope.content = new Content("", "");
@@ -191,7 +193,25 @@ $scope.articles = [];
             });
         };
         if (uploadFile.length) { activate_upload_file(); }
-
+        $scope.submitPost = function () {
+            delete ($scope.article.addContent);
+            delete ($scope.article.addTag);
+           
+            $localForage.getItem("user").then(function (res) {
+                $scope.article.author = res.firstname + " " + res.lastname;
+                $scope.article.authorId = res.id;
+                console.log($scope.article);
+                $http.post('api/blog/create', $scope.article).then(function (res) {
+                    alert("blog post created");
+                    $scope.loader = true;
+                    $scope.article = new Article("","","")
+                }, function () {
+                    alert("something went wrong");
+                    $scope.loader = true;
+                })
+            })
+            $scope.loader = true;
+        }
         $scope.gotoArticle = function (article) {
             location.href = 'blog/content/' + article._id
         }

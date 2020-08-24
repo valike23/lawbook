@@ -22,7 +22,7 @@ import { Iuser } from '../../utils/models';
         if (err) {
             console.log(err);
             res.status(500);
-            res.json("something went wrong!!!");
+            res.json("something went wrong!!");
             res.end();
             return;
         }

@@ -4,7 +4,7 @@ var config_1 = require("../config");
 var blog_1 = require("../db/blog");
 var express = require("express");
 var router = express.Router();
-var blogDb = new blog_1["default"](config_1.mongodb, 'lawbook');
+var blogDb = new blog_1["default"](config_1.localMongo, 'lawbook');
 router.post('/create', function (req, res) {
     var blog = req.body;
     blog.createdDate = new Date();

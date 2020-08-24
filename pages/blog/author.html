@@ -49,6 +49,12 @@
 
         <!--start of page content, add your stuff here-->
         <div class="page-content header-clear-small mt-n2">
+            <div ng-show="loader" class="text-center" style="position: absolute; left:45%; top:40%;  z-index: 10;">
+                <div class="spinner-border color-green1-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+
+            </div>
             <div id="blog-list" class="container-fluid">
 
                 <div class="card card-style ml-0 mr-0">
@@ -111,7 +117,7 @@
                             </div>
                         </div>
 
-                        <a class="btn btn-3d btn-m btn-full mb-3 rounded-0 text-uppercase font-900 shadow-s border-green1-dark bg-green1-light">Upload</a>
+                        <a ng-click="submitPost()" class="btn btn-3d btn-m btn-full mb-3 rounded-0 text-uppercase font-900 shadow-s border-green1-dark bg-green1-light">Upload</a>
                     </div>
                 </div>
             </div>
