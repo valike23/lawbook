@@ -20,6 +20,7 @@ var BlogDatabase = (function () {
     };
     BlogDatabase.prototype.createBlog = function (res, blog) {
         var _this = this;
+        console.log(blog);
         this.connect().then(function (data) {
             var name = _this.name;
             var dbo = data.db(name);

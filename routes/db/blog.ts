@@ -27,6 +27,7 @@ class BlogDatabase {
     }
 
     createBlog(res: Express.Response, blog: Iblog) {
+        console.log(blog);
         this.connect().then((data: MongoClient) => {
             let name = this.name;
             
