@@ -6,6 +6,7 @@ var express = require("express");
 var router = express.Router();
 var blogDb = new blog_1["default"](config_1.mongodb, 'lawbook');
 router.post('/create', function (req, res) {
+    console.log("reached here");
     var blog = req.body;
     blog.createdDate = new Date();
     blog.rate = 0;

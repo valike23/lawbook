@@ -7,6 +7,7 @@ const router = express.Router();
 let blogDb = new BlogDatabase(mongodb , 'lawbook');
 
 router.post('/create',  (req: express.Request, res: express.Response) => {
+    console.log("reached here");
     let blog: Iblog = req.body;
     blog.createdDate = new Date();
     blog.rate = 0;
