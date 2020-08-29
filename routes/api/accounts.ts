@@ -6,7 +6,6 @@ import {Auth} from '../auth';
 const auth = new Auth();
  const  router = Router();
  const bcrypt = require('bcryptjs');
- //all resolve
  const saltRounds = bcrypt.genSaltSync(10);
  const cryptoRandomString = require('crypto-random-string');
  import {dbFree, localDb } from '../config';
