@@ -17,7 +17,7 @@ class libDatabase {
         this.uri = uri;
         this.name = name;
         this.difference = 10;
-        this.connection = createConnection(localDb);
+        this.connection = createConnection(dbFree);
     }
     private connect() {
         return new Promise((resolve, reject) => {

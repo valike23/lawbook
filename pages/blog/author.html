@@ -79,10 +79,10 @@
                         <p>Content</p>
                         <div class="row">
 
-                            <div class="col" ng-repeat="content in article.content track by $index">
+                            <div style="width: 100%;" class="col" ng-repeat="content in article.content track by $index">
                                 <!-- Deletable Chip -->
-                                <span class="{{'mdl-chip mdl-chip--deletable' }}">
-                                    <span class="mdl-chip__text">{{content.data}}</span>
+                                <span   class="{{'mdl-chip mdl-chip--deletable' }}">
+                                    <span style="text-overflow:ellipsis;white-space: nowrap;" class="mdl-chip__text" >{{content.data}}</span>
                                     <button type="button" class="mdl-chip__action">
                                         <i class="material-icons">cancel</i>
                                     </button>

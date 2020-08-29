@@ -11,35 +11,36 @@
                 alert(data)
             }
             $localForage.getItem("session").then(function (res) {
-                let session = isLoggedIn($http, res);
-                session.then(function (response) {
-                    if (response) {
-                        ROOT.logged = true;
-                        ROOT.user = session;
-                    }
-                    else {
-                        ROOT.logged = false;
-                        $localForage.removeItem("user").then(function () { });
-                        $localForage.removeItem("session").then(function () { });
-                        return;
-                    }
+              
+                
+                $http.get('/api/accounts/is_logged/' + res).then(function (resd) {
+                    console.log("sessions", resd);
+                        if (resd.data) {
+                            ROOT.logged = true;
+                            ROOT.user = {};
+                            console.log(ROOT.user);
+                            return;
+                        }
+                        else {
+                            ROOT.logged = false;
+                            $localForage.removeItem("user").then(function () { });
+                            $localForage.removeItem("session").then(function () { });
 
-                })
+                            return;
+                        }
+                    }, function (rej) {
+
+                    })
+                
+
+              
             
             }, function () {
                     ROOT.logged = false;
                 })
            
 
-            function isLoggedIn(http, session) {
-                http.get('/api/accounts/is_logged/' + session).then(function (res) {
-                    console.log(res);
-                    return res.data;
-                }, function (rej) {
-
-                })
-            }
-
+        
            // $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
         });
 

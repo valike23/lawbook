@@ -28,7 +28,7 @@ router.get('/author/:session', function (req: Express.Request, res: Express.Resp
  if(user){
 if(user.user.type == "author"){
     console.log("registered");
-    res.sendFile(root + '/pages/blog/author.html');
+    res.sendFile(root + '/pages/blog/author-home.html');
 }
 else{
     res.sendfile(root + '/pages/blog/become_an_author.html' )
@@ -40,6 +40,12 @@ else{
  }
   
    
+});
+router.get('/create_blog', function (req: Express.Request, res: Express.Response) {
+    res.sendFile(root + '/pages/blog/author.html');
+});
+router.get('/manage_blog', function (req: Express.Request, res: Express.Response) {
+    res.sendFile(root + '/pages/blog/manage_blog.html');
 });
 
 router.get('/content/:data', function (req: Express.Request, res: Express.Response) {

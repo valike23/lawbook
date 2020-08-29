@@ -10,7 +10,7 @@ const auth = new Auth();
  const cryptoRandomString = require('crypto-random-string');
  import {dbFree, localDb } from '../config';
 import { Iuser } from '../../utils/models';
- var connection = createConnection(dbFree);
+ var connection = createConnection(localDb);
 
 
  router.post('/login', function (req: Express.Request, res: Express.Response) {

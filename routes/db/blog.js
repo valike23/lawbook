@@ -98,6 +98,25 @@ var BlogDatabase = (function () {
             _this.errorHandler(res, err);
         });
     };
+    BlogDatabase.prototype.getAuthorContent = function (res, id) {
+        var _this = this;
+        this.connect().then(function (data) {
+            var name = _this.name;
+            var dbo = data.db(name);
+            var query = { authorId: parseInt(id) };
+            dbo.collection("blog").find(query)
+                .toArray(function (err, result) {
+                if (err) {
+                    _this.errorHandler(res, err);
+                    return;
+                }
+                res.json(result);
+                res.end();
+            });
+        }, function (err) {
+            _this.errorHandler(res, err);
+        });
+    };
     BlogDatabase.prototype.getFavoritesBlog = function (res, id) {
         var _this = this;
         this.connect().then(function (data) {

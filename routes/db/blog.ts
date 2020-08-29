@@ -121,7 +121,29 @@ class BlogDatabase {
         })
     }
 
+    getAuthorContent(res: Express.Response, id: any) {
+        this.connect().then((data: MongoClient) => {
+            let name = this.name;
 
+            const dbo = data.db(name);
+           
+            let query = {authorId:parseInt(id)};
+         //   let projecton = { projection: { _id: 1, content: 0, image: 0 } };
+            dbo.collection("blog").find(query)
+               .toArray((err: MongoError, result: Array<Iblog>) => {
+                if (err) {
+                    this.errorHandler(res, err);
+                    return;
+                }
+                res.json(result);
+                res.end();
+
+            })
+
+        }, (err: MongoError) => {
+            this.errorHandler(res, err);
+        })
+    }
 
  getFavoritesBlog(res:Express.Response, id: number){
     this.connect().then((data: MongoClient) => {

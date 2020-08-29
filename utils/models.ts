@@ -106,4 +106,12 @@ export interface IbookShelf {
     likes?: number;
     favorite?: boolean;
 }
+export interface IblogShelf {
+    blog_id: number;
+    user_id: number;
+    likes?: number;
+    favorite?: boolean;
+    title: string;
+    createdDate: Date;
+}
 

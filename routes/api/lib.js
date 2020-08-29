@@ -10,7 +10,7 @@ cloudinary_1.v2.config(config_1.cloudinary);
 var express = require("express");
 var lib_1 = require("../db/lib");
 var router = express.Router();
-var libDb = new lib_1["default"](config_1.mongodb, 'lawbook');
+var libDb = new lib_1["default"](config_1.localMongo, 'lawbook');
 router.post('/create', middleWare, function (req, res) {
     console.log(req.files);
     var config;

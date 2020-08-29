@@ -9,6 +9,7 @@
     Ctrl.controller('navCtrl', blogController);
     Ctrl.controller('createCtrl', createController);
     Ctrl.controller('favoritesCtrl', favoriteController);
+    Ctrl.controller('manageCtrl', manageController);
     Ctrl.controller('contentCtrl', contentController);
 
     function blogController($scope, $http, $localForage) {
@@ -90,27 +91,123 @@
            location.href= 'blog/content/'+ article._id
         }
     }
-    function favoriteController($scope, $http) {
-        (()=>{
-            $http.get('api/blog/favorite/1/1' ).then(function (res) {
-                console.log(res.data.length);
-                $scope.articles = res.data;
+    function favoriteController($scope, $http, $localForage) {
+       
+        (() => {
+            $localForage.getItem('user').then(function (user) {
+                if (user) {
 
-            }, function(err){
-console.log(err);
-$scope.articles = [];
-            })
-        })()
+                    $http.get('api/blog/all_blog_shelf/' + user.id).then(function (res) {
+                        console.log(res.data);
+                        $scope.articles = res.data;
+
+                    },
+                        function (err) {
+                            console.log(err);
+                            $scope.articles = [];
+                        })
+                }
+                else {
+                    $scope.articles = [];
+                }
+            });
+
+        })();
+
+        $scope.gotoArticle = function (article) {
+            location.href = 'blog/content/' + article.blog_id;
+        }
     }
-    function contentController($scope, $http) {
+    function contentController($scope, $http, $localForage) {
         $http.get('api/blog/content/' + (location.pathname).split('/')[3]).then(function (res) {
             console.log(res.data);
             $scope.content = res.data;
         });
-        $http.get('api/blog/related/' ).then(function (res) {
+        $http.get('api/blog/related/').then(function (res) {
             console.log(res.data);
             $scope.articles = res.data;
-        })
+        });
+        $localForage.getItem('user').then(function (user) {
+            if (user) {
+                $scope.user = user;
+                $http.get('api/blog/blog_shelf/' + user.id + '/' + (location.pathname).split('/')[3]).then(function (res) {
+                    console.log('blog ', res.data);
+                    $scope.blogShelf = res.data;
+
+                    if (!$scope.blogShelf.favorite) {
+                        $scope.liked = false;
+                    }
+                    else {
+                        $scope.liked = true;
+                    }
+                   
+                })
+            } else {
+                $scope.liked = false;
+            }
+        }, function (err) {
+            console.log(err);
+            })
+        $scope.addFavorite = function () {
+            if ($scope.user) {
+                $('#toast-1').toast('show');
+                let blog_shelf = {
+                    user_id: $scope.user.id,
+                    blog_id: $scope.content._id,
+                    title: $scope.content.title,
+                    createdDate: $scope.content.createdDate
+                };
+                $http.post('api/blog/add_book_shelf', blog_shelf).then(function (res) {
+                    console.log(res.data);
+                    $scope.liked = true;
+                    $('#toast-3').toast('show');
+
+                }, function (err) {
+                    alert(err.data.code);
+                    if (err.data.code == 'ER_DUP_ENTRY') {
+                        $scope.errMsg = "Already Exists";
+                        $scope.liked = true;
+                    } else {
+                        $scope.errMsg = "Something went wrong";
+                    }
+                    $('#toast-2').toast('show');
+                })
+                
+            }
+            else {
+                $scope.errMsg = "not logged in";
+                $('#toast-2').toast('show');
+            }
+        }
+        $scope.removeFavorite = function () {
+            if ($scope.user) {
+                $('#toast-1').toast('show');
+                let blog_shelf = {
+                    user_id: $scope.user.id,
+                    blog_id: $scope.content._id,
+                };
+                $http.post('api/blog/remove_favorite', blog_shelf).then(function (res) {
+                    console.log(res.data);
+                    $scope.liked = false;
+                    $('#toast-3').toast('show');
+
+                }, function (err) {
+                    alert(err.data.code);
+                    if (err.data.code == 'ER_DUP_ENTRY') {
+                        $scope.errMsg = "Already Exists";
+                        $scope.liked = true;
+                    } else {
+                        $scope.errMsg = "Something went wrong";
+                    }
+                    $('#toast-2').toast('show');
+                })
+
+            }
+            else {
+                $scope.errMsg = "not logged in";
+                $('#toast-2').toast('show');
+            }
+        }
     }
     function createController($scope, $http, $localForage) {
        
@@ -196,6 +293,9 @@ $scope.articles = [];
         $scope.submitPost = function () {
             delete ($scope.article.addContent);
             delete ($scope.article.addTag);
+            for (var i = 0; i < $scope.article.tags.length ; i++) {
+                $scope.article.tags[i].data = $scope.article.tags[i].data + " tag";
+            }
            
             $localForage.getItem("user").then(function (res) {
                 $scope.article.author = res.firstname + " " + res.lastname;
@@ -215,5 +315,32 @@ $scope.articles = [];
         $scope.gotoArticle = function (article) {
             location.href = 'blog/content/' + article._id
         }
+    }
+    function manageController ($scope, $http, $localForage) {
+
+        (() => {
+            $localForage.getItem('user').then(function (user) {
+                if (user) {
+
+                    $http.get('api/blog/all_author_blog/' + user.id).then(function (res) {
+                        console.log(res.data);
+                        $scope.articles = res.data;
+
+                    },
+                        function (err) {
+                            console.log(err);
+                            $scope.articles = [];
+                        })
+                }
+                else {
+                    $scope.articles = [];
+                }
+            });
+
+        })();
+
+        //$scope.gotoArticle = function (article) {
+        //    location.href = 'blog/content/' + article.blog_id;
+        //}
     }
 })();

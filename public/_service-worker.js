@@ -2,7 +2,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 
 //Workbox Config
 workbox.setConfig({
-    debug: true //set to true if you want to see SW in action.
+    debug: false //set to true if you want to see SW in action.
 });
 
 //Caching Everything Inside the Folder of our Item

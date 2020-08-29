@@ -9,7 +9,7 @@ var libDatabase = (function () {
         this.uri = uri;
         this.name = name;
         this.difference = 10;
-        this.connection = mysql_1.createConnection(config_1.localDb);
+        this.connection = mysql_1.createConnection(config_1.dbFree);
     }
     libDatabase.prototype.connect = function () {
         var _this = this;

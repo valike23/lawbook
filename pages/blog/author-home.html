@@ -1,0 +1,83 @@
+﻿<!DOCTYPE HTML>
+<html lang="en" ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>Lawbook : author Home</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="scss/main.css">
+    <link href="css/material.min.css" rel="stylesheet" />
+    <link href="styles/app.css" rel="stylesheet" />
+    <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/localforage.js"></script>
+    <script type="text/javascript" src="js/angular-localForage.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/blogControllers.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
+    <script src="js/material.min.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pwa.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+</head>
+
+<body ng-controller="createCtrl" class="theme-light" data-background="none" data-highlight="red2">
+
+    <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+    <div id="page">
+
+        <!-- header and footer bar go here-->
+        <my-header></my-header>
+        <my-footer active="blog">
+
+        </my-footer>
+
+        <my-sideBar></my-sideBar>
+
+        <!--start of page content, add your stuff here-->
+        <div class="page-content header-clear-small mt-n2">
+            <div>
+                <div class="search-box search-header bg-theme card-style mr-3 ml-3">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="border-0" placeholder="What are you looking for? " data-search="">
+                    <a href="#" class="disabled"><i class="fa fa-times-circle color-red2-dark"></i></a>
+                </div>
+                <div class="row text-center mb-0">
+                    <a href='blog/manage_blog' class="col-6 pr-0">
+                        <div class="card card-style mr-2 mb-3">
+                            <i class="fa fa-book color-magenta2-dark fa-3x mt-5"></i>
+                            <h3 class="pt-4">MANAGE BLOG</h3>
+                            <p class="font-11 opacity-50 mt-n2">Manage All Author Content</p>
+                            <p class="mb-0 pb-0 font-10 opacity-40">Tap to View</p>
+                        </div>
+                    </a>
+                    <a href="/blog/create_blog" class="col-6 pl-0">
+                        <div class="card card-style ml-2 mb-3">
+                            <i class="fa fa-star  color-highlight fa-3x mt-5"></i>
+                            <h3 class="pt-4">CREATE BLOG</h3>
+                            <p class="font-11 opacity-50 mt-n2">create a new blog</p>
+                            <p class="mb-0 pb-0 font-10 opacity-40">Tap to View</p>
+                        </div>
+                    </a>
+                  </div>
+            </div>
+        </div>
+
+         <!--end of div id page-->
+    </div>
+
+</body>
+</html>

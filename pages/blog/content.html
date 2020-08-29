@@ -56,8 +56,8 @@
                                 <img ng-src="{{content.image}}" alt="blog post" class="post-featured-image">
                                 <p class="post-date">
                                     {{content.createdDate | date: small}}
-                                    <span style="color:red" class="fa fa-heart float-right"></span>
-                                    <span ng-if="undefined" class="fa fa-heart float-right"></span>
+                                    <span ng-click="removeFavorite()" ng-show="liked" style="color:red" class="fa fa-heart float-right"></span>
+                                    <span ng-click="addFavorite()" ng-hide="liked" class="fa fa-heart float-right"></span>
                                 </p>
 
                             </div>
@@ -161,8 +161,9 @@
 
 
         </div>
-
-        <my-sideBar></my-sideBar>
+        <div id="toast-2" class="toast toast-tiny toast-top bg-red2-dark" data-delay="3000" data-autohide="true"><i class="fa fa-times mr-3"></i>{{errMsg}}</div>
+        <div id="toast-3" class="toast toast-tiny toast-top bg-green1-dark" data-delay="3000" data-autohide="true"><i class="fa fa-check mr-3"></i>Action Successfully</div>
+        <div id="toast-1" class="toast toast-tiny toast-top bg-blue2-dark fade hide" data-delay="2000" data-autohide="true"><i class="fa fa-sync fa-spin mr-3"></i>Processing...</div>
         <!--end of page content, off canvas elements here-->
         <!-- All Menus, Action Sheets, Modals, Notifications, Toasts get Placed outside the <div class="page-content"> -->
         <div id="menu-settings" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="300">

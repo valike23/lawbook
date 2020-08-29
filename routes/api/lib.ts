@@ -11,7 +11,7 @@ cloud.config(cloudinary);
 import * as express from 'express';
 import libDatabase from '../db/lib';
 const router = express.Router();
-let libDb = new libDatabase(mongodb , 'lawbook');
+let libDb = new libDatabase(localMongo , 'lawbook');
 
 // router.use((req: express.Request, res: express.Response, next: express.NextFunction) =>{
 //   console.log("sound", req.headers.authorization);
