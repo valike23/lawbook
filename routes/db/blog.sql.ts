@@ -14,6 +14,7 @@ class BlogSQL {
     addToShelf (res: Express.Response, blogShelf: IblogShelf) {
      
         let query = `INSERT INTO blog_shelf set ? `;
+        //fdgsd
         queryInsert(res, query,this.connection, blogShelf);     
        
       }
