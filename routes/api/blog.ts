@@ -74,6 +74,7 @@ router.get('/all_blog_shelf/:user_id', (req: express.Request, res: express.Respo
  router.post('/add_book_shelf', (req: express.Request, res: express.Response) => {
      let shelf : IblogShelf = req.body;
    shelf.createdDate = <Date> shelf.createdDate;
+   shelf.createdDate = shelf.createdDate.toString();
     blogSQL.addToShelf(res, shelf);
     
  });

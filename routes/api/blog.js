@@ -70,6 +70,7 @@ router.get('/all_author_blog/:user_id', function (req, res) {
 router.post('/add_book_shelf', function (req, res) {
     var shelf = req.body;
     shelf.createdDate = shelf.createdDate;
+    shelf.createdDate = shelf.createdDate.toString();
     blogSQL.addToShelf(res, shelf);
 });
 router.get('/related', function (req, res) {
