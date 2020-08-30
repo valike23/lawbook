@@ -8,7 +8,7 @@ import {queryUpdateAndSelect, queryInsert, sqlErrorHandler} from './common';
 class BlogSQL {
     connection: Connection;
    constructor(){
-    this.connection = createConnection(localDb);
+    this.connection = createConnection(dbFree);
    }
   
     addToShelf (res: Express.Response, blogShelf: IblogShelf) {
