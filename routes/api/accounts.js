@@ -69,5 +69,30 @@ router.get('/is_logged/:session', function (req, res) {
     res.json(result);
     res.end();
 });
+router.post('/register', function (req, res) {
+    var user = req.body;
+    var query = "INSERT INTO user SET ?";
+    console.log(user);
+    var hash = bcrypt.hashSync(user.password, saltRounds);
+    console.log(hash);
+    user.password = hash;
+    connection.query(query, user, function (err, resu) {
+        if (err) {
+            console.log(err);
+            res.status(503);
+            res.json({ msg: "Something went wrong! dont worry its from us and we are currently working on it. Try again later.",
+                err: err.message });
+            res.end();
+            return;
+        }
+        res.json({
+            message: "user created successfully",
+            info: resu,
+            pass: hash
+        });
+        console.log(resu);
+        res.end();
+    });
+});
 module.exports = router;
 //# sourceMappingURL=accounts.js.map

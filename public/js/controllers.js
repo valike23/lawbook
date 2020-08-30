@@ -156,7 +156,15 @@
                 if (!$scope.user[property]) return;
             }
             if ($scope.user.password !== $scope.confirm) return;
-           // $scope.post('')
+            $scope.loader = true;
+            $http.post('api/accounts/register', $scope.user).then(function (res) {
+                alert("Registration Successful");
+                $scope.loader = false;
+                location.href = "/login";
+            }, function (err) {
+                $scope.loader = false;
+                alert(err.message);
+                })
 
         }
        
