@@ -151,6 +151,11 @@
                 })
         }
         $scope.register = function () {
+            let myDate = $scope.user.birthday;
+            let day = myDate.getDate();
+            let month = myDate.getMonth();
+            let year = myDate.getFullYear();
+            $scope.user.birthday = `${day}/${month}/${year}`;
             console.log($scope.user);
             for (var property in $scope.user) {
                 if (!$scope.user[property]) return;
@@ -163,6 +168,7 @@
                 location.href = "/login";
             }, function (err) {
                 $scope.loader = false;
+                console.log(err);
                 alert(err.message);
                 })
 

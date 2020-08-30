@@ -80,9 +80,11 @@ router.get('/is_logged/:session', function(req: Express.Request, res: Express.Re
  res.end();
 })
 router.post('/register', function (req: Express.Request, res: Express.Response) {
-    var user = req.body;
-    var query = "INSERT INTO user SET ?";
+    var user = <Iuser> req.body;
+    
     console.log(user);
+    var query = "INSERT INTO user SET ?";
+    
     var hash = bcrypt.hashSync(user.password, saltRounds)
     console.log(hash);
     user.password = hash;

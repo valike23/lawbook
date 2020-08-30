@@ -71,8 +71,8 @@ router.get('/is_logged/:session', function (req, res) {
 });
 router.post('/register', function (req, res) {
     var user = req.body;
-    var query = "INSERT INTO user SET ?";
     console.log(user);
+    var query = "INSERT INTO user SET ?";
     var hash = bcrypt.hashSync(user.password, saltRounds);
     console.log(hash);
     user.password = hash;
