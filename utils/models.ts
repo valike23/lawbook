@@ -110,8 +110,7 @@ export interface IblogShelf {
     blog_id: number;
     user_id: number;
     likes?: number;
-    favorite?: boolean;
     title: string;
-    createdDate: Date;
+    createdDate: Date | string;
 }
 

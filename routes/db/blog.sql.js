@@ -5,7 +5,7 @@ var config_1 = require("../config");
 var common_1 = require("./common");
 var BlogSQL = (function () {
     function BlogSQL() {
-        this.connection = mysql_1.createConnection(config_1.dbFree);
+        this.connection = mysql_1.createConnection(config_1.localDb);
     }
     BlogSQL.prototype.addToShelf = function (res, blogShelf) {
         var query = "INSERT INTO blog_shelf set ? ";
