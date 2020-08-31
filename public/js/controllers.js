@@ -151,11 +151,12 @@
                 })
         }
         $scope.register = function () {
-            let myDate = $scope.user.birthday;
+            let myDate = $scope.birthday;
             let day = myDate.getDate();
             let month = myDate.getMonth();
             let year = myDate.getFullYear();
-            $scope.user.birthday = `${day}/${month}/${year}`;
+            myDate = `${day}/${month}/${year}`;
+            $scope.user.birthday = myDate;
             console.log($scope.user);
             for (var property in $scope.user) {
                 if (!$scope.user[property]) return;
