@@ -8,7 +8,7 @@
             <a id='home'  href="/"><i class="fa fa-home"></i><span>Home</span></a>
             <a id='lib' href="/lib"><i class="fa fa-book"></i><span>E-Library</span></a>
             <a href="#" id='chamber'><i class="fa fa-balance-scale"></i><span>E-chamber</span></a>
- <a id='social' href="/social"><i class="fa fa-users"></i><span>social</span></a>
+ <a id='social' ng-show="user.type == 'law'" href="/social"><i class="fa fa-users"></i><span>social</span></a>
             <a id='blog' href="/blog"><i class="fa fa-newspaper"></i><span>Blog</span></a>
            
             
@@ -102,7 +102,7 @@
                     <span>Register</span>
                     <i class="fa fa-angle-right"></i>
                 </a>        
-                <a ng-show="logged" href="#" class="border-0">
+                <a ng-show="logged" ng-click="logOut()" href="#" class="border-0">
                     <i class="fa font-14 fa-sign-out-alt rounded-s bg-red2-dark"></i>
                     <span>Sign Out</span>
                     <i class="fa fa-angle-right"></i>

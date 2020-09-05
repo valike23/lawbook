@@ -1,3 +1,5 @@
+
+
 (()=> {
     (function() {
         'use strict';
@@ -7,30 +9,27 @@
             const ROOT = $rootScope;
             ROOT.title = "Lawbook: Everything Law";
             ROOT.header = "Lawbook";
+            ROOT.logOut = function(){
+                $localForage.removeItem("user").then(function(res){
+                    $localForage.removeItem("session").then(function(res){
+                        ROOT.logged = false;
+                        ROOT.user = {};
+alert("logged out");
+                    })
+                })
+            }
             ROOT.openBook = function (data) {
                 alert(data)
             }
-            $localForage.getItem("session").then(function (res) {
+            $localForage.getItem("user").then(function (res) {
               
-                
-                $http.get('/api/accounts/is_logged/' + res).then(function (resd) {
-                    console.log("sessions", resd);
-                        if (resd.data) {
-                            ROOT.logged = true;
-                            ROOT.user = {};
-                            console.log(ROOT.user);
-                            return;
-                        }
-                        else {
-                            ROOT.logged = false;
-                            $localForage.removeItem("user").then(function () { });
-                            $localForage.removeItem("session").then(function () { });
+                if(res){
+                    ROOT.logged = true;
+                    ROOT.user = res;
+                    console.log('user',res);
 
-                            return;
-                        }
-                    }, function (rej) {
-
-                    })
+                }
+               
                 
 
               

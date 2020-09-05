@@ -32,6 +32,11 @@
             perPage: 1,
             focus: 'center',
         }).mount();
+        new Splide('#request__mobile', {
+
+            perPage: 1,
+            focus: 'center',
+        }).mount();
         //new Splide('#suggested__desktop', {
         //    loop: true,
         //    perPage: 3,
