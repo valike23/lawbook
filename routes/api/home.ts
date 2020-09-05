@@ -5,8 +5,8 @@ import * as express from 'express';
 import HomeDatabase from '../db/home';
 import BlogDatabase  from '../db/blog';
 const router = express.Router();
-let homeDb = new HomeDatabase(localMongo , 'lawbook');
-let blogDb = new BlogDatabase(localMongo , 'lawbook');
+let homeDb = new HomeDatabase(mongodb , 'lawbook');
+let blogDb = new BlogDatabase(mongodb , 'lawbook');
 
 router.post('/personalities',  (req: express.Request, res: express.Response) => {
     let personalities: Array<Ipersonality> = req.body;

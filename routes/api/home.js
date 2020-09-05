@@ -5,8 +5,8 @@ var express = require("express");
 var home_1 = require("../db/home");
 var blog_1 = require("../db/blog");
 var router = express.Router();
-var homeDb = new home_1["default"](config_1.localMongo, 'lawbook');
-var blogDb = new blog_1["default"](config_1.localMongo, 'lawbook');
+var homeDb = new home_1["default"](config_1.mongodb, 'lawbook');
+var blogDb = new blog_1["default"](config_1.mongodb, 'lawbook');
 router.post('/personalities', function (req, res) {
     var personalities = req.body;
     homeDb.addPersonalities(res, personalities);
