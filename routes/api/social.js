@@ -14,7 +14,7 @@ var socialDb = new social_1["default"](config_1.mongodb, 'lawbook');
 router.use(function (req, res, next) {
     console.log("sound", req.headers.authorization);
     if (auth.isAuth(req.headers.authorization)) {
-        next(auth.isAuth(req.headers.authorization));
+        next();
     }
     else {
         res.status(406);
@@ -24,10 +24,12 @@ router.use(function (req, res, next) {
     }
 });
 router.post('/create_post', middleWare, function (req, res) {
+    var session = auth.isAuth(req.headers.authorization);
     console.log('req.files');
     var thumbFile = req.files.thumb.path;
     var post;
     post = req.body;
+    post.name = session.user.firstname + " " + session.user.lastname;
     post.userId = 7;
     post.createdDate = new Date();
     post.likes = 0;
@@ -44,6 +46,29 @@ router.post('/create_post', middleWare, function (req, res) {
         post.publicId = response.public_id;
         socialDb.createPost(res, post);
     });
+});
+router.post('/create', function (req, res) {
+    var session = auth.isAuth(req.headers.authorization);
+    var post;
+    post = req.body;
+    post.name = session.user.firstname + " " + session.user.lastname;
+    post.userId = 7;
+    post.createdDate = new Date();
+    post.likes = 0;
+    post.dislikes = 0;
+    socialDb.createPost(res, post);
+});
+router.get('/all/:id', function (req, res, next) {
+    var session = auth.isAuth(req.headers.authorization);
+    console.log(session.user.firstname);
+    try {
+        socialDb.getAllPosts(res, req.params.id);
+    }
+    catch (error) {
+        res.status(403);
+        res.json("parameter error");
+        res.end();
+    }
 });
 module.exports = router;
 //# sourceMappingURL=social.js.map

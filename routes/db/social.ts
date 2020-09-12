@@ -56,6 +56,29 @@ class socialDatabase {
 createIndexFavorite(res: Express.Response){
 
 }
+getAllPosts(res: Express.Response, page: number) {
+    this.connect().then((data: MongoClient) => {
+        let name = this.name;
+console.log("look out");
+        const dbo = data.db(name);
+        dbo.collection("post").find({}/*,
+            { projection: {"content":0} }*/)
+            .sort({ createdDate: -1 })
+            .skip(((page - 1) * this.difference))
+            .limit(5).toArray((err: MongoError, result: Array<Ipost>) => {
+            if (err) {
+                this.errorHandler(res, err);
+                return;
+            }
+            res.json(result);
+            res.end();
+
+        })
+
+    }, (err: MongoError) => {
+        this.errorHandler(res, err);
+    })
+}
 
     private errorHandler(res: Express.Response, error: MongoError) {
         res.status(503);

@@ -61,9 +61,9 @@
                             <img ng-src="{{user.dp}}" class="rounded-circle mt-1 profile-pics-mobile d-md-none" />
                         </div>
                         <div class="col-md-10 col-8 mr-n2">
-                            <textarea placeholder="write post here" class="form-control rounded-l" rows="1" id="post"></textarea>
+                            <textarea ng-model="text" placeholder="write post here" rows="3" class="form-control rounded-l"  id="post"></textarea>
                         </div>
-                        <div class="col-md-1 col-2 mt-n2">
+                        <div ng-click="uploadPost()" class="col-md-1 col-2 mt-n2">
                             <span class="fa fa-images fa-3x d-none d-md-block mt-2 mb-n2"></span><br />
                             <span class="fa fa-images fa-2x d-md-none mt-n3"></span>
                             <small class="d-none d-md-block mt-n3">Pick Image</small>
@@ -347,13 +347,37 @@
                         </div>
                     </div>
                 </div>
-           <div class="card card-style">
-<div class="content ">
+           <div ng-repeat="post in posts" class="card card-style">
+<div class="content p-n1 pb-n2">
     <div class="row">
         <div class="col-2">
-            <img class="rounded-circle profileImg" src="images/pictures/0.jpg" />
+            <img class="rounded-circle profileImg-sm" src="images/pictures/0.jpg" />
+        </div>
+        <div class="col-8 postw">
+            <p class="firstRow"><strong>Valentine Emmanuel</strong></p>
+            <p class="twoRow">criminal law</p>
+            <p class="twoRow"><i>10 mins ago</i></p>
+        </div>
+        <div class="col-1">
+<span class="fa fa-caret-down"></span>
         </div>
     </div>
+<div class="row pl-2 pr-2 line-height-m">
+    <p>
+        {{post.post}}
+    </p>
+</div>
+<div class="row" >
+    <div class="col-1" style="font-size: 23px">
+        <i class="fa fa-thumbs-up"></i>
+    </div>
+    <div class="col-1" style="font-size: 23px">
+        <i class="fa fa-comment"></i>
+    </div>
+    
+    <div class="col"><span class="float-right">32 likes &nbsp;&nbsp; 4 comments</span></div>
+</div>
+
 </div>
            </div>
             </div>
@@ -566,62 +590,13 @@
         </div>
 
 
-        <!--end of page content, off canvas elements here-->
-        <div ng-controller="accountsCtrl" id="menu-signin" class="menu menu-box-bottom menu-box-detached rounded-m"
-             data-menu-height="320"
-             data-menu-effect="menu-over">
-            <div class="content mb-0">
-                <h1 class="text-uppercase font-900 mb-0">LOGIN</h1>
-                <p class="font-11  mt-n1 mb-0">
-                    Hello, stranger! Please enter your credentials below.
-                </p>
+       <div id="toast-1" class="toast toast-tiny toast-top bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Uploading...</div>
 
-                <div class="input-style has-icon input-style-1 input-required">
-                    <i class="input-icon fa fa-user font-11"></i>
-                    <span>Email</span>
-                    <em>(required)</em>
-                    <input ng-model="login.email" type="email" placeholder="Enter Email">
-                </div>
-                <div class="input-style has-icon input-style-1 input-required">
-                    <i class="input-icon fa fa-lock font-11"></i>
-                    <span>Password</span>
-                    <em>(required)</em>
-                    <input ng-model="login.password" type="password" placeholder="Password">
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <a href="#" data-menu="menu-forgot" class="font-10">Forgot Password?</a>
-                    </div>
-                    <div class="col-6">
-                        <a data-menu="menu-signup" href="#" class="float-right font-10">Create Account</a>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <a ng-click="signIn()" data-toast="toast-5" class="btn btn-full btn-m shadow-l rounded-s text-uppercase font-900 bg-green1-dark mt-4">LOGIN</a>
-            </div>
-        </div>
-        <div id="toast-1" class="toast toast-tiny toast-top bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Logging In...</div>
-
-        <div id="toast-4" class="toast toast-tiny toast-top bg-red2-dark" data-delay="5000" data-autohide="true"><i class="fa fa-times mr-3"></i>Crendential Incorrect</div>
+        <div id="toast-4" class="toast toast-tiny toast-top bg-red2-dark" data-delay="5000" data-autohide="true"><i class="fa fa-times mr-3"></i>Error Occured</div>
         <div id="toast-5" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="true"><i class="fa fa-sync fa-spin mr-3"></i>Processing...</div>
-        <div id="toast-8" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Retrieving...</div>
+        <div ng-show="retrieve" id="toast-8" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Retrieving...</div>
         <!-- Install instructions for iOS -->
-        <div id="menu-install-pwa-ios"
-             class="menu menu-box-bottom menu-box-detached rounded-l"
-             data-menu-height="320"
-             data-menu-effect="menu-parallax">
-            <div class="boxed-text-xl mt-4">
-                <img class="rounded-l mb-3" src="app/icons/icon-128x128.png" alt="img" width="90">
-                <h4 class="mt-3">Add Sticky on your Home Screen</h4>
-                <p class="mb-0 pb-0">
-                    Install Sticky on your home screen, and access it just like a regular app.  Open your Safari menu and tap "Add to Home Screen".
-                </p>
-                <div class="clear"></div>
-                <a href="#" class="pwa-dismiss close-menu color-highlight uppercase ultrabold opacity-80 top-25">Maybe later</a>
-                <i class="fa-ios-arrow fa fa-caret-down font-40"></i>
-            </div>
-        </div>
-
+     
         <!--end of div id page-->
     </div>
 

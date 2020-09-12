@@ -22,10 +22,27 @@
         })
        
       })
-    Ctrl.controller('wallCtrl', blogController);
-    Ctrl.controller('navCtrl', blogController);
+    Ctrl.controller('wallCtrl', wallController);
+    Ctrl.controller('navCtrl', wallController);
 
-    function blogController($scope, $localForage, $rootScope) {
+    function wallController($scope, $localForage, $rootScope, $http) {
+        $scope.uploadPost = function () {
+
+        }
+        $localForage.getItem("session").then(function (res) {
+            $scope.retrieve = true;
+            $scope.session = res;
+            console.log('rash',res);
+            $http.get('/api/social/all/1', {
+                headers: { Authorization: res}}).then(function (res) {
+                $scope.retrieve = false;
+                $scope.posts = res.data;
+                console.log($scope.posts);
+                }, function (err) {
+                    $scope.retrieve = false;
+                $('#toast-4').toast('show');
+            })
+        })
         console.log($rootScope.user);
         new Splide('#suggested__mobile', {
             
@@ -37,11 +54,7 @@
             perPage: 1,
             focus: 'center',
         }).mount();
-        //new Splide('#suggested__desktop', {
-        //    loop: true,
-        //    perPage: 3,
-        //    focus: 'center',
-        //}).mount();
+        
 
         console.log('wall controller');
        

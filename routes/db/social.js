@@ -39,6 +39,27 @@ var socialDatabase = (function () {
     };
     socialDatabase.prototype.createIndexFavorite = function (res) {
     };
+    socialDatabase.prototype.getAllPosts = function (res, page) {
+        var _this = this;
+        this.connect().then(function (data) {
+            var name = _this.name;
+            console.log("look out");
+            var dbo = data.db(name);
+            dbo.collection("post").find({})
+                .sort({ createdDate: -1 })
+                .skip(((page - 1) * _this.difference))
+                .limit(5).toArray(function (err, result) {
+                if (err) {
+                    _this.errorHandler(res, err);
+                    return;
+                }
+                res.json(result);
+                res.end();
+            });
+        }, function (err) {
+            _this.errorHandler(res, err);
+        });
+    };
     socialDatabase.prototype.errorHandler = function (res, error) {
         res.status(503);
         res.json(error.message);

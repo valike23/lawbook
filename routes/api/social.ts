@@ -1,5 +1,5 @@
 "use strict";
-import { Ipost } from '../../utils/models';
+import { Ipost, Isession } from '../../utils/models';
 import { v2 as cloud, UploadApiErrorResponse, UploadApiResponse } from 'cloudinary';
 import {} from 'multer';
 const connectM = require('connect-multiparty');
@@ -16,7 +16,7 @@ let socialDb = new socialDatabase(mongodb , 'lawbook');
 router.use((req: express.Request, res: express.Response, next: express.NextFunction) =>{
   console.log("sound", req.headers.authorization);
   if(auth.isAuth(req.headers.authorization)){
-    next(auth.isAuth(req.headers.authorization));
+    next();
   }
   else{
     res.status(406);
@@ -29,10 +29,14 @@ router.use((req: express.Request, res: express.Response, next: express.NextFunct
 
 })
 router.post('/create_post', middleWare,  (req: any, res: express.Response) => {
+  let session: Isession = <Isession>auth.isAuth(req.headers.authorization);
   console.log('req.files');
+  
     var thumbFile = req.files.thumb.path;
     let post: Ipost;
     post = req.body;
+    post.name = session.user.firstname + " " + session.user.lastname;
+    
     post.userId = 7;
     post.createdDate = new Date();
     post.likes = 0;
@@ -52,6 +56,32 @@ socialDb.createPost(res, post)
 
     })
    
+});
+router.post('/create',  (req: any, res: express.Response) => {
+  
+ let session: Isession = <Isession>auth.isAuth(req.headers.authorization);
+  
+    let post: Ipost;
+    post = req.body;
+    post.name = session.user.firstname + " " + session.user.lastname;
+    
+    post.userId = 7;
+    post.createdDate = new Date();
+    post.likes = 0;
+    post.dislikes = 0;
+
+socialDb.createPost(res, post)
+   
+});
+router.get('/all/:id', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+ let session: Isession = <Isession>auth.isAuth(req.headers.authorization);
+ console.log(session.user.firstname);
+  try { socialDb.getAllPosts(res, <number><unknown>req.params.id) }
+  catch (error) {
+      res.status(403);
+      res.json("parameter error");
+      res.end();
+  }
 });
 
 module.exports = router;

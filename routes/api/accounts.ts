@@ -22,7 +22,8 @@ import { Iuser } from '../../utils/models';
         if (err) {
             console.log(err);
             res.status(500);
-            res.json("something went wrong!!");
+            res.json({msg:"Something went wrong! dont worry its from us and we are currently working on it.Try again later.",
+            err: err.message});
             res.end();
             return;
         }

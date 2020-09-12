@@ -63,6 +63,7 @@ export interface Ipost {
     _id?: any;
     post: string;
     image?: string;
+    name?: string;
     secureImage?: string;
     createdDate?: Date;
     likes?: number;
