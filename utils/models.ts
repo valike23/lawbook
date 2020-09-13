@@ -36,9 +36,9 @@ export interface Itag {
 }
 
 export interface Isession {
-    session: string;
-    duration: number;
-    user: Iuser;
+    session?: string;
+    duration?: number;
+    user?: Iuser;
 }
 export interface Iuser {
     firstname: string;
@@ -70,7 +70,7 @@ export interface Ipost {
     dislikes?: number;
     userId?: number;
     publicId?: string;
-    profilePics: string;
+    profilePics?: string;
 }
 
 export interface Ireply {

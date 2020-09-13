@@ -6,6 +6,7 @@ const connectM = require('connect-multiparty');
 const middleWare = connectM();
 import {Auth} from '../auth';
 const auth = new Auth();
+let session: Isession;
 import { mongodb, localMongo, cloudinary } from '../config';
 cloud.config(cloudinary);
 import * as express from 'express';
@@ -57,20 +58,33 @@ socialDb.createPost(res, post)
     })
    
 });
-router.post('/create',  (req: any, res: express.Response) => {
-  
- let session: Isession = <Isession>auth.isAuth(req.headers.authorization);
-  
-    let post: Ipost;
-    post = req.body;
-    post.name = session.user.firstname + " " + session.user.lastname;
+router.post('/create',  (req: express.Request, res: express.Response) => {
+  try {
+    console.log("test", req.headers);
+    let session: Isession = <Isession>auth.isAuth(req.headers.authorization);
+    console.log("test", req.body);
+  let temp: Ipost = {
+    post: req.body.post
+    };
     
-    post.userId = 7;
+    let post: Ipost = temp;
+    post.name = session.user.firstname + " " + session.user.lastname;
+    post.profilePics = session.user.dp;
+    post.userId = session.user.id;
     post.createdDate = new Date();
     post.likes = 0;
     post.dislikes = 0;
 
 socialDb.createPost(res, post)
+  }
+  catch (err) {
+
+     res.status(403);
+      res.json(err);
+      res.end();
+  }
+ 
+  
    
 });
 router.get('/all/:id', (req: express.Request, res: express.Response, next: express.NextFunction) => {

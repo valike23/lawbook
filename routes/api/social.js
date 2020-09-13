@@ -5,6 +5,7 @@ var connectM = require('connect-multiparty');
 var middleWare = connectM();
 var auth_1 = require("../auth");
 var auth = new auth_1.Auth();
+var session;
 var config_1 = require("../config");
 cloudinary_1.v2.config(config_1.cloudinary);
 var express = require("express");
@@ -48,15 +49,27 @@ router.post('/create_post', middleWare, function (req, res) {
     });
 });
 router.post('/create', function (req, res) {
-    var session = auth.isAuth(req.headers.authorization);
-    var post;
-    post = req.body;
-    post.name = session.user.firstname + " " + session.user.lastname;
-    post.userId = 7;
-    post.createdDate = new Date();
-    post.likes = 0;
-    post.dislikes = 0;
-    socialDb.createPost(res, post);
+    try {
+        console.log("test", req.headers);
+        var session_1 = auth.isAuth(req.headers.authorization);
+        console.log("test", req.body);
+        var temp = {
+            post: req.body.post
+        };
+        var post = temp;
+        post.name = session_1.user.firstname + " " + session_1.user.lastname;
+        post.profilePics = session_1.user.dp;
+        post.userId = session_1.user.id;
+        post.createdDate = new Date();
+        post.likes = 0;
+        post.dislikes = 0;
+        socialDb.createPost(res, post);
+    }
+    catch (err) {
+        res.status(403);
+        res.json(err);
+        res.end();
+    }
 });
 router.get('/all/:id', function (req, res, next) {
     var session = auth.isAuth(req.headers.authorization);

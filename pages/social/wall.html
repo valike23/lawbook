@@ -63,10 +63,8 @@
                         <div class="col-md-10 col-8 mr-n2">
                             <textarea ng-model="text" placeholder="write post here" rows="3" class="form-control rounded-l"  id="post"></textarea>
                         </div>
-                        <div ng-click="uploadPost()" class="col-md-1 col-2 mt-n2">
-                            <span class="fa fa-images fa-3x d-none d-md-block mt-2 mb-n2"></span><br />
-                            <span class="fa fa-images fa-2x d-md-none mt-n3"></span>
-                            <small class="d-none d-md-block mt-n3">Pick Image</small>
+                        <div  class="col-md-1 col-2 mt-1">
+                           <span class="fa fa-paper-plane fa-3x" ng-click="uploadPost()"></span>
                         </div>
                     </div>
                 </div>
@@ -347,16 +345,16 @@
                         </div>
                     </div>
                 </div>
-           <div ng-repeat="post in posts" class="card card-style">
-<div class="content p-n1 pb-n2">
+           <div ng-repeat="post in posts" class="card card-style pb-n2">
+<div class="content p-n1 mb-n2">
     <div class="row">
         <div class="col-2">
             <img class="rounded-circle profileImg-sm" src="images/pictures/0.jpg" />
         </div>
         <div class="col-8 postw">
-            <p class="firstRow"><strong>Valentine Emmanuel</strong></p>
+            <p class="firstRow"><strong>{{post.name}}</strong></p>
             <p class="twoRow">criminal law</p>
-            <p class="twoRow"><i>10 mins ago</i></p>
+            <p class="twoRow"><i>{{post.createdDate | date: short}}</i></p>
         </div>
         <div class="col-1">
 <span class="fa fa-caret-down"></span>
@@ -593,7 +591,7 @@
        <div id="toast-1" class="toast toast-tiny toast-top bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Uploading...</div>
 
         <div id="toast-4" class="toast toast-tiny toast-top bg-red2-dark" data-delay="5000" data-autohide="true"><i class="fa fa-times mr-3"></i>Error Occured</div>
-        <div id="toast-5" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="true"><i class="fa fa-sync fa-spin mr-3"></i>Processing...</div>
+        <div id="toast-5" style="background-color: forestgreen; color: white" class="toast toast-tiny toast-bottom" data-delay="3000" data-autohide="true"><i class="fa fa-sync fa-spin mr-3"></i>Successful</div>
         <div ng-show="retrieve" id="toast-8" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Retrieving...</div>
         <!-- Install instructions for iOS -->
      

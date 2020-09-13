@@ -27,7 +27,22 @@
 
     function wallController($scope, $localForage, $rootScope, $http) {
         $scope.uploadPost = function () {
+            if ($scope.text) {
+                $('#toast-1').toast('show');
 
+                $http.post("/api/social/create", { post: $scope.text }, {
+                    headers: { Authorization: $scope.session }
+                }).then(function (res) {
+                    $scope.text = "";
+                    $('#toast-1').toast('hide');
+                    $('#toast-5').toast('show');
+                }, function (err) {
+                    console.log(err);
+                    $('#toast-1').toast('hide');
+                    $('#toast-4').toast('hide');
+                    })
+            }
+           
         }
         $localForage.getItem("session").then(function (res) {
             $scope.retrieve = true;
