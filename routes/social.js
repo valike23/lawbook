@@ -6,5 +6,8 @@ var root = require('./config').rootDir;
 router.get('/', function (req, res) {
     res.sendFile(root + '/pages/social/wall.html');
 });
+router.get('/personal', function (req, res) {
+    res.sendFile(root + '/pages/social/personal.html');
+});
 
 module.exports = router;

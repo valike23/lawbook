@@ -1,0 +1,148 @@
+﻿<!DOCTYPE HTML>
+<html lang="en" ng-app="app" ng-controller="personalCtrl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>Lawbook :  {{user.username}} page</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="scss/social.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link href="styles/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="scss/splide.min.css">
+    <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/localforage.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/splide.min.js"></script>
+    <script type="text/javascript" src="js/localforage.js"></script>
+    <script type="text/javascript" src="js/angular-localForage.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/socialControllers.js"></script>
+    <script type="text/javascript" src="js/accountsController.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/pwa.js"></script>
+
+</head>
+
+<body class="theme-light" data-background="none" data-highlight="red2">
+
+    <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+    <div id="page">
+
+        <!-- header and footer bar go here-->
+        <my-header active="social"></my-header>
+        <my-footer active="social"></my-footer>
+
+        <!--start of page content, add your stuff here-->
+        <div class="page-content header-clear-small">
+            <div class="card card-style">
+                <div class="card-overlay" style="background-image:url('images/pictures/28w.jpg'); width:25vw; height: 25vw;
+border-radius:50%; left:33vw;top: 25vh"></div>
+                <a href="#" data-menu="portfolio-2" class="card card-style mx-0 mb-0 rounded-0 preload-img" data-src="images/pictures/29w.jpg" data-card-height="200" style="height: 200px; background-image: url(&quot;images/pictures/29w.jpg&quot;);">
+
+                    <div class="card-overlay bg-black opacity-50"></div>
+
+                </a>
+                <div class="content pb-0 pt-5 line-height-xs" style="text-align:center">
+                    <p class="font-18 font-800 mb-2">Dele Ali</p>
+                    <p class="mb-1">Associate at Mangos law</p>
+                    <p class="mb-1">Intellectual Property/Private Equity Lawyer</p>
+                    <div class="mb-4 " style="">
+                        <img style="width:20px; height: 20px; border-radius:50%" src='images/svg/ng.svg' />
+                        <span>Lagos, Nigeria</span>
+                    </div>
+                    <div class="pl-2 pr-2 row mb-0">
+                        <a href="#" class="col ml-1 mr-1 btn btn-s  mb-3 rounded-xl text-uppercase font-900 shadow-s bg-yellow1-light">Message</a>
+                        <a href="#" class="col ml-1 mr-1 btn btn-s  mb-3 rounded-xl text-uppercase font-900 shadow-s bg-yellow1-light">Add</a>
+                        <a href="#" class="col ml-1 mr-1 btn btn-s  mb-3 rounded-xl text-uppercase font-900 shadow-s bg-yellow1-light">More...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-style">
+                <div class="content">
+                    <h4>ABOUT</h4>
+                    <p class="mb-0">
+                        Destiny Ogamaro is a king of the principal of all the
+                        kingdom of rome whose priniciple would end the entire jouranlistic media
+                        on the top of the head of the street what the world created in the 90s
+                        and the 20s is the end of all the windward slope at the end of the year
+                    </p>
+                    <div class="mt-0"><small class="float-right mt-n2 mb-0">see more</small></div>
+                </div>
+            </div>
+            <div class="card card-style">
+                <div class="content">
+                    <h4>PROFESSIONAL EXPRIENCE</h4>
+                    <p class="mb-0">
+                        <a href="#">LITIGATION</a><br />
+                        <a href="#">INTELLECTUAL PROPERTY LAW</a><br />
+                        <a href="#">LAND USE LAW</a>
+                    </p>
+                    <div class="mt-0"><small class="float-right mt-n2 mb-0">see more</small></div>
+                </div>
+            </div>
+            <div class="card card-style">
+                <div class="content">
+                    <h4>EDUCATION</h4>
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="images/school/uniben.png" style="height:40px; width:40px" alt="uniben_logo" /><br />
+                            <small style="text-align: center; font-size: 10px">2018/2019</small>
+                        </div>
+                        <div class="col-9">
+                            <strong>BI</strong><br />
+                            <a href="#" style="color: blue">Nigeria Law School</a><br />
+                            <span>First Class Honours</span>
+                        </div>
+                    </div>
+                    <div class="mt-0"><small class="float-right mt-n2 mb-0">see more</small></div>
+                </div>
+            </div>
+            <div class="card card-style">
+                <div class="content">
+                    <h4>PROFESSIONAL AFFILATION</h4>
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="images/school/uniben.png" style="height:40px; width:40px" alt="uniben_logo" /><br />
+                            <small style="text-align: center; font-size: 10px">2018/2019</small>
+                        </div>
+                        <div class="col-9">
+                            <strong>BI</strong><br />
+                            <a href="#" style="color: blue">Nigeria Law School</a><br />
+                            <span>First Class Honours</span>
+                        </div>
+                    </div>
+                    <div class="mt-0"><small class="float-right mt-n2 mb-0">see more</small></div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div id="toast-1" class="toast toast-tiny toast-top bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Uploading...</div>
+
+        <div id="toast-4" class="toast toast-tiny toast-top bg-red2-dark" data-delay="5000" data-autohide="true"><i class="fa fa-times mr-3"></i>Error Occured</div>
+        <div id="toast-5" style="background-color: forestgreen; color: white" class="toast toast-tiny toast-bottom" data-delay="3000" data-autohide="true"><i class="fa fa-sync fa-spin mr-3"></i>Successful</div>
+        <div ng-show="retrieve" id="toast-8" class="toast toast-tiny toast-bottom bg-blue2-dark" data-delay="3000" data-autohide="false"><i class="fa fa-sync fa-spin mr-3"></i>Retrieving...</div>
+        <!-- Install instructions for iOS -->
+        <!--end of div id page-->
+    </div>
+
+    <my-sideBar></my-sideBar>
+
+</body>
+</html>

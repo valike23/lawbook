@@ -24,6 +24,7 @@
       })
     Ctrl.controller('wallCtrl', wallController);
     Ctrl.controller('navCtrl', wallController);
+    Ctrl.controller('personalCtrl', personalController);
 
     function wallController($scope, $localForage, $rootScope, $http) {
         $scope.uploadPost = function () {
@@ -74,6 +75,8 @@
         console.log('wall controller');
        
     }
-   
+    function personalController($scope, $rootScope) {
+
+    }
 
 })();
