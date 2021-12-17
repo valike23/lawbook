@@ -1,0 +1,41 @@
+{
+  "name": "lexerati",
+  "description": "Lexerati lawbook documentation solution",
+  "version": "0.0.2",
+  "scripts": {
+    "dev": "sapper dev",
+    "build": "sapper build",
+    "export": "sapper export",
+    "start": "node __sapper__/build",
+    "validate": "svelte-check --ignore src/node_modules/@sapper"
+  },
+  "dependencies": {
+    "axios": "^0.23.0",
+    "cloudinary": "^1.27.1",
+    "compression": "^1.7.1",
+    "country-state-city": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "moment": "^2.29.1",
+    "mongodb": "^4.1.3",
+    "mysql": "^2.18.1",
+    "sirv": "^1.0.0"
+  },
+  "devDependencies": {
+    "sapper": "^0.28.0",
+    "svelte": "^3.17.3",
+    "file-loader": "^6.0.0",
+    "svelte-loader": "^3.0.0",
+    "webpack": "^4.46.0",
+    "webpack-modules": "^1.0.0",
+    "ts-loader": "^8.0.4",
+    "@tsconfig/svelte": "^1.0.10",
+    "@types/compression": "^1.7.0",
+    "@types/node": "^14.11.1",
+    "@types/polka": "^0.5.1",
+    "svelte-check": "^1.0.46",
+    "svelte-preprocess": "^4.3.0",
+    "tslib": "^2.0.1",
+    "typescript": "^4.0.3"
+  }
+}
